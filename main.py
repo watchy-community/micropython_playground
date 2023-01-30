@@ -20,7 +20,7 @@ Hardware/Datasheets:
 """
 
 import uasyncio as asyncio
-from watchy import Watchy
+from src.watchy import Watchy
 
 
 async def main():
