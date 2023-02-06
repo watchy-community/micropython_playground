@@ -225,6 +225,13 @@ class Watchy:
         self.display.framebuf.fill(WHITE)
         datetime = self.rtc.datetime()
         (year, month, date, day, hours, minutes, _) = datetime
+        
+        if len(str(hours)) == 1:
+            hours = f'0{hours}'
+            
+        if len(str(minutes)) == 1:
+            minutes = f'0{minutes}'
+        
         self.display.display_text(f'{hours}:{minutes}', 10, 15, fira_bold_58, WHITE, BLACK)
         self.display.display_text(f'line2', 10, 80, fira_reg_38, WHITE, BLACK)
         self.display.display_text(f'line3', 10, 125, fira_reg_28, WHITE, BLACK)
