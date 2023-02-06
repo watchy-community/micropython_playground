@@ -160,9 +160,7 @@ class EPD:
         invert=False,
         mirror_y=False,
     ):
-        """
-        Adapted from https://github.com/ZinggJM/GxEPD2
-        """
+        """Adapted from https://github.com/ZinggJM/GxEPD2."""
         width_bytes: int = (w + 7) // 8  # width bytes, bitmaps are padded
         x -= x % 8  # byte boundary
         w = width_bytes * 8  # byte boundary

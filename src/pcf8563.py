@@ -10,6 +10,7 @@ See LICENSE.
 
 import utime
 from machine import I2C
+from micropython import const
 
 PCF8563_SLAVE_ADDRESS = const(0x51)
 PCF8563_STAT1_REG = const(0x00)
@@ -55,8 +56,7 @@ CLOCK_CLK_HIGH_IMPEDANCE = const(0x0)
 
 class PCF8563:
     def __init__(self, i2c, address=None):
-        """Initialization needs to be given an initialized I2C port
-        """
+        """Initialization needs to be given an initialized I2C port."""
         self.i2c = i2c
         self.address = address if address else PCF8563_SLAVE_ADDRESS
         self.buffer = bytearray(16)
@@ -78,39 +78,32 @@ class PCF8563:
         return (tens << 4) + units
 
     def seconds(self):
-        """Get the current allowed seconds of PCF8563
-        """
+        """Get the current allowed seconds of PCF8563."""
         return self.__bcd2dec(self.__read_byte(PCF8563_SEC_REG) & 0x7F)
 
     def minutes(self):
-        """Get the current allowed minutes of PCF8563
-        """
+        """Get the current allowed minutes of PCF8563."""
         return self.__bcd2dec(self.__read_byte(PCF8563_MIN_REG) & 0x7F)
 
     def hours(self):
-        """Get the current allowed hours of PCF8563
-        """
+        """Get the current allowed hours of PCF8563."""
         d = self.__read_byte(PCF8563_HR_REG) & 0x3F
         return self.__bcd2dec(d & 0x3F)
 
     def day(self):
-        """Get the current allowed day of PCF8563
-        """
+        """Get the current allowed day of PCF8563."""
         return self.__bcd2dec(self.__read_byte(PCF8563_WEEKDAY_REG) & 0x07)
 
     def date(self):
-        """Get the current allowed date of PCF8563
-        """
+        """Get the current allowed date of PCF8563."""
         return self.__bcd2dec(self.__read_byte(PCF8563_DAY_REG) & 0x3F)
 
     def month(self):
-        """Get the current allowed month of PCF8563
-        """
+        """Get the current allowed month of PCF8563."""
         return self.__bcd2dec(self.__read_byte(PCF8563_MONTH_REG) & 0x1F)
 
     def year(self):
-        """Get the current allowed year of PCF8563
-        """
+        """Get the current allowed year of PCF8563."""
         return self.__bcd2dec(self.__read_byte(PCF8563_YEAR_REG))
 
     def datetime(self):
@@ -172,29 +165,24 @@ class PCF8563:
                        dt[6], dt[2], dt[1], dt[0] % 100)
 
     def write_now(self):
-        """Write the current system time to PCF8563
-        """
+        """Write the current system time to PCF8563."""
         self.set_datetime(utime.localtime())
 
     def set_clk_out_frequency(self, frequency=CLOCK_CLK_OUT_FREQ_1_HZ):
-        """Set the clock output pin frequency
-        """
+        """Set the clock output pin frequency."""
         self.__write_byte(PCF8563_SQW_REG, frequency)
 
     def check_if_alarm_on(self):
-        """Read the register to get the alarm enabled
-        """
+        """Read the register to get the alarm enabled."""
         return bool(self.__read_byte(PCF8563_STAT2_REG) & PCF8563_ALARM_AF)
 
     def turn_alarm_off(self):
-        """Should not affect the alarm interrupt state.
-        """
+        """Should not affect the alarm interrupt state."""
         alarm_state = self.__read_byte(PCF8563_STAT2_REG)
         self.__write_byte(PCF8563_STAT2_REG, alarm_state & 0xf7)
 
     def clear_alarm(self):
-        """Clear status register.
-        """
+        """Clear status register."""
         alarm_state = self.__read_byte(PCF8563_STAT2_REG)
         alarm_state &= ~(PCF8563_ALARM_AF)
         alarm_state |= PCF8563_TIMER_TF
@@ -206,29 +194,25 @@ class PCF8563:
         self.__write_byte(PCF8563_ALARM_WEEKDAY, 0x80)
 
     def check_for_alarm_interrupt(self):
-        """check for alarm interrupt,is alram int return True
-        """
+        """Check for alarm interrupt,is alram int return True."""
         return bool(self.__read_byte(PCF8563_STAT2_REG) & 0x02)
 
     def enable_alarm_interrupt(self):
-        """Turn on the alarm interrupt output to the interrupt pin
-        """
+        """Turn on the alarm interrupt output to the interrupt pin."""
         alarm_state = self.__read_byte(PCF8563_STAT2_REG)
         alarm_state &= ~PCF8563_ALARM_AF
         alarm_state |= (PCF8563_TIMER_TF | PCF8563_ALARM_AIE)
         self.__write_byte(PCF8563_STAT2_REG, alarm_state)
 
     def disable_alarm_interrupt(self):
-        """Turn off the alarm interrupt output to the interrupt pin
-        """
+        """Turn off the alarm interrupt output to the interrupt pin."""
         alarm_state = self.__read_byte(PCF8563_STAT2_REG)
         alarm_state &= ~(PCF8563_ALARM_AF | PCF8563_ALARM_AIE)
         alarm_state |= PCF8563_TIMER_TF
         self.__write_byte(PCF8563_STAT2_REG, alarm_state)
 
     def set_daily_alarm(self, hours=None, minutes=None, date=None, weekday=None):
-        """Set alarm match, allow sometimes, minute, day, week
-        """
+        """Set alarm match, allow sometimes, minute, day, week."""
         if minutes is None:
             minutes = PCF8563_ALARM_ENABLE
             self.__write_byte(PCF8563_ALARM_MINUTES, minutes)
@@ -236,7 +220,7 @@ class PCF8563:
             if minutes < 0 or minutes > 59:
                 raise ValueError('Minutes is out of range [0,59].')
             self.__write_byte(PCF8563_ALARM_MINUTES,
-                            self.__dec2bcd(minutes) & 0x7f)
+                              self.__dec2bcd(minutes) & 0x7f)
 
         if hours is None:
             hours = PCF8563_ALARM_ENABLE
