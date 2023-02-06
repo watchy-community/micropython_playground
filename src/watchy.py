@@ -1,15 +1,13 @@
-"""watchy.py.
+"""src/watchy.py.
 
 The class for the Watchy hardware.
 
 Based on code from https://github.com/hueyy/watchy_py.
 """
 
-import esp32
-import utime
-import ntptime
-import micropython
-from time import sleep_ms
+from esp32 import wake_on_ext0, wake_on_ext1, WAKEUP_ALL_LOW, WAKEUP_ANY_HIGH
+from utime import gmtime, sleep_ms
+from ntptime import time as ntptime
 from network import WLAN, STA_IF
 from machine import (
     EXT0_WAKE,
@@ -43,6 +41,7 @@ from src.constants import (
 )
 
 DEBUG = False
+TIMEOFFSET = -6
 
 
 class Watchy:
@@ -111,7 +110,7 @@ class Watchy:
     def feed_wdt(self, timer):
         """Prevent the ESP32 from resetting."""
         self.wdt.feed()
-        
+
     def check_network(self):
         """Check the wireless network connection."""
         print('Checking network connection...')
@@ -128,23 +127,24 @@ class Watchy:
                             pass
             print('Connection successful.')
             print(self.station.ifconfig())
-        
+
     def check_ntptime(self):
         """Check NTP Server for time, if online."""
         print('Checking online time server...')
         if self.station.isconnected():
             print('Getting ntp update...')
-            wantime = ntptime.time()
-            localtime = utime.gmtime(wantime)
-            # rtc needs day as 1-7, not 0-6
+            wantime = ntptime()
+            localtime = gmtime(wantime)
+            dayOfWeek = localtime[6] + 1  # rtc needs day as 1-7, not 0-6
+            dstHour = localtime[3] + TIMEOFFSET
             newtime = (
-                localtime[0], # year
-                localtime[1], # month
-                localtime[2], # date
-                localtime[3], # hours
-                localtime[4], # minutes
-                localtime[5], # seconds
-                localtime[6] + 1 # day of the week
+                localtime[0],  # year
+                localtime[1],  # month
+                localtime[2],  # date
+                dstHour,       # hours
+                localtime[4],  # minutes
+                localtime[5],  # seconds
+                dayOfWeek      # day of the week
             )
             self.rtc.set_datetime(newtime)
         else:
@@ -165,17 +165,16 @@ class Watchy:
 
     def init_interrupts(self):
         """Map the interrupts to inputs."""
-        # EXT0 is mapped to RTC INT pin.
-        esp32.wake_on_ext0(self.pin_rtcint, esp32.WAKEUP_ALL_LOW)
-
         buttons = (
             self.pin_btnBack,
             self.pin_btnMenu,
             self.pin_btnDown,
             self.pin_btnUp
         )
+        # EXT0 is mapped to RTC INT pin.
+        wake_on_ext0(self.pin_rtcint, WAKEUP_ALL_LOW)
         # EXT1 is mapped to all 4 button pins.
-        esp32.wake_on_ext1(buttons, esp32.WAKEUP_ANY_HIGH)
+        wake_on_ext1(buttons, WAKEUP_ANY_HIGH)
 
     def handle_wakeup(self):
         """Do something with the wakeup call."""
@@ -198,6 +197,7 @@ class Watchy:
     def display_watchface(self):
         """Write information out to the ePaper."""
         weekDays = {
+            0: 'Mon',  # boot from dead, day is 0, keyerror
             1: 'Mon',
             2: 'Tue',
             3: 'Wed',
@@ -207,6 +207,7 @@ class Watchy:
             7: 'Sun'
         }
         monthNames = {
+            0: 'Jan',  # boot from dead, month is 0, keyerror
             1: 'Jan',
             2: 'Feb',
             3: 'Mar',
@@ -219,12 +220,13 @@ class Watchy:
             10: 'Oct',
             11: 'Nov',
             12: 'Dec'
-        }
+        }        
         # TODO: create better display output, new font
         self.display.framebuf.fill(WHITE)
         datetime = self.rtc.datetime()
         (year, month, date, day, hours, minutes, _) = datetime
-        self.display.display_text(f'{hours}', 10, 15, fira_bold_58, WHITE, BLACK)
-        self.display.display_text(f'{minutes}', 10, 80, fira_reg_38, WHITE, BLACK)
+        self.display.display_text(f'{hours}:{minutes}', 10, 15, fira_bold_58, WHITE, BLACK)
+        self.display.display_text(f'line2', 10, 80, fira_reg_38, WHITE, BLACK)
+        self.display.display_text(f'line3', 10, 125, fira_reg_28, WHITE, BLACK)
         self.display.display_text(f'{weekDays[day]}, {monthNames[month]} {date}', 10, 160, fira_reg_28, WHITE, BLACK)
         self.display.update()

@@ -1,3 +1,13 @@
+"""src/display.py.
+
+A display driver written for the Watchy ESP32 open-source hardware watch.
+
+Created by Huey Lee
+[Github: hueyy/watchy_py](https://github.com/hueyy/watchy_py)
+
+See LICENSE.
+"""
+
 from src.epaper1in54 import EPD
 from src.writer import Writer
 from machine import Pin, SPI
@@ -70,6 +80,7 @@ class Display:
             self.MAX_HEIGHT,
             background_colour,
             text_colour,
+            verbose=False
         )
         wri.set_textpos(self.framebuf, y, x)
         wri.printstring(text)

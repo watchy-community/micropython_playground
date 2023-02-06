@@ -1,6 +1,10 @@
-"""
-Adapted from MicroPython Waveshare 1.54" Black/White GDEH0154D27 e-paper display driver
-https://github.com/mcauser/micropython-waveshare-epaper
+"""src/epaper1in54.py.
+
+Adapted from MicroPython Waveshare 1.54" Black/White GDEH0154D27 e-paper
+display driver.
+
+Created by Mike Causer
+[Github: mcauser/micropython-waveshare-epaper](https://github.com/mcauser/micropython-waveshare-epaper)
 
 See LICENSE.
 """

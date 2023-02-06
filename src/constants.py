@@ -1,6 +1,6 @@
-"""constants.py.
+"""src/constants.py.
 
-Used to declare that the expression is a constant
+Used to declare that the expression is a constant,
 so that the compiler can optimise it.
 """
 

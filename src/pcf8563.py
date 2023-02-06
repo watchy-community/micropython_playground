@@ -1,10 +1,12 @@
-'''
-pcf8563.py - MicroPython library for NXP PCF8563 Real-time clock/calendar
-Created by Lewis he on September 17, 2019.
-github:https://github.com/lewisxhe/PCF8563_PythonLibrary
+"""src/pcf8563.py.
+
+MicroPython library for NXP PCF8563 Real-time clock/calendar.
+
+Created by Lewis He
+[Github: lewisxhe/PCF8563_PythonLibrary](https://github.com/lewisxhe/PCF8563_PythonLibrary)
 
 See LICENSE.
-'''
+"""
 
 import utime
 from machine import I2C
