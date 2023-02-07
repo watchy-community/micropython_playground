@@ -20,9 +20,9 @@ from machine import (
     wake_reason,
     deepsleep
 )
-import assets.fonts.fira_sans_bold_58 as fira_bold_58
-import assets.fonts.fira_sans_regular_38 as fira_reg_38
-import assets.fonts.fira_sans_regular_28 as fira_reg_28
+import assets.fonts.monocraft_48 as monocraft_48
+import assets.fonts.monocraft_32 as monocraft_32
+import assets.fonts.monocraft_24 as monocraft_24
 from src.display import Display
 from src.pcf8563 import PCF8563
 from src.wifi import trustedWiFi
@@ -242,8 +242,8 @@ class Watchy:
         if len(str(minutes)) == 1:
             minutes = f'0{minutes}'
 
-        self.display.display_text(f'{hours}:{minutes}', 10, 15, fira_bold_58, WHITE, BLACK)
-        self.display.display_text(f'line2', 10, 80, fira_reg_38, WHITE, BLACK)
-        self.display.display_text(f'line3', 10, 125, fira_reg_28, WHITE, BLACK)
-        self.display.display_text(f'{weekDays[day]}, {monthNames[month]} {date}', 10, 160, fira_reg_28, WHITE, BLACK)
+        self.display.display_text(f'{hours}:{minutes}', 10, 15, monocraft_48, WHITE, BLACK)
+        self.display.display_text(f'line2', 10, 80, monocraft_32, WHITE, BLACK)
+        self.display.display_text(f'line3', 10, 125, monocraft_24, WHITE, BLACK)
+        self.display.display_text(f'{weekDays[day]}, {monthNames[month]} {date}', 10, 160, monocraft_24, WHITE, BLACK)
         self.display.update()
