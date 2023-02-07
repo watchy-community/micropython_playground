@@ -135,7 +135,6 @@ class Watchy:
             print('Getting ntp update...')
             wantime = ntptime()
             localtime = gmtime(wantime)
-            dayOfWeek = localtime[6] + 1  # rtc needs day as 1-7, not 0-6
             dstHour = localtime[3] + TIMEOFFSET
             newtime = (
                 localtime[0],  # year
@@ -144,7 +143,7 @@ class Watchy:
                 dstHour,       # hours
                 localtime[4],  # minutes
                 localtime[5],  # seconds
-                dayOfWeek      # day of the week
+                localtime[6]   # day of the week
             )
             self.rtc.set_datetime(newtime)
         else:
@@ -197,14 +196,13 @@ class Watchy:
     def display_watchface(self):
         """Write information out to the ePaper."""
         weekDays = {
-            0: 'Mon',  # boot from dead, day is 0, keyerror
-            1: 'Mon',
-            2: 'Tue',
-            3: 'Wed',
-            4: 'Thu',
-            5: 'Fri',
-            6: 'Sat',
-            7: 'Sun'
+            0: 'Mon',
+            1: 'Tue',
+            2: 'Wed',
+            3: 'Thu',
+            4: 'Fri',
+            5: 'Sat',
+            6: 'Sun'
         }
         monthNames = {
             0: 'Jan',  # boot from dead, month is 0, keyerror
@@ -220,18 +218,19 @@ class Watchy:
             10: 'Oct',
             11: 'Nov',
             12: 'Dec'
-        }        
+        }
         # TODO: create better display output, new font
         self.display.framebuf.fill(WHITE)
         datetime = self.rtc.datetime()
-        (year, month, date, day, hours, minutes, _) = datetime
-        
+        # (year, month, date, hours, minutes, seconds, weekday)
+        (_, month, date, hours, minutes, _, day) = datetime
+
         if len(str(hours)) == 1:
             hours = f'0{hours}'
-            
+
         if len(str(minutes)) == 1:
             minutes = f'0{minutes}'
-        
+
         self.display.display_text(f'{hours}:{minutes}', 10, 15, fira_bold_58, WHITE, BLACK)
         self.display.display_text(f'line2', 10, 80, fira_reg_38, WHITE, BLACK)
         self.display.display_text(f'line3', 10, 125, fira_reg_28, WHITE, BLACK)
