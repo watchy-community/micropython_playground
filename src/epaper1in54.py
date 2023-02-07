@@ -10,42 +10,35 @@ See LICENSE.
 """
 
 from time import sleep_ms  # type: ignore
-
-from micropython import const
-
-# Display resolution
-EPD_WIDTH = const(200)
-EPD_HEIGHT = const(200)
-
-# Display commands
-DRIVER_OUTPUT_CONTROL = const(0x01)
-BOOSTER_SOFT_START_CONTROL = const(0x0C)
-# GATE_SCAN_START_POSITION             = const(0x0F)
-DEEP_SLEEP_MODE = const(0x10)
-DATA_ENTRY_MODE_SETTING = const(0x11)
-SW_RESET = const(0x12)
-# TEMPERATURE_SENSOR_CONTROL           = const(0x1A)
-MASTER_ACTIVATION = const(0x20)
-# DISPLAY_UPDATE_CONTROL_1             = const(0x21)
-DISPLAY_UPDATE_CONTROL_2 = const(0x22)
-WRITE_RAM = const(0x24)
-WRITE_RAM_RED = const(0x26)
-WRITE_VCOM_REGISTER = const(0x2C)
-WRITE_LUT_REGISTER = const(0x32)
-SET_DUMMY_LINE_PERIOD = const(0x3A)
-SET_GATE_TIME = const(0x3B)  # not in datasheet
-BORDER_WAVEFORM_CONTROL = const(0x3C)
-SET_RAM_X_ADDRESS_START_END_POSITION = const(0x44)
-SET_RAM_Y_ADDRESS_START_END_POSITION = const(0x45)
-SET_RAM_X_ADDRESS_COUNTER = const(0x4E)
-SET_RAM_Y_ADDRESS_COUNTER = const(0x4F)
-TERMINATE_FRAME_READ_WRITE = const(0xFF)  # aka NOOP
-
-BUSY = const(1)  # 1=busy, 0=idle
+from src.constants import (
+    EPD_HEIGHT,
+    EPD_WIDTH,
+    BUSY,
+    SW_RESET,
+    WRITE_RAM,
+    SET_GATE_TIME,
+    DEEP_SLEEP_MODE,
+    MASTER_ACTIVATION,
+    WRITE_LUT_REGISTER,
+    WRITE_VCOM_REGISTER,
+    SET_DUMMY_LINE_PERIOD,
+    DRIVER_OUTPUT_CONTROL,
+    BORDER_WAVEFORM_CONTROL,
+    DATA_ENTRY_MODE_SETTING,
+    DISPLAY_UPDATE_CONTROL_2,
+    SET_RAM_X_ADDRESS_COUNTER,
+    SET_RAM_Y_ADDRESS_COUNTER,
+    BOOSTER_SOFT_START_CONTROL,
+    SET_RAM_X_ADDRESS_START_END_POSITION,
+    SET_RAM_Y_ADDRESS_START_END_POSITION,
+)
 
 
 class EPD:
+    """MicroPython driver for Waveshare GDEH0154D27 e-paper."""
+
     def __init__(self, spi, cs, dc, rst, busy):
+        """Initialize the class instance."""
         self.spi = spi
         self.cs = cs
         self.dc = dc
@@ -62,6 +55,7 @@ class EPD:
     )
 
     def send_command(self, command: int, data: bytearray = None):
+        """Write command across Serial interface."""
         self.dc.off()
         self.cs.off()
         self.spi.write(bytearray([command]))
@@ -70,12 +64,14 @@ class EPD:
             self.send_data(data)
 
     def send_data(self, data: bytearray):
+        """Write data across Serial interface."""
         self.dc.on()
         self.cs.off()
         self.spi.write(data)
         self.cs.on()
 
     def init(self):
+        """Initialize the ePaper software."""
         self.reset()
         self.send_command(DRIVER_OUTPUT_CONTROL)
         self.send_data(bytearray([((EPD_HEIGHT - 1) >> 8) & 0xFF]))
@@ -83,32 +79,37 @@ class EPD:
         self.send_data(bytearray([0x00]))  # GD = 0 SM = 0 TB = 0
         self.send_command(BOOSTER_SOFT_START_CONTROL, b"\xD7\xD6\x9D")
         self.send_command(WRITE_VCOM_REGISTER, b"\xA8")  # VCOM 7C
-        self.send_command(SET_DUMMY_LINE_PERIOD, b"\x1A")  # 4 dummy lines per gate
+        self.send_command(SET_DUMMY_LINE_PERIOD, b"\x1A")  # 4 lines per gate
         self.send_command(SET_GATE_TIME, b"\x08")  # 2us per line
-        self.send_command(DATA_ENTRY_MODE_SETTING, b"\x03")  # X increment Y increment
+        self.send_command(DATA_ENTRY_MODE_SETTING, b"\x03")  # X inc Y inc
         self.set_lut(self.LUT_FULL_UPDATE)
 
     def wait_until_idle(self):
+        """Wait for the ePaper to not be busy."""
         while self.busy.value() == BUSY:
             sleep_ms(100)
 
     def reset(self):
+        """Issue RESET command to ePaper hardware."""
         self.rst.off()
         sleep_ms(200)
         self.rst.on()
         sleep_ms(200)
 
     def set_lut(self, lut):
+        """Send waveform to ePaper."""
         self.send_command(WRITE_LUT_REGISTER, lut)
 
     # to wake call reset() or init()
     def sleep(self):
+        """Place ePaper in deep sleep power mode."""
         self.send_command(
             DEEP_SLEEP_MODE
         )  # enter deep sleep , b"\x01" A0=1, A0=0 power on
         self.wait_until_idle()
 
     def hw_init(self):
+        """Initialize the ePaper hardware."""
         self.wait_until_idle()
         self.send_command(SW_RESET)
         self.wait_until_idle()
@@ -145,6 +146,7 @@ class EPD:
         self.wait_until_idle()
 
     def update(self, partial=False):
+        """Update the display control state."""
         data = bytearray([0xFF if partial else 0xF7])
         self.send_command(DISPLAY_UPDATE_CONTROL_2, data)
         self.send_command(MASTER_ACTIVATION)
@@ -160,7 +162,7 @@ class EPD:
         invert=False,
         mirror_y=False,
     ):
-        """Adapted from https://github.com/ZinggJM/GxEPD2."""
+        """Send buffer data to Serial interface."""
         width_bytes: int = (w + 7) // 8  # width bytes, bitmaps are padded
         x -= x % 8  # byte boundary
         w = width_bytes * 8  # byte boundary
@@ -179,9 +181,12 @@ class EPD:
                     if mirror_y
                     else j + dx // 8 + (i + dy) * width_bytes
                 )
-                self.send_data(bytearray([~buffer[idx] if invert else buffer[idx]]))
+                self.send_data(
+                    bytearray([~buffer[idx] if invert else buffer[idx]])
+                )
 
     def display_buffer(self, buffer: bytearray, mirror_y=True, partial=False):
+        """Send buffer to Serial interface."""
         self.send_command(WRITE_RAM)
         self.write_buffer_to_ram(buffer, mirror_y=True)
         self.update(partial)
