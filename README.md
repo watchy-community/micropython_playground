@@ -14,7 +14,7 @@ Testing MicroPython with Watchy ESP32 hardware.
   - [x] Tested method with button interrupt
   - [x] NTP set time on RTC
   - [ ] Add daylight savings check
-  - [ ] Add timezone offset
+  - [x] Add timezone offset
 - [ ] Work on new display layout
   - [ ] new font?
 - [ ] Move all `const()` to `src/constants.py`
