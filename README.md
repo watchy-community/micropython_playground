@@ -17,11 +17,11 @@ Testing MicroPython with Watchy ESP32 hardware.
   - [x] Add timezone offset
 - [ ] Work on new display layout
   - [ ] new font?
-- [ ] Move all `const()` to `src/constants.py`
+- [x] Move all `const()` to `src/constants.py`
 - [ ] Trim libraries to reduce memory usage
-  - [ ] pcf8563 has a lot of extra methods we don't use
-  - [ ] check display
-  - [ ] check epaper1in54
+  - [x] pcf8563 has a lot of extra methods we don't use
+  - [x] check display
+  - [x] check epaper1in54
   - [ ] check writer
 
 ## Issues
