@@ -50,7 +50,7 @@ class Watchy:
     def __init__(self):
         """Class Initializer."""
         # define pins
-        self.pin_rtcint = Pin(RTC_INT, Pin.IN)
+        self.pin_rtcint = Pin(RTC_INT, mode=Pin.IN)
         self.pin_rtcsda = Pin(RTC_SDA)
         self.pin_rtcscl = Pin(RTC_SCL)
         self.pin_motor = Pin(VIBRATE_MOTOR, Pin.OUT)
@@ -95,7 +95,7 @@ class Watchy:
         # i2c init, rtc init
         i2c = SoftI2C(sda=self.pin_rtcsda, scl=self.pin_rtcscl)
         self.rtc = PCF8563(i2c)
-
+        
         # analog-to-digital, used for battery
         self.adc = ADC(self.pin_battery)
 
@@ -110,6 +110,16 @@ class Watchy:
     def feed_wdt(self, timer):
         """Prevent the ESP32 from resetting."""
         self.wdt.feed()
+        
+    def set_rtc_interrupt(self, rtc_minutes):
+        """Change the RTC Interrupt alarm."""
+        alarmTime = rtc_minutes
+        if alarmTime == 60:
+            alarmTime = 00
+        self.rtc.clear_alarm()
+        print(f'RTC_MINUTES: {alarmTime}')
+        self.rtc.set_daily_alarm(minutes=alarmTime)
+        self.rtc.enable_alarm_interrupt()
 
     def check_network(self):
         """Check the wireless network connection."""
@@ -179,16 +189,18 @@ class Watchy:
         """Do something with the wakeup call."""
         reason = wake_reason()
         if reason is EXT0_WAKE or reason == 0:
-            # TODO: Need to get RTC_INT to trigger
             print("RTC wake")
             self.display_watchface()
+            self.set_rtc_interrupt(self.rtc.datetime()[4] + 1)
+            
         elif reason is EXT1_WAKE:
             print("PIN wake")
-            # the 4 lines below are for testing until rtc_int is working
-            print(self.get_battery_voltage())
+            # the 4 lines below are for testing until rtc_int/timers are working
+            #print(self.get_battery_voltage())
             self.check_network()
             self.check_ntptime()
             self.display_watchface()  # force display update
+            self.set_rtc_interrupt(self.rtc.datetime()[4] + 1)
         else:
             print("Wake for other reason")
             print(reason)
@@ -221,8 +233,7 @@ class Watchy:
         }
         # TODO: create better display output, new font
         self.display.framebuf.fill(WHITE)
-        datetime = self.rtc.datetime()
-        # (year, month, date, hours, minutes, seconds, weekday)
+        datetime = self.rtc.datetime()  # (year, month, date, hours, minutes, seconds, weekday)
         (_, month, date, hours, minutes, _, day) = datetime
 
         if len(str(hours)) == 1:
