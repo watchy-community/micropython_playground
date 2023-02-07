@@ -95,11 +95,10 @@ class Watchy:
         # i2c init, rtc init
         i2c = SoftI2C(sda=self.pin_rtcsda, scl=self.pin_rtcscl)
         self.rtc = PCF8563(i2c)
-        
+
         # analog-to-digital, used for battery
         self.adc = ADC(self.pin_battery)
 
-        # code to be looped by async call
         self.init_interrupts()
         self.handle_wakeup()
 
@@ -110,7 +109,7 @@ class Watchy:
     def feed_wdt(self, timer):
         """Prevent the ESP32 from resetting."""
         self.wdt.feed()
-        
+
     def set_rtc_interrupt(self, rtc_minutes):
         """Change the RTC Interrupt alarm."""
         alarmTime = rtc_minutes
@@ -133,7 +132,7 @@ class Watchy:
                 for scanNet in wifiResults:
                     if scanNet[0].decode() == knownNet[0]:
                         self.station.connect(knownNet[0], knownNet[1])
-                        while self.station.isconnected() == False:
+                        while not self.station.isconnected():
                             pass
             print('Connection successful.')
             print(self.station.ifconfig())
@@ -180,9 +179,7 @@ class Watchy:
             self.pin_btnDown,
             self.pin_btnUp
         )
-        # EXT0 is mapped to RTC INT pin.
         wake_on_ext0(self.pin_rtcint, WAKEUP_ALL_LOW)
-        # EXT1 is mapped to all 4 button pins.
         wake_on_ext1(buttons, WAKEUP_ANY_HIGH)
 
     def handle_wakeup(self):
@@ -192,10 +189,10 @@ class Watchy:
             print("RTC wake")
             self.display_watchface()
             self.set_rtc_interrupt(self.rtc.datetime()[4] + 1)
-            
+
         elif reason is EXT1_WAKE:
             print("PIN wake")
-            # the 4 lines below are for testing until rtc_int/timers are working
+            # the lines below are testing until rtc_int/timers are fixed
             #print(self.get_battery_voltage())
             self.check_network()
             self.check_ntptime()
@@ -231,9 +228,9 @@ class Watchy:
             11: 'Nov',
             12: 'Dec'
         }
-        # TODO: create better display output, new font
         self.display.framebuf.fill(WHITE)
-        datetime = self.rtc.datetime()  # (year, month, date, hours, minutes, seconds, weekday)
+        datetime = self.rtc.datetime()
+        # (year, month, date, hours, minutes, seconds, weekday)
         (_, month, date, hours, minutes, _, day) = datetime
 
         if len(str(hours)) == 1:
@@ -242,8 +239,16 @@ class Watchy:
         if len(str(minutes)) == 1:
             minutes = f'0{minutes}'
 
+        """
+        Watchy screen is 200x200
+        at 48px font, it is 5 characters wide
+        at 32px font, it is 8 characters wide
+        at 24px font, it is 10 characters wide
+
+        There may be a little more room if you start more left than 10px.
+        """
         self.display.display_text(f'{hours}:{minutes}', 10, 15, monocraft_48, WHITE, BLACK)
-        self.display.display_text(f'line2', 10, 80, monocraft_32, WHITE, BLACK)
-        self.display.display_text(f'line3', 10, 125, monocraft_24, WHITE, BLACK)
+        self.display.display_text(f'01234567', 10, 80, monocraft_32, WHITE, BLACK)
+        self.display.display_text(f'0123456789', 10, 125, monocraft_24, WHITE, BLACK)
         self.display.display_text(f'{weekDays[day]}, {monthNames[month]} {date}', 10, 160, monocraft_24, WHITE, BLACK)
         self.display.update()

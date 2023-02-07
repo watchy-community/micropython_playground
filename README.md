@@ -4,7 +4,7 @@ Testing MicroPython with Watchy ESP32 hardware.
 
 ## ToDo
 
-- [ ] Get RTC INT to work with pcf8563 driver, or find new driver
+- [x] Get RTC INT to work with pcf8563 driver, or find new driver
 - [ ] Get wireless connection working on timer
   - [x] Wireless `check_network` method written
   - [x] Tested method with button interrupt
