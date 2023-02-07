@@ -71,23 +71,9 @@ class Watchy:
             callback=self.feed_wdt
         )
 
-        # check if connected every 5 minutes
+        # WLAN init
         self.station = WLAN(STA_IF)
         self.station.active(True)
-        '''self.sta_timer = Timer(1)
-        self.sta_timer.init(
-            mode=Timer.ONE_SHOT,
-            period=30000,
-            callback=self.check_network
-        )'''
-
-        # check if network connected every hour
-        '''self.ntp_timer = Timer(2)
-        self.ntp_timer.init(
-            mode=Timer.ONE_SHOT,
-            period=60000,
-            callback=self.check_ntptime
-        )'''
 
         # ePaper display init
         self.display = Display()
@@ -134,8 +120,11 @@ class Watchy:
                         self.station.connect(knownNet[0], knownNet[1])
                         while not self.station.isconnected():
                             pass
-            print('Connection successful.')
-            print(self.station.ifconfig())
+                        print('Connection successful.')
+                        print(self.station.ifconfig())
+                        return
+            print('Wireless not connected.')
+            return
 
     def check_ntptime(self):
         """Check NTP Server for time, if online."""
@@ -185,19 +174,25 @@ class Watchy:
     def handle_wakeup(self):
         """Do something with the wakeup call."""
         reason = wake_reason()
+        datetime = self.rtc.datetime()
+        # (year, month, date, hours, minutes, seconds, weekday)
+        (_, _, _, hours, minutes, _, day) = datetime
         if reason is EXT0_WAKE or reason == 0:
             print("RTC wake")
+            # connect to wifi, update ntp every 4 hours
+            if (hours % 4 == 0) and minutes == 0:
+                self.check_network()
+                self.check_ntptime()
+            # run every minute
             self.display_watchface()
-            self.set_rtc_interrupt(self.rtc.datetime()[4] + 1)
+            self.set_rtc_interrupt(minutes + 1)
 
         elif reason is EXT1_WAKE:
             print("PIN wake")
             # the lines below are testing until rtc_int/timers are fixed
             #print(self.get_battery_voltage())
-            self.check_network()
-            self.check_ntptime()
-            self.display_watchface()  # force display update
-            self.set_rtc_interrupt(self.rtc.datetime()[4] + 1)
+            self.display_watchface()
+            self.set_rtc_interrupt(minutes + 1)
         else:
             print("Wake for other reason")
             print(reason)
