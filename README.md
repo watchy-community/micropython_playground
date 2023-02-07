@@ -1,5 +1,7 @@
 # Watchy Micropython Playground
 
+<img src="face.png" height="50%" width="50%">
+
 Testing MicroPython with Watchy ESP32 hardware.
 
 ## ToDo
