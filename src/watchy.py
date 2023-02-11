@@ -25,7 +25,7 @@ import assets.fonts.monocraft_32 as monocraft_32
 import assets.fonts.monocraft_24 as monocraft_24
 from src.display import Display
 from src.pcf8563 import PCF8563
-from src.wifi import trustedWiFi
+from src.config import trustedWiFi
 from src.constants import (
     BTN_MENU,
     BTN_BACK,
@@ -102,7 +102,7 @@ class Watchy:
         if alarmTime == 60:
             alarmTime = 00
         self.rtc.clear_alarm()
-        print(f'RTC_MINUTES: {alarmTime}')
+        #print(f'RTC_MINUTES: {alarmTime}')
         self.rtc.set_daily_alarm(minutes=alarmTime)
         self.rtc.enable_alarm_interrupt()
 
@@ -131,19 +131,11 @@ class Watchy:
         print('Checking online time server...')
         if self.station.isconnected():
             print('Getting ntp update...')
-            wantime = ntptime()
+            # https://bhave.sh/micropython-ntp/
+            wantime = ntptime() + (TIMEOFFSET * 60 * 60)
             localtime = gmtime(wantime)
-            dstHour = localtime[3] + TIMEOFFSET
-            newtime = (
-                localtime[0],  # year
-                localtime[1],  # month
-                localtime[2],  # date
-                dstHour,       # hours
-                localtime[4],  # minutes
-                localtime[5],  # seconds
-                localtime[6]   # day of the week
-            )
-            self.rtc.set_datetime(newtime)
+            self.rtc.set_datetime(localtime)
+            print('RTC sync\'d to NTP')
         else:
             print('Not online.')
 
@@ -191,6 +183,8 @@ class Watchy:
             print("PIN wake")
             # the lines below are testing until rtc_int/timers are fixed
             #print(self.get_battery_voltage())
+            self.check_network()
+            self.check_ntptime()
             self.display_watchface()
             self.set_rtc_interrupt(minutes + 1)
         else:
@@ -245,5 +239,5 @@ class Watchy:
         self.display.display_text(f'{hours}:{minutes}', 10, 15, monocraft_48, WHITE, BLACK)
         self.display.display_text(f'01234567', 10, 80, monocraft_32, WHITE, BLACK)
         self.display.display_text(f'0123456789', 10, 125, monocraft_24, WHITE, BLACK)
-        self.display.display_text(f'{weekDays[day]}, {monthNames[month]} {date}', 10, 160, monocraft_24, WHITE, BLACK)
+        self.display.display_text(f'{weekDays[day]},{monthNames[month]} {date}', 10, 160, monocraft_24, WHITE, BLACK)
         self.display.update()
