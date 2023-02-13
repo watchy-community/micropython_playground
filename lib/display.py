@@ -10,8 +10,8 @@ See LICENSE.
 
 import framebuf
 from machine import Pin, SPI
-from src.epaper1in54 import EPD
-from src.writer import Writer
+from lib.epaper1in54 import EPD
+from lib.writer import Writer
 from src.constants import (
     DISPLAY_CS,
     DISPLAY_DC,
