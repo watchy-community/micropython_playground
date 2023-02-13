@@ -5,7 +5,6 @@ The class for the Watchy hardware.
 Based on code from https://github.com/hueyy/watchy_py.
 """
 
-import logging
 from esp32 import wake_on_ext0, wake_on_ext1, WAKEUP_ALL_LOW, WAKEUP_ANY_HIGH
 from utime import gmtime, sleep_ms
 from ntptime import time as ntptime
@@ -24,8 +23,8 @@ from machine import (
 import assets.fonts.monocraft_48 as monocraft_48
 import assets.fonts.monocraft_32 as monocraft_32
 import assets.fonts.monocraft_24 as monocraft_24
-from src.display import Display
-from src.pcf8563 import PCF8563
+from lib.display import Display
+from lib.pcf8563 import PCF8563
 from src.config import trustedWiFi, timeZone, DEBUG
 from src.utils import monthNames, weekDays
 from src.constants import (
@@ -36,18 +35,8 @@ from src.constants import (
     RTC_SDA,
     RTC_SCL,
     RTC_INT,
-    BATT_ADC,
     WHITE,
-    BLACK,
-    VIBRATE_MOTOR
-)
-
-logging.basicConfig(
-    level=logging.DEBUG,
-    filename='watchy.log',
-    filemode='w',
-    format='%(asctime)s - %(levelname)s - %(message)s',
-    datefmt='%y-%m-%d %H:%M:%S'
+    BLACK
 )
 
 
@@ -60,8 +49,6 @@ class Watchy:
         self.pin_rtcint = Pin(RTC_INT, mode=Pin.IN)
         self.pin_rtcsda = Pin(RTC_SDA)
         self.pin_rtcscl = Pin(RTC_SCL)
-        self.pin_motor = Pin(VIBRATE_MOTOR, Pin.OUT)
-        self.pin_battery = Pin(BATT_ADC, Pin.IN)
         self.pin_btnMenu = Pin(BTN_MENU, Pin.IN)
         self.pin_btnBack = Pin(BTN_BACK, Pin.IN)
         self.pin_btnDown = Pin(BTN_DOWN, Pin.IN)
@@ -88,9 +75,6 @@ class Watchy:
         # i2c init, rtc init
         i2c = SoftI2C(sda=self.pin_rtcsda, scl=self.pin_rtcscl)
         self.rtc = PCF8563(i2c)
-
-        # analog-to-digital, used for battery
-        self.adc = ADC(self.pin_battery)
 
         self.init_interrupts()
         self.handle_wakeup()
@@ -121,10 +105,10 @@ class Watchy:
         # (year, month, date, hours, minutes, seconds, weekday)
         (_, _, _, hours, minutes, _, day) = datetime
         if reason is EXT0_WAKE or reason == 0:
-            logging.info('RTC wake')
+            print('RTC wake')
             # connect to wifi, update ntp every 4 hours
             if (hours % 4 == 0) and minutes == 0:
-                logging.info('4th hour update')
+                print('4th hour update')
                 self.check_network()
                 self.check_ntptime()
             # run every minute
@@ -132,15 +116,15 @@ class Watchy:
             self.set_rtc_interrupt(minutes + 1)
 
         elif reason is EXT1_WAKE:
-            logging.info('PIN wake')
+            print('PIN wake')
             # the lines below are testing until rtc_int/timers are fixed
             self.check_network()
             self.check_ntptime()
             self.display_watchface()
             self.set_rtc_interrupt(minutes + 1)
         else:
-            logging.warning('Wake for other reason')
-            logging.warning(reason)
+            print('Wake for other reason')
+            print(reason)
 
     def display_watchface(self):
         """Write information out to the ePaper."""
@@ -148,109 +132,75 @@ class Watchy:
         datetime = self.rtc.datetime()
         # (year, month, date, hours, minutes, seconds, weekday)
         (_, month, date, hours, minutes, _, day) = datetime
-
+        
+        if month == 0:
+            month = 1  # fix boot as month 0
+        
         if len(str(hours)) == 1:
             hours = f'0{hours}'
 
         if len(str(minutes)) == 1:
             minutes = f'0{minutes}'
 
-        """
-        Watchy screen is 200x200
-        at 48px font, it is 5 characters wide
-        at 32px font, it is 8 characters wide
-        at 24px font, it is 10 characters wide
-
-        There may be a little more room if you start more left than 10px.
-        """
         self.display.display_text(
             f'{hours}:{minutes}',
-            10,
-            15,
-            monocraft_48,
-            WHITE,
-            BLACK
+            10, 15, monocraft_48, WHITE, BLACK
         )
         self.display.display_text(
             f'01234567',
-            10,
-            80,
-            monocraft_32,
-            WHITE,
-            BLACK
+            10, 80, monocraft_24, WHITE, BLACK
         )
         self.display.display_text(
             f'0123456789',
-            10,
-            125,
-            monocraft_24,
-            WHITE,
-            BLACK
+            10, 125, monocraft_24, WHITE, BLACK
         )
         self.display.display_text(
             f'{weekDays[day]},{monthNames[month - 1]} {date}',
-            10,
-            160,
-            monocraft_24,
-            WHITE,
-            BLACK
+            10, 160, monocraft_24, WHITE, BLACK
         )
         self.display.update()
 
     def set_rtc_interrupt(self, rtc_minutes):
         """Change the RTC Interrupt alarm."""
-        logging.info(f'RTC alarm interrupt: {rtc_minutes}')
+        print(f'RTC alarm interrupt: {rtc_minutes}')
         alarmTime = rtc_minutes
         if alarmTime == 60:
             alarmTime = 00
-        logging.info(f'Updating RTC alarm: {alarmTime}')
+        print(f'Updating RTC alarm: {alarmTime}')
         self.rtc.clear_alarm()
         self.rtc.set_daily_alarm(minutes=alarmTime)
         self.rtc.enable_alarm_interrupt()
 
     def check_network(self):
         """Check the wireless network connection."""
-        logging.info('Checking network connection')
+        print('Checking network connection')
         if self.station.isconnected():
-            logging.warning('Network is already online')
+            print('Network is already online')
             return
         else:
-            logging.info('Scanning for local networks')
+            print('Scanning for local networks')
             wifiResults = self.station.scan()
             for knownNet in trustedWiFi:
                 for scanNet in wifiResults:
                     if scanNet[0].decode() == knownNet[0]:
-                        logging.info(f'Connecting to {knownNet[0]}')
+                        print(f'Connecting to {knownNet[0]}')
                         self.station.connect(knownNet[0], knownNet[1])
                         while not self.station.isconnected():
-                            logging.info('Waiting on connection...')
-                        logging.info('Network connection successful')
-                        logging.info(self.station.ifconfig())
+                            print('Waiting on connection...')
+                        print('Network connection successful')
+                        print(self.station.ifconfig())
                         return
-            logging.warning('Network not connected')
+            print('Network not connected')
             return
 
     def check_ntptime(self):
         """Check NTP Server for time, if online."""
-        logging.info('Checking online time server')
+        print('Checking online time server')
         if self.station.isconnected():
-            logging.info('Network connected, getting ntp update')
+            print('Network connected, getting ntp update')
             wantime = ntptime() + (timeZone * 60 * 60)
             localtime = gmtime(wantime)
             self.rtc.set_datetime(localtime)
-            logging.info('RTC sync\'d to NTP')
+            print('RTC sync\'d to NTP')
         else:
-            logging.error('Not online, ntp unreachable')
-
-    def get_battery_voltage(self) -> float:
-        """Use ADC interface to read voltage level."""
-        return self.adc.read_uv() / 1000 * 2
-
-    def vibrate_motor(self, intervals_ms):
-        """Vibrate the 1020 motor."""
-        vibe_on: bool = False
-        for i in intervals_ms:
-            vibe_on = not vibe_on
-            self.pin_motor.value(vibe_on)
-            sleep_ms(i)
-        self.pin_motor.off()
+            print('Not online, ntp unreachable')
