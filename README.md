@@ -6,10 +6,6 @@ Testing MicroPython with Watchy ESP32 hardware.
 
 ## ToDo
 
-- [x] Get RTC INT to work with pcf8563 driver, or find new driver
-- [x] Get wireless connection working ~~on timer~~
-  - [x] Wireless `check_network` method written
-  - [x] Tested method with button interrupt
 - [ ] Get NTP sync working ~~on timer~~
   - [x] NTP `check_ntptime` method written
   - [x] Tested method with button interrupt
@@ -19,7 +15,6 @@ Testing MicroPython with Watchy ESP32 hardware.
 - [ ] Work on new display layout
   - [x] new font?
   - [ ] add graphics?
-- [x] Move all `const()` to `src/constants.py`
 - [ ] Add docstrings to libraries, clean up errors/warnings
   - [x] pcf8563
   - [x] display
