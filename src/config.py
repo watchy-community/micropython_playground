@@ -12,6 +12,4 @@ timeZone = -6
 # tuple should be SSID then PSK as strings
 trustedWiFi = [
     # ('ssid', 'psk')
-    ('ka-tet', '7f4878BAb'),
-    ('FBHL Guest', 'welcomehome')
 ]
