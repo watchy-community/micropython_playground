@@ -44,6 +44,10 @@ Testing MicroPython with Watchy ESP32 hardware.
 - Microcontroller: [ESP32-PICO-D4](https://www.espressif.com/sites/default/files/documentation/esp32-pico-d4_datasheet_en.pdf)
 - USB-Serial: [CP2104](https://www.silabs.com/documents/public/data-sheets/cp2104.pdf)
 - E-Paper Display: [GDEH0154D67](https://www.e-paper-display.com/products_detail/productId=455.html)
+  - Watchy screen is 200x200
+  - at 48px font, it is 5 characters wide
+  - at 32px font, it is 8 characters wide
+  - at 24px font, it is 10 characters wide
 - Display Connector: [AFC07-S24ECC-00](https://datasheet.lcsc.com/szlcsc/1811021340_JUSHUO-AFC07-S24ECC-00_C11092.pdf)
 - 3-Axis Accelerometer: [BMA423](https://watchy.sqfmi.com/assets/files/BST-BMA423-DS000-1509600-950150f51058597a6234dd3eaafbb1f0.pdf)
 - Real Time Clock v1.5/2.0: [PCF8563](https://www.mouser.com/datasheet/2/302/PCF8563-1127619.pdf)
