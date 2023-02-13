@@ -132,10 +132,10 @@ class Watchy:
         datetime = self.rtc.datetime()
         # (year, month, date, hours, minutes, seconds, weekday)
         (_, month, date, hours, minutes, _, day) = datetime
-        
+
         if month == 0:
             month = 1  # fix boot as month 0
-        
+
         if len(str(hours)) == 1:
             hours = f'0{hours}'
 
