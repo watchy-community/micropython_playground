@@ -7,11 +7,10 @@ Testing MicroPython with Watchy ESP32 hardware.
 ## ToDo
 
 - [x] Get RTC INT to work with pcf8563 driver, or find new driver
-- [ ] Get wireless connection working on timer
+- [x] Get wireless connection working ~~on timer~~
   - [x] Wireless `check_network` method written
   - [x] Tested method with button interrupt
-  - [ ] Not connected out of sleep, is this expected? is it a problem to reconnect each time?
-- [ ] Get NTP sync working on timer
+- [ ] Get NTP sync working ~~on timer~~
   - [x] NTP `check_ntptime` method written
   - [x] Tested method with button interrupt
   - [x] NTP set time on RTC
@@ -19,16 +18,22 @@ Testing MicroPython with Watchy ESP32 hardware.
   - [x] Add timezone offset
 - [ ] Work on new display layout
   - [x] new font?
+  - [ ] add graphics?
 - [x] Move all `const()` to `src/constants.py`
 - [ ] Add docstrings to libraries, clean up errors/warnings
   - [x] pcf8563
   - [x] display
   - [x] epaper1in54
   - [ ] writer
+- [ ] Reduce memory usage
+  - [ ] Change [const() with prefix _](https://docs.micropython.org/en/latest/develop/optimizations.html#variables)
+  - [ ] [Cross-compile files as mpy](https://docs.micropython.org/en/latest/develop/optimizations.html#frozen-bytecode)
 
 ## Issues
 
 - It is not possible to get the wakeup bit in MicroPython yet, see [GH: micropython/issues/6981](https://github.com/micropython/micropython/issues/6981)
+- Adding `ulogging` module from [Github: iabdalkader/micropython-ulogging](https://github.com/iabdalkader/micropython-ulogging) put me over memory allocation limits
+  - Reducing memory usage may help make this possible
 
 ## References
 
