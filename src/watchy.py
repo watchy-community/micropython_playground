@@ -187,6 +187,7 @@ class Watchy:
                         self.station.connect(knownNet[0], knownNet[1])
                         while not self.station.isconnected():
                             print('Waiting on connection...')
+                            sleep_ms(1000)
                         print('Network connection successful')
                         print(self.station.ifconfig())
                         return
