@@ -18,18 +18,26 @@ Testing MicroPython with Watchy ESP32 hardware.
   - [ ] Add daylight savings check
   - [x] Add timezone offset
 - [ ] Work on new display layout
-  - [ ] new font?
+  - [x] new font?
 - [x] Move all `const()` to `src/constants.py`
-- [ ] Trim libraries to reduce memory usage
-  - [x] pcf8563 has a lot of extra methods we don't use
-  - [x] check display
-  - [x] check epaper1in54
-  - [ ] check writer
+- [ ] Add docstrings to libraries, clean up errors/warnings
+  - [x] pcf8563
+  - [x] display
+  - [x] epaper1in54
+  - [ ] writer
 
 ## Issues
 
 - It is not possible to get the wakeup bit in MicroPython yet, see [GH: micropython/issues/6981](https://github.com/micropython/micropython/issues/6981)
-- Second and Third timers don't appear to be running, commented out for now
+
+## References
+
+- [Github: hueyy/watchy_py](https://github.com/hueyy/watchy_py) - this project is largely based on this code
+- [Github: mcauser/micropython-waveshare-epaper](https://github.com/mcauser/micropython-waveshare-epaper) - ePaper driver
+- [Github: peterhinch/micropython-font-to-py](https://github.com/peterhinch/micropython-font-to-py) - Writer interface and font-to-py script
+- [Github: lewisxhe/PCF8563_PythonLibrary](https://github.com/lewisxhe/PCF8563_PythonLibrary) - RTC driver for Watchy v2
+- [Sync time in MicroPython using NTP](https://bhave.sh/micropython-ntp/) - used section on Timezones
+- [MicroPython Documentation](https://docs.micropython.org/en/latest/)
 
 ## Hardware/Datasheets
 
