@@ -1,0 +1,2658 @@
+SplineFontDB: 3.2
+FontName: Monocraft
+FullName: Monocraft
+FamilyName: Monocraft
+Weight: Book
+Copyright: Idrees Hassan, https://github.com/IdreesInc/Monocraft
+Version: 2.5
+ItalicAngle: 0
+UnderlinePosition: -120
+UnderlineWidth: 50
+Ascent: 960
+Descent: 120
+InvalidEm: 0
+sfntRevision: 0x00028000
+LayerCount: 2
+Layer: 0 1 "Back" 1
+Layer: 1 1 "Fore" 0
+XUID: [1021 786 -1163277364 29650]
+StyleMap: 0x0000
+FSType: 0
+OS2Version: 4
+OS2_WeightWidthSlopeOnly: 0
+OS2_UseTypoMetrics: 1
+CreationTime: 1676907518
+ModificationTime: 1677704340
+PfmFamily: 17
+TTFWeight: 400
+TTFWidth: 5
+LineGap: 97
+VLineGap: 0
+Panose: 2 0 5 3 0 0 0 0 0 0
+OS2TypoAscent: 960
+OS2TypoAOffset: 0
+OS2TypoDescent: -120
+OS2TypoDOffset: 0
+OS2TypoLinegap: 97
+OS2WinAscent: 1200
+OS2WinAOffset: 0
+OS2WinDescent: 240
+OS2WinDOffset: 0
+HheadAscent: 1200
+HheadAOffset: 0
+HheadDescent: -240
+HheadDOffset: 0
+OS2SubXSize: 702
+OS2SubYSize: 756
+OS2SubXOff: 0
+OS2SubYOff: 151
+OS2SupXSize: 702
+OS2SupYSize: 756
+OS2SupXOff: 0
+OS2SupYOff: 518
+OS2StrikeYSize: 53
+OS2StrikeYPos: 279
+OS2CapHeight: 840
+OS2XHeight: 600
+OS2Vendor: 'PfEd'
+OS2CodePages: 40000017.00000000
+OS2UnicodeRanges: a000020f.00004062.00000000.00000000
+Lookup: 4 0 1 "'liga' Standard Ligatures in Latin lookup 0" { "'liga' Standard Ligatures in Latin lookup 0 subtable"  } ['liga' ('DFLT' <'dflt' > 'latn' <'dflt' > ) ]
+DEI: 91125
+ShortTable: cvt  2
+  36
+  684
+EndShort
+ShortTable: maxp 16
+  1
+  0
+  538
+  48
+  4
+  0
+  0
+  2
+  0
+  1
+  1
+  0
+  64
+  46
+  0
+  0
+EndShort
+LangName: 1033 "" "" "Regular" "FontForge 2.0 : Monocraft : 20-2-2023" "" "Version 2.5"
+GaspTable: 1 65535 2 0
+Encoding: UnicodeBmp
+UnicodeInterp: none
+NameList: AGL For New Fonts
+DisplaySize: -48
+AntiAlias: 1
+FitToEm: 0
+WinInfo: 65018 38 14
+BeginChars: 65549 87
+
+StartChar: space
+Encoding: 32 32 0
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+EndChar
+
+StartChar: exclamation_mark
+Encoding: 33 33 1
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+360 240 m 1,0,-1
+ 360 840 l 1,1,-1
+ 240 840 l 1,2,-1
+ 240 240 l 1,3,-1
+ 360 240 l 1,0,-1
+360 0 m 1,4,-1
+ 360 120 l 1,5,-1
+ 240 120 l 1,6,-1
+ 240 0 l 1,7,-1
+ 360 0 l 1,4,-1
+EndSplineSet
+EndChar
+
+StartChar: quotation_mark
+Encoding: 34 34 2
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+480 600 m 1,0,-1
+ 480 840 l 1,1,-1
+ 360 840 l 1,2,-1
+ 360 600 l 1,3,-1
+ 480 600 l 1,0,-1
+240 600 m 1,4,-1
+ 240 840 l 1,5,-1
+ 120 840 l 1,6,-1
+ 120 600 l 1,7,-1
+ 240 600 l 1,4,-1
+EndSplineSet
+EndChar
+
+StartChar: number_sign
+Encoding: 35 35 3
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+240 360 m 1,0,-1
+ 240 480 l 1,1,-1
+ 360 480 l 1,2,-1
+ 360 360 l 1,3,-1
+ 240 360 l 1,0,-1
+240 0 m 1,4,-1
+ 240 240 l 1,5,-1
+ 360 240 l 1,6,-1
+ 360 0 l 1,7,-1
+ 480 0 l 1,8,-1
+ 480 240 l 1,9,-1
+ 600 240 l 1,10,-1
+ 600 360 l 1,11,-1
+ 480 360 l 1,12,-1
+ 480 480 l 1,13,-1
+ 600 480 l 1,14,-1
+ 600 600 l 1,15,-1
+ 480 600 l 1,16,-1
+ 480 840 l 1,17,-1
+ 360 840 l 1,18,-1
+ 360 600 l 1,19,-1
+ 240 600 l 1,20,-1
+ 240 840 l 1,21,-1
+ 120 840 l 1,22,-1
+ 120 600 l 1,23,-1
+ 0 600 l 1,24,-1
+ 0 480 l 1,25,-1
+ 120 480 l 1,26,-1
+ 120 360 l 1,27,-1
+ 0 360 l 1,28,-1
+ 0 240 l 1,29,-1
+ 120 240 l 1,30,-1
+ 120 0 l 1,31,-1
+ 240 0 l 1,4,-1
+EndSplineSet
+EndChar
+
+StartChar: dollar_sign
+Encoding: 36 36 4
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+360 0 m 1,0,-1
+ 360 120 l 1,1,-1
+ 480 120 l 1,2,-1
+ 480 240 l 1,3,-1
+ 600 240 l 1,4,-1
+ 600 360 l 1,5,-1
+ 480 360 l 1,6,-1
+ 480 480 l 1,7,-1
+ 120 480 l 1,8,-1
+ 120 600 l 1,9,-1
+ 600 600 l 1,10,-1
+ 600 720 l 1,11,-1
+ 360 720 l 1,12,-1
+ 360 840 l 1,13,-1
+ 240 840 l 1,14,-1
+ 240 720 l 1,15,-1
+ 120 720 l 1,16,-1
+ 120 600 l 1,17,-1
+ 0 600 l 1,18,-1
+ 0 480 l 1,19,-1
+ 120 480 l 1,20,-1
+ 120 360 l 1,21,-1
+ 480 360 l 1,22,-1
+ 480 240 l 1,23,-1
+ 0 240 l 1,24,-1
+ 0 120 l 1,25,-1
+ 240 120 l 1,26,-1
+ 240 0 l 1,27,-1
+ 360 0 l 1,0,-1
+EndSplineSet
+EndChar
+
+StartChar: percent_sign
+Encoding: 37 37 5
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+120 600 m 1,0,-1
+ 120 840 l 1,1,-1
+ 0 840 l 1,2,-1
+ 0 600 l 1,3,-1
+ 120 600 l 1,0,-1
+600 0 m 1,4,-1
+ 600 240 l 1,5,-1
+ 480 240 l 1,6,-1
+ 480 0 l 1,7,-1
+ 600 0 l 1,4,-1
+120 0 m 1,8,-1
+ 120 120 l 1,9,-1
+ 240 120 l 1,10,-1
+ 240 360 l 1,11,-1
+ 360 360 l 1,12,-1
+ 360 480 l 1,13,-1
+ 480 480 l 1,14,-1
+ 480 720 l 1,15,-1
+ 600 720 l 1,16,-1
+ 600 840 l 1,17,-1
+ 480 840 l 1,18,-1
+ 480 720 l 1,19,-1
+ 360 720 l 1,20,-1
+ 360 480 l 1,21,-1
+ 240 480 l 1,22,-1
+ 240 360 l 1,23,-1
+ 120 360 l 1,24,-1
+ 120 120 l 1,25,-1
+ 0 120 l 1,26,-1
+ 0 0 l 1,27,-1
+ 120 0 l 1,8,-1
+EndSplineSet
+EndChar
+
+StartChar: ampersand
+Encoding: 38 38 6
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+360 0 m 1,0,-1
+ 360 120 l 1,1,-1
+ 480 120 l 1,2,-1
+ 480 0 l 1,3,-1
+ 600 0 l 1,4,-1
+ 600 120 l 1,5,-1
+ 480 120 l 1,6,-1
+ 480 360 l 1,7,-1
+ 600 360 l 1,8,-1
+ 600 480 l 1,9,-1
+ 480 480 l 1,10,-1
+ 480 360 l 1,11,-1
+ 360 360 l 1,12,-1
+ 360 600 l 1,13,-1
+ 480 600 l 1,14,-1
+ 480 720 l 1,15,-1
+ 360 720 l 1,16,-1
+ 360 840 l 1,17,-1
+ 240 840 l 1,18,-1
+ 240 720 l 1,19,-1
+ 120 720 l 1,20,-1
+ 120 600 l 1,21,-1
+ 240 600 l 1,22,-1
+ 240 720 l 1,23,-1
+ 360 720 l 1,24,-1
+ 360 600 l 1,25,-1
+ 240 600 l 1,26,-1
+ 240 480 l 1,27,-1
+ 120 480 l 1,28,-1
+ 120 360 l 1,29,-1
+ 0 360 l 1,30,-1
+ 0 120 l 1,31,-1
+ 120 120 l 1,32,-1
+ 120 360 l 1,33,-1
+ 240 360 l 1,34,-1
+ 240 240 l 1,35,-1
+ 360 240 l 1,36,-1
+ 360 120 l 1,37,-1
+ 120 120 l 1,38,-1
+ 120 0 l 1,39,-1
+ 360 0 l 1,0,-1
+EndSplineSet
+EndChar
+
+StartChar: single_quote
+Encoding: 39 39 7
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+360 600 m 1,0,-1
+ 360 840 l 1,1,-1
+ 240 840 l 1,2,-1
+ 240 600 l 1,3,-1
+ 360 600 l 1,0,-1
+EndSplineSet
+EndChar
+
+StartChar: left_parenthesis
+Encoding: 40 40 8
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+480 0 m 1,0,-1
+ 480 120 l 1,1,-1
+ 360 120 l 1,2,-1
+ 360 240 l 1,3,-1
+ 240 240 l 1,4,-1
+ 240 600 l 1,5,-1
+ 360 600 l 1,6,-1
+ 360 720 l 1,7,-1
+ 480 720 l 1,8,-1
+ 480 840 l 1,9,-1
+ 360 840 l 1,10,-1
+ 360 720 l 1,11,-1
+ 240 720 l 1,12,-1
+ 240 600 l 1,13,-1
+ 120 600 l 1,14,-1
+ 120 240 l 1,15,-1
+ 240 240 l 1,16,-1
+ 240 120 l 1,17,-1
+ 360 120 l 1,18,-1
+ 360 0 l 1,19,-1
+ 480 0 l 1,0,-1
+EndSplineSet
+EndChar
+
+StartChar: right_parenthesis
+Encoding: 41 41 9
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+240 0 m 1,0,-1
+ 240 120 l 1,1,-1
+ 360 120 l 1,2,-1
+ 360 240 l 1,3,-1
+ 480 240 l 1,4,-1
+ 480 600 l 1,5,-1
+ 360 600 l 1,6,-1
+ 360 720 l 1,7,-1
+ 240 720 l 1,8,-1
+ 240 840 l 1,9,-1
+ 120 840 l 1,10,-1
+ 120 720 l 1,11,-1
+ 240 720 l 1,12,-1
+ 240 600 l 1,13,-1
+ 360 600 l 1,14,-1
+ 360 240 l 1,15,-1
+ 240 240 l 1,16,-1
+ 240 120 l 1,17,-1
+ 120 120 l 1,18,-1
+ 120 0 l 1,19,-1
+ 240 0 l 1,0,-1
+EndSplineSet
+EndChar
+
+StartChar: plus_sign
+Encoding: 43 43 10
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+360 120 m 1,0,-1
+ 360 360 l 1,1,-1
+ 600 360 l 1,2,-1
+ 600 480 l 1,3,-1
+ 360 480 l 1,4,-1
+ 360 720 l 1,5,-1
+ 240 720 l 1,6,-1
+ 240 480 l 1,7,-1
+ 0 480 l 1,8,-1
+ 0 360 l 1,9,-1
+ 240 360 l 1,10,-1
+ 240 120 l 1,11,-1
+ 360 120 l 1,0,-1
+EndSplineSet
+EndChar
+
+StartChar: comma
+Encoding: 44 44 11
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+240 0 m 1,0,-1
+ 240 120 l 1,1,-1
+ 360 120 l 1,2,-1
+ 360 240 l 1,3,-1
+ 240 240 l 1,4,-1
+ 240 120 l 1,5,-1
+ 120 120 l 1,6,-1
+ 120 0 l 1,7,-1
+ 240 0 l 1,0,-1
+EndSplineSet
+EndChar
+
+StartChar: hyphen
+Encoding: 45 45 12
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+600 360 m 1,0,-1
+ 600 480 l 1,1,-1
+ 0 480 l 1,2,-1
+ 0 360 l 1,3,-1
+ 600 360 l 1,0,-1
+EndSplineSet
+EndChar
+
+StartChar: period
+Encoding: 46 46 13
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+360 0 m 1,0,-1
+ 360 120 l 1,1,-1
+ 240 120 l 1,2,-1
+ 240 0 l 1,3,-1
+ 360 0 l 1,0,-1
+EndSplineSet
+EndChar
+
+StartChar: slash
+Encoding: 47 47 14
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+120 0 m 1,0,-1
+ 120 120 l 1,1,-1
+ 240 120 l 1,2,-1
+ 240 360 l 1,3,-1
+ 360 360 l 1,4,-1
+ 360 480 l 1,5,-1
+ 480 480 l 1,6,-1
+ 480 720 l 1,7,-1
+ 600 720 l 1,8,-1
+ 600 840 l 1,9,-1
+ 480 840 l 1,10,-1
+ 480 720 l 1,11,-1
+ 360 720 l 1,12,-1
+ 360 480 l 1,13,-1
+ 240 480 l 1,14,-1
+ 240 360 l 1,15,-1
+ 120 360 l 1,16,-1
+ 120 120 l 1,17,-1
+ 0 120 l 1,18,-1
+ 0 0 l 1,19,-1
+ 120 0 l 1,0,-1
+EndSplineSet
+EndChar
+
+StartChar: zero
+Encoding: 48 48 15
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+480 0 m 1,0,-1
+ 480 120 l 1,1,-1
+ 600 120 l 1,2,-1
+ 600 720 l 1,3,-1
+ 480 720 l 1,4,-1
+ 480 840 l 1,5,-1
+ 120 840 l 1,6,-1
+ 120 720 l 1,7,-1
+ 480 720 l 1,8,-1
+ 480 600 l 1,9,-1
+ 360 600 l 1,10,-1
+ 360 480 l 1,11,-1
+ 240 480 l 1,12,-1
+ 240 360 l 1,13,-1
+ 120 360 l 1,14,-1
+ 120 720 l 1,15,-1
+ 0 720 l 1,16,-1
+ 0 120 l 1,17,-1
+ 120 120 l 1,18,-1
+ 120 240 l 1,19,-1
+ 240 240 l 1,20,-1
+ 240 360 l 1,21,-1
+ 360 360 l 1,22,-1
+ 360 480 l 1,23,-1
+ 480 480 l 1,24,-1
+ 480 120 l 1,25,-1
+ 120 120 l 1,26,-1
+ 120 0 l 1,27,-1
+ 480 0 l 1,0,-1
+EndSplineSet
+EndChar
+
+StartChar: one
+Encoding: 49 49 16
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+600 0 m 1,0,-1
+ 600 120 l 1,1,-1
+ 360 120 l 1,2,-1
+ 360 840 l 1,3,-1
+ 240 840 l 1,4,-1
+ 240 720 l 1,5,-1
+ 120 720 l 1,6,-1
+ 120 600 l 1,7,-1
+ 240 600 l 1,8,-1
+ 240 120 l 1,9,-1
+ 0 120 l 1,10,-1
+ 0 0 l 1,11,-1
+ 600 0 l 1,0,-1
+EndSplineSet
+EndChar
+
+StartChar: two
+Encoding: 50 50 17
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+600 0 m 1,0,-1
+ 600 240 l 1,1,-1
+ 480 240 l 1,2,-1
+ 480 120 l 1,3,-1
+ 120 120 l 1,4,-1
+ 120 240 l 1,5,-1
+ 240 240 l 1,6,-1
+ 240 360 l 1,7,-1
+ 480 360 l 1,8,-1
+ 480 480 l 1,9,-1
+ 600 480 l 1,10,-1
+ 600 720 l 1,11,-1
+ 480 720 l 1,12,-1
+ 480 840 l 1,13,-1
+ 120 840 l 1,14,-1
+ 120 720 l 1,15,-1
+ 0 720 l 1,16,-1
+ 0 600 l 1,17,-1
+ 120 600 l 1,18,-1
+ 120 720 l 1,19,-1
+ 480 720 l 1,20,-1
+ 480 480 l 1,21,-1
+ 240 480 l 1,22,-1
+ 240 360 l 1,23,-1
+ 120 360 l 1,24,-1
+ 120 240 l 1,25,-1
+ 0 240 l 1,26,-1
+ 0 0 l 1,27,-1
+ 600 0 l 1,0,-1
+EndSplineSet
+EndChar
+
+StartChar: three
+Encoding: 51 51 18
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+480 0 m 1,0,-1
+ 480 120 l 1,1,-1
+ 600 120 l 1,2,-1
+ 600 360 l 1,3,-1
+ 480 360 l 1,4,-1
+ 480 480 l 1,5,-1
+ 600 480 l 1,6,-1
+ 600 720 l 1,7,-1
+ 480 720 l 1,8,-1
+ 480 840 l 1,9,-1
+ 120 840 l 1,10,-1
+ 120 720 l 1,11,-1
+ 0 720 l 1,12,-1
+ 0 600 l 1,13,-1
+ 120 600 l 1,14,-1
+ 120 720 l 1,15,-1
+ 480 720 l 1,16,-1
+ 480 480 l 1,17,-1
+ 240 480 l 1,18,-1
+ 240 360 l 1,19,-1
+ 480 360 l 1,20,-1
+ 480 120 l 1,21,-1
+ 120 120 l 1,22,-1
+ 120 240 l 1,23,-1
+ 0 240 l 1,24,-1
+ 0 120 l 1,25,-1
+ 120 120 l 1,26,-1
+ 120 0 l 1,27,-1
+ 480 0 l 1,0,-1
+EndSplineSet
+EndChar
+
+StartChar: four
+Encoding: 52 52 19
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+600 0 m 1,0,-1
+ 600 840 l 1,1,-1
+ 360 840 l 1,2,-1
+ 360 720 l 1,3,-1
+ 240 720 l 1,4,-1
+ 240 600 l 1,5,-1
+ 120 600 l 1,6,-1
+ 120 480 l 1,7,-1
+ 240 480 l 1,8,-1
+ 240 600 l 1,9,-1
+ 360 600 l 1,10,-1
+ 360 720 l 1,11,-1
+ 480 720 l 1,12,-1
+ 480 360 l 1,13,-1
+ 120 360 l 1,14,-1
+ 120 480 l 1,15,-1
+ 0 480 l 1,16,-1
+ 0 240 l 1,17,-1
+ 480 240 l 1,18,-1
+ 480 0 l 1,19,-1
+ 600 0 l 1,0,-1
+EndSplineSet
+EndChar
+
+StartChar: five
+Encoding: 53 53 20
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+480 0 m 1,0,-1
+ 480 120 l 1,1,-1
+ 600 120 l 1,2,-1
+ 600 480 l 1,3,-1
+ 480 480 l 1,4,-1
+ 480 600 l 1,5,-1
+ 120 600 l 1,6,-1
+ 120 720 l 1,7,-1
+ 600 720 l 1,8,-1
+ 600 840 l 1,9,-1
+ 0 840 l 1,10,-1
+ 0 480 l 1,11,-1
+ 480 480 l 1,12,-1
+ 480 120 l 1,13,-1
+ 120 120 l 1,14,-1
+ 120 240 l 1,15,-1
+ 0 240 l 1,16,-1
+ 0 120 l 1,17,-1
+ 120 120 l 1,18,-1
+ 120 0 l 1,19,-1
+ 480 0 l 1,0,-1
+EndSplineSet
+EndChar
+
+StartChar: six
+Encoding: 54 54 21
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+480 0 m 1,0,-1
+ 480 120 l 1,1,-1
+ 600 120 l 1,2,-1
+ 600 360 l 1,3,-1
+ 480 360 l 1,4,-1
+ 480 480 l 1,5,-1
+ 120 480 l 1,6,-1
+ 120 600 l 1,7,-1
+ 240 600 l 1,8,-1
+ 240 720 l 1,9,-1
+ 480 720 l 1,10,-1
+ 480 840 l 1,11,-1
+ 240 840 l 1,12,-1
+ 240 720 l 1,13,-1
+ 120 720 l 1,14,-1
+ 120 600 l 1,15,-1
+ 0 600 l 1,16,-1
+ 0 120 l 1,17,-1
+ 120 120 l 1,18,-1
+ 120 360 l 1,19,-1
+ 480 360 l 1,20,-1
+ 480 120 l 1,21,-1
+ 120 120 l 1,22,-1
+ 120 0 l 1,23,-1
+ 480 0 l 1,0,-1
+EndSplineSet
+EndChar
+
+StartChar: seven
+Encoding: 55 55 22
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+360 0 m 1,0,-1
+ 360 360 l 1,1,-1
+ 480 360 l 1,2,-1
+ 480 480 l 1,3,-1
+ 600 480 l 1,4,-1
+ 600 840 l 1,5,-1
+ 0 840 l 1,6,-1
+ 0 600 l 1,7,-1
+ 120 600 l 1,8,-1
+ 120 720 l 1,9,-1
+ 480 720 l 1,10,-1
+ 480 480 l 1,11,-1
+ 360 480 l 1,12,-1
+ 360 360 l 1,13,-1
+ 240 360 l 1,14,-1
+ 240 0 l 1,15,-1
+ 360 0 l 1,0,-1
+EndSplineSet
+EndChar
+
+StartChar: eight
+Encoding: 56 56 23
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+480 0 m 1,0,-1
+ 480 120 l 1,1,-1
+ 600 120 l 1,2,-1
+ 600 360 l 1,3,-1
+ 480 360 l 1,4,-1
+ 480 480 l 1,5,-1
+ 600 480 l 1,6,-1
+ 600 720 l 1,7,-1
+ 480 720 l 1,8,-1
+ 480 840 l 1,9,-1
+ 120 840 l 1,10,-1
+ 120 720 l 1,11,-1
+ 0 720 l 1,12,-1
+ 0 480 l 1,13,-1
+ 120 480 l 1,14,-1
+ 120 720 l 1,15,-1
+ 480 720 l 1,16,-1
+ 480 480 l 1,17,-1
+ 120 480 l 1,18,-1
+ 120 360 l 1,19,-1
+ 0 360 l 1,20,-1
+ 0 120 l 1,21,-1
+ 120 120 l 1,22,-1
+ 120 360 l 1,23,-1
+ 480 360 l 1,24,-1
+ 480 120 l 1,25,-1
+ 120 120 l 1,26,-1
+ 120 0 l 1,27,-1
+ 480 0 l 1,0,-1
+EndSplineSet
+EndChar
+
+StartChar: nine
+Encoding: 57 57 24
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+360 0 m 1,0,-1
+ 360 120 l 1,1,-1
+ 480 120 l 1,2,-1
+ 480 240 l 1,3,-1
+ 600 240 l 1,4,-1
+ 600 720 l 1,5,-1
+ 480 720 l 1,6,-1
+ 480 840 l 1,7,-1
+ 120 840 l 1,8,-1
+ 120 720 l 1,9,-1
+ 0 720 l 1,10,-1
+ 0 480 l 1,11,-1
+ 120 480 l 1,12,-1
+ 120 720 l 1,13,-1
+ 480 720 l 1,14,-1
+ 480 480 l 1,15,-1
+ 120 480 l 1,16,-1
+ 120 360 l 1,17,-1
+ 480 360 l 1,18,-1
+ 480 240 l 1,19,-1
+ 360 240 l 1,20,-1
+ 360 120 l 1,21,-1
+ 120 120 l 1,22,-1
+ 120 0 l 1,23,-1
+ 360 0 l 1,0,-1
+EndSplineSet
+EndChar
+
+StartChar: colon
+Encoding: 58 58 25
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+360 480 m 1,0,-1
+ 360 600 l 1,1,-1
+ 240 600 l 1,2,-1
+ 240 480 l 1,3,-1
+ 360 480 l 1,0,-1
+360 0 m 1,4,-1
+ 360 120 l 1,5,-1
+ 240 120 l 1,6,-1
+ 240 0 l 1,7,-1
+ 360 0 l 1,4,-1
+EndSplineSet
+EndChar
+
+StartChar: semicolon
+Encoding: 59 59 26
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+360 480 m 1,0,-1
+ 360 600 l 1,1,-1
+ 240 600 l 1,2,-1
+ 240 480 l 1,3,-1
+ 360 480 l 1,0,-1
+240 -120 m 1,4,-1
+ 240 0 l 1,5,-1
+ 360 0 l 1,6,-1
+ 360 120 l 1,7,-1
+ 240 120 l 1,8,-1
+ 240 0 l 1,9,-1
+ 120 0 l 1,10,-1
+ 120 -120 l 1,11,-1
+ 240 -120 l 1,4,-1
+EndSplineSet
+EndChar
+
+StartChar: less
+Encoding: 60 60 27
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+480 0 m 1,0,-1
+ 480 120 l 1,1,-1
+ 360 120 l 1,2,-1
+ 360 240 l 1,3,-1
+ 240 240 l 1,4,-1
+ 240 360 l 1,5,-1
+ 120 360 l 1,6,-1
+ 120 480 l 1,7,-1
+ 240 480 l 1,8,-1
+ 240 600 l 1,9,-1
+ 360 600 l 1,10,-1
+ 360 720 l 1,11,-1
+ 480 720 l 1,12,-1
+ 480 840 l 1,13,-1
+ 360 840 l 1,14,-1
+ 360 720 l 1,15,-1
+ 240 720 l 1,16,-1
+ 240 600 l 1,17,-1
+ 120 600 l 1,18,-1
+ 120 480 l 1,19,-1
+ 0 480 l 1,20,-1
+ 0 360 l 1,21,-1
+ 120 360 l 1,22,-1
+ 120 240 l 1,23,-1
+ 240 240 l 1,24,-1
+ 240 120 l 1,25,-1
+ 360 120 l 1,26,-1
+ 360 0 l 1,27,-1
+ 480 0 l 1,0,-1
+EndSplineSet
+EndChar
+
+StartChar: equal
+Encoding: 61 61 28
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+600 480 m 1,0,-1
+ 600 600 l 1,1,-1
+ 0 600 l 1,2,-1
+ 0 480 l 1,3,-1
+ 600 480 l 1,0,-1
+600 120 m 1,4,-1
+ 600 240 l 1,5,-1
+ 0 240 l 1,6,-1
+ 0 120 l 1,7,-1
+ 600 120 l 1,4,-1
+EndSplineSet
+EndChar
+
+StartChar: greater
+Encoding: 62 62 29
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+240 0 m 1,0,-1
+ 240 120 l 1,1,-1
+ 360 120 l 1,2,-1
+ 360 240 l 1,3,-1
+ 480 240 l 1,4,-1
+ 480 360 l 1,5,-1
+ 600 360 l 1,6,-1
+ 600 480 l 1,7,-1
+ 480 480 l 1,8,-1
+ 480 600 l 1,9,-1
+ 360 600 l 1,10,-1
+ 360 720 l 1,11,-1
+ 240 720 l 1,12,-1
+ 240 840 l 1,13,-1
+ 120 840 l 1,14,-1
+ 120 720 l 1,15,-1
+ 240 720 l 1,16,-1
+ 240 600 l 1,17,-1
+ 360 600 l 1,18,-1
+ 360 480 l 1,19,-1
+ 480 480 l 1,20,-1
+ 480 360 l 1,21,-1
+ 360 360 l 1,22,-1
+ 360 240 l 1,23,-1
+ 240 240 l 1,24,-1
+ 240 120 l 1,25,-1
+ 120 120 l 1,26,-1
+ 120 0 l 1,27,-1
+ 240 0 l 1,0,-1
+EndSplineSet
+EndChar
+
+StartChar: question
+Encoding: 63 63 30
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+360 240 m 1,0,-1
+ 360 360 l 1,1,-1
+ 480 360 l 1,2,-1
+ 480 480 l 1,3,-1
+ 600 480 l 1,4,-1
+ 600 720 l 1,5,-1
+ 480 720 l 1,6,-1
+ 480 840 l 1,7,-1
+ 120 840 l 1,8,-1
+ 120 720 l 1,9,-1
+ 0 720 l 1,10,-1
+ 0 600 l 1,11,-1
+ 120 600 l 1,12,-1
+ 120 720 l 1,13,-1
+ 480 720 l 1,14,-1
+ 480 480 l 1,15,-1
+ 360 480 l 1,16,-1
+ 360 360 l 1,17,-1
+ 240 360 l 1,18,-1
+ 240 240 l 1,19,-1
+ 360 240 l 1,0,-1
+360 0 m 1,20,-1
+ 360 120 l 1,21,-1
+ 240 120 l 1,22,-1
+ 240 0 l 1,23,-1
+ 360 0 l 1,20,-1
+EndSplineSet
+EndChar
+
+StartChar: at
+Encoding: 64 64 31
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+600 -120 m 1,0,-1
+ 600 0 l 1,1,-1
+ 120 0 l 1,2,-1
+ 120 600 l 1,3,-1
+ 480 600 l 1,4,-1
+ 480 240 l 1,5,-1
+ 360 240 l 1,6,-1
+ 360 480 l 1,7,-1
+ 240 480 l 1,8,-1
+ 240 120 l 1,9,-1
+ 600 120 l 1,10,-1
+ 600 600 l 1,11,-1
+ 480 600 l 1,12,-1
+ 480 720 l 1,13,-1
+ 120 720 l 1,14,-1
+ 120 600 l 1,15,-1
+ 0 600 l 1,16,-1
+ 0 0 l 1,17,-1
+ 120 0 l 1,18,-1
+ 120 -120 l 1,19,-1
+ 600 -120 l 1,0,-1
+EndSplineSet
+EndChar
+
+StartChar: latin_capital_letter_a
+Encoding: 65 65 32
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+120 0 m 1,0,-1
+ 120 480 l 1,1,-1
+ 480 480 l 1,2,-1
+ 480 0 l 1,3,-1
+ 600 0 l 1,4,-1
+ 600 720 l 1,5,-1
+ 480 720 l 1,6,-1
+ 480 840 l 1,7,-1
+ 120 840 l 1,8,-1
+ 120 720 l 1,9,-1
+ 480 720 l 1,10,-1
+ 480 600 l 1,11,-1
+ 120 600 l 1,12,-1
+ 120 720 l 1,13,-1
+ 0 720 l 1,14,-1
+ 0 0 l 1,15,-1
+ 120 0 l 1,0,-1
+EndSplineSet
+EndChar
+
+StartChar: latin_capital_letter_b
+Encoding: 66 66 33
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+480 0 m 1,0,-1
+ 480 120 l 1,1,-1
+ 600 120 l 1,2,-1
+ 600 480 l 1,3,-1
+ 480 480 l 1,4,-1
+ 480 120 l 1,5,-1
+ 120 120 l 1,6,-1
+ 120 480 l 1,7,-1
+ 480 480 l 1,8,-1
+ 480 600 l 1,9,-1
+ 600 600 l 1,10,-1
+ 600 720 l 1,11,-1
+ 480 720 l 1,12,-1
+ 480 600 l 1,13,-1
+ 120 600 l 1,14,-1
+ 120 720 l 1,15,-1
+ 480 720 l 1,16,-1
+ 480 840 l 1,17,-1
+ 0 840 l 1,18,-1
+ 0 0 l 1,19,-1
+ 480 0 l 1,0,-1
+EndSplineSet
+EndChar
+
+StartChar: latin_capital_letter_c
+Encoding: 67 67 34
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+480 0 m 1,0,-1
+ 480 120 l 1,1,-1
+ 600 120 l 1,2,-1
+ 600 240 l 1,3,-1
+ 480 240 l 1,4,-1
+ 480 120 l 1,5,-1
+ 120 120 l 1,6,-1
+ 120 720 l 1,7,-1
+ 480 720 l 1,8,-1
+ 480 600 l 1,9,-1
+ 600 600 l 1,10,-1
+ 600 720 l 1,11,-1
+ 480 720 l 1,12,-1
+ 480 840 l 1,13,-1
+ 120 840 l 1,14,-1
+ 120 720 l 1,15,-1
+ 0 720 l 1,16,-1
+ 0 120 l 1,17,-1
+ 120 120 l 1,18,-1
+ 120 0 l 1,19,-1
+ 480 0 l 1,0,-1
+EndSplineSet
+EndChar
+
+StartChar: latin_capital_letter_d
+Encoding: 68 68 35
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+480 0 m 1,0,-1
+ 480 120 l 1,1,-1
+ 600 120 l 1,2,-1
+ 600 720 l 1,3,-1
+ 480 720 l 1,4,-1
+ 480 120 l 1,5,-1
+ 120 120 l 1,6,-1
+ 120 720 l 1,7,-1
+ 480 720 l 1,8,-1
+ 480 840 l 1,9,-1
+ 0 840 l 1,10,-1
+ 0 0 l 1,11,-1
+ 480 0 l 1,0,-1
+EndSplineSet
+EndChar
+
+StartChar: latin_capital_letter_e
+Encoding: 69 69 36
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+600 0 m 1,0,-1
+ 600 120 l 1,1,-1
+ 120 120 l 1,2,-1
+ 120 480 l 1,3,-1
+ 360 480 l 1,4,-1
+ 360 600 l 1,5,-1
+ 120 600 l 1,6,-1
+ 120 720 l 1,7,-1
+ 600 720 l 1,8,-1
+ 600 840 l 1,9,-1
+ 0 840 l 1,10,-1
+ 0 0 l 1,11,-1
+ 600 0 l 1,0,-1
+EndSplineSet
+EndChar
+
+StartChar: latin_capital_letter_f
+Encoding: 70 70 37
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+120 0 m 1,0,-1
+ 120 480 l 1,1,-1
+ 360 480 l 1,2,-1
+ 360 600 l 1,3,-1
+ 120 600 l 1,4,-1
+ 120 720 l 1,5,-1
+ 600 720 l 1,6,-1
+ 600 840 l 1,7,-1
+ 0 840 l 1,8,-1
+ 0 0 l 1,9,-1
+ 120 0 l 1,0,-1
+EndSplineSet
+EndChar
+
+StartChar: latin_capital_letter_g
+Encoding: 71 71 38
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+480 0 m 1,0,-1
+ 480 120 l 1,1,-1
+ 600 120 l 1,2,-1
+ 600 600 l 1,3,-1
+ 360 600 l 1,4,-1
+ 360 480 l 1,5,-1
+ 480 480 l 1,6,-1
+ 480 120 l 1,7,-1
+ 120 120 l 1,8,-1
+ 120 720 l 1,9,-1
+ 600 720 l 1,10,-1
+ 600 840 l 1,11,-1
+ 120 840 l 1,12,-1
+ 120 720 l 1,13,-1
+ 0 720 l 1,14,-1
+ 0 120 l 1,15,-1
+ 120 120 l 1,16,-1
+ 120 0 l 1,17,-1
+ 480 0 l 1,0,-1
+EndSplineSet
+EndChar
+
+StartChar: latin_capital_letter_h
+Encoding: 72 72 39
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+120 0 m 1,0,-1
+ 120 480 l 1,1,-1
+ 480 480 l 1,2,-1
+ 480 0 l 1,3,-1
+ 600 0 l 1,4,-1
+ 600 840 l 1,5,-1
+ 480 840 l 1,6,-1
+ 480 600 l 1,7,-1
+ 120 600 l 1,8,-1
+ 120 840 l 1,9,-1
+ 0 840 l 1,10,-1
+ 0 0 l 1,11,-1
+ 120 0 l 1,0,-1
+EndSplineSet
+EndChar
+
+StartChar: latin_capital_letter_i
+Encoding: 73 73 40
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+480 0 m 1,0,-1
+ 480 120 l 1,1,-1
+ 360 120 l 1,2,-1
+ 360 720 l 1,3,-1
+ 480 720 l 1,4,-1
+ 480 840 l 1,5,-1
+ 120 840 l 1,6,-1
+ 120 720 l 1,7,-1
+ 240 720 l 1,8,-1
+ 240 120 l 1,9,-1
+ 120 120 l 1,10,-1
+ 120 0 l 1,11,-1
+ 480 0 l 1,0,-1
+EndSplineSet
+EndChar
+
+StartChar: latin_capital_letter_j
+Encoding: 74 74 41
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+480 0 m 1,0,-1
+ 480 120 l 1,1,-1
+ 600 120 l 1,2,-1
+ 600 840 l 1,3,-1
+ 480 840 l 1,4,-1
+ 480 120 l 1,5,-1
+ 120 120 l 1,6,-1
+ 120 240 l 1,7,-1
+ 0 240 l 1,8,-1
+ 0 120 l 1,9,-1
+ 120 120 l 1,10,-1
+ 120 0 l 1,11,-1
+ 480 0 l 1,0,-1
+EndSplineSet
+EndChar
+
+StartChar: latin_capital_letter_k
+Encoding: 75 75 42
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+120 0 m 1,0,-1
+ 120 480 l 1,1,-1
+ 360 480 l 1,2,-1
+ 360 360 l 1,3,-1
+ 480 360 l 1,4,-1
+ 480 0 l 1,5,-1
+ 600 0 l 1,6,-1
+ 600 360 l 1,7,-1
+ 480 360 l 1,8,-1
+ 480 480 l 1,9,-1
+ 360 480 l 1,10,-1
+ 360 600 l 1,11,-1
+ 480 600 l 1,12,-1
+ 480 720 l 1,13,-1
+ 600 720 l 1,14,-1
+ 600 840 l 1,15,-1
+ 480 840 l 1,16,-1
+ 480 720 l 1,17,-1
+ 360 720 l 1,18,-1
+ 360 600 l 1,19,-1
+ 120 600 l 1,20,-1
+ 120 840 l 1,21,-1
+ 0 840 l 1,22,-1
+ 0 0 l 1,23,-1
+ 120 0 l 1,0,-1
+EndSplineSet
+EndChar
+
+StartChar: latin_capital_letter_l
+Encoding: 76 76 43
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+600 0 m 1,0,-1
+ 600 120 l 1,1,-1
+ 120 120 l 1,2,-1
+ 120 840 l 1,3,-1
+ 0 840 l 1,4,-1
+ 0 0 l 1,5,-1
+ 600 0 l 1,0,-1
+EndSplineSet
+EndChar
+
+StartChar: latin_capital_letter_m
+Encoding: 77 77 44
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+120 0 m 1,0,-1
+ 120 600 l 1,1,-1
+ 240 600 l 1,2,-1
+ 240 480 l 1,3,-1
+ 360 480 l 1,4,-1
+ 360 600 l 1,5,-1
+ 480 600 l 1,6,-1
+ 480 0 l 1,7,-1
+ 600 0 l 1,8,-1
+ 600 840 l 1,9,-1
+ 480 840 l 1,10,-1
+ 480 720 l 1,11,-1
+ 360 720 l 1,12,-1
+ 360 600 l 1,13,-1
+ 240 600 l 1,14,-1
+ 240 720 l 1,15,-1
+ 120 720 l 1,16,-1
+ 120 840 l 1,17,-1
+ 0 840 l 1,18,-1
+ 0 0 l 1,19,-1
+ 120 0 l 1,0,-1
+EndSplineSet
+EndChar
+
+StartChar: latin_capital_letter_n
+Encoding: 78 78 45
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+120 0 m 1,0,-1
+ 120 600 l 1,1,-1
+ 240 600 l 1,2,-1
+ 240 480 l 1,3,-1
+ 360 480 l 1,4,-1
+ 360 360 l 1,5,-1
+ 480 360 l 1,6,-1
+ 480 0 l 1,7,-1
+ 600 0 l 1,8,-1
+ 600 840 l 1,9,-1
+ 480 840 l 1,10,-1
+ 480 480 l 1,11,-1
+ 360 480 l 1,12,-1
+ 360 600 l 1,13,-1
+ 240 600 l 1,14,-1
+ 240 720 l 1,15,-1
+ 120 720 l 1,16,-1
+ 120 840 l 1,17,-1
+ 0 840 l 1,18,-1
+ 0 0 l 1,19,-1
+ 120 0 l 1,0,-1
+EndSplineSet
+EndChar
+
+StartChar: latin_capital_letter_o
+Encoding: 79 79 46
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+480 0 m 1,0,-1
+ 480 120 l 1,1,-1
+ 600 120 l 1,2,-1
+ 600 720 l 1,3,-1
+ 480 720 l 1,4,-1
+ 480 840 l 1,5,-1
+ 120 840 l 1,6,-1
+ 120 720 l 1,7,-1
+ 0 720 l 1,8,-1
+ 0 120 l 1,9,-1
+ 120 120 l 1,10,-1
+ 120 720 l 1,11,-1
+ 480 720 l 1,12,-1
+ 480 120 l 1,13,-1
+ 120 120 l 1,14,-1
+ 120 0 l 1,15,-1
+ 480 0 l 1,0,-1
+EndSplineSet
+EndChar
+
+StartChar: latin_capital_letter_p
+Encoding: 80 80 47
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+120 0 m 1,0,-1
+ 120 480 l 1,1,-1
+ 480 480 l 1,2,-1
+ 480 600 l 1,3,-1
+ 600 600 l 1,4,-1
+ 600 720 l 1,5,-1
+ 480 720 l 1,6,-1
+ 480 600 l 1,7,-1
+ 120 600 l 1,8,-1
+ 120 720 l 1,9,-1
+ 480 720 l 1,10,-1
+ 480 840 l 1,11,-1
+ 0 840 l 1,12,-1
+ 0 0 l 1,13,-1
+ 120 0 l 1,0,-1
+EndSplineSet
+EndChar
+
+StartChar: latin_capital_letter_q
+Encoding: 81 81 48
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+360 0 m 1,0,-1
+ 360 120 l 1,1,-1
+ 480 120 l 1,2,-1
+ 480 0 l 1,3,-1
+ 600 0 l 1,4,-1
+ 600 120 l 1,5,-1
+ 480 120 l 1,6,-1
+ 480 240 l 1,7,-1
+ 600 240 l 1,8,-1
+ 600 720 l 1,9,-1
+ 480 720 l 1,10,-1
+ 480 840 l 1,11,-1
+ 120 840 l 1,12,-1
+ 120 720 l 1,13,-1
+ 0 720 l 1,14,-1
+ 0 120 l 1,15,-1
+ 120 120 l 1,16,-1
+ 120 720 l 1,17,-1
+ 480 720 l 1,18,-1
+ 480 240 l 1,19,-1
+ 360 240 l 1,20,-1
+ 360 120 l 1,21,-1
+ 120 120 l 1,22,-1
+ 120 0 l 1,23,-1
+ 360 0 l 1,0,-1
+EndSplineSet
+EndChar
+
+StartChar: latin_capital_letter_r
+Encoding: 82 82 49
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+120 0 m 1,0,-1
+ 120 480 l 1,1,-1
+ 480 480 l 1,2,-1
+ 480 0 l 1,3,-1
+ 600 0 l 1,4,-1
+ 600 480 l 1,5,-1
+ 480 480 l 1,6,-1
+ 480 600 l 1,7,-1
+ 600 600 l 1,8,-1
+ 600 720 l 1,9,-1
+ 480 720 l 1,10,-1
+ 480 600 l 1,11,-1
+ 120 600 l 1,12,-1
+ 120 720 l 1,13,-1
+ 480 720 l 1,14,-1
+ 480 840 l 1,15,-1
+ 0 840 l 1,16,-1
+ 0 0 l 1,17,-1
+ 120 0 l 1,0,-1
+EndSplineSet
+EndChar
+
+StartChar: latin_capital_letter_s
+Encoding: 83 83 50
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+480 0 m 1,0,-1
+ 480 120 l 1,1,-1
+ 600 120 l 1,2,-1
+ 600 480 l 1,3,-1
+ 480 480 l 1,4,-1
+ 480 600 l 1,5,-1
+ 120 600 l 1,6,-1
+ 120 720 l 1,7,-1
+ 600 720 l 1,8,-1
+ 600 840 l 1,9,-1
+ 120 840 l 1,10,-1
+ 120 720 l 1,11,-1
+ 0 720 l 1,12,-1
+ 0 600 l 1,13,-1
+ 120 600 l 1,14,-1
+ 120 480 l 1,15,-1
+ 480 480 l 1,16,-1
+ 480 120 l 1,17,-1
+ 120 120 l 1,18,-1
+ 120 240 l 1,19,-1
+ 0 240 l 1,20,-1
+ 0 120 l 1,21,-1
+ 120 120 l 1,22,-1
+ 120 0 l 1,23,-1
+ 480 0 l 1,0,-1
+EndSplineSet
+EndChar
+
+StartChar: latin_capital_letter_t
+Encoding: 84 84 51
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+360 0 m 1,0,-1
+ 360 720 l 1,1,-1
+ 600 720 l 1,2,-1
+ 600 840 l 1,3,-1
+ 0 840 l 1,4,-1
+ 0 720 l 1,5,-1
+ 240 720 l 1,6,-1
+ 240 0 l 1,7,-1
+ 360 0 l 1,0,-1
+EndSplineSet
+EndChar
+
+StartChar: latin_capital_letter_u
+Encoding: 85 85 52
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+480 0 m 1,0,-1
+ 480 120 l 1,1,-1
+ 600 120 l 1,2,-1
+ 600 840 l 1,3,-1
+ 480 840 l 1,4,-1
+ 480 120 l 1,5,-1
+ 120 120 l 1,6,-1
+ 120 840 l 1,7,-1
+ 0 840 l 1,8,-1
+ 0 120 l 1,9,-1
+ 120 120 l 1,10,-1
+ 120 0 l 1,11,-1
+ 480 0 l 1,0,-1
+EndSplineSet
+EndChar
+
+StartChar: latin_capital_letter_v
+Encoding: 86 86 53
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+360 0 m 1,0,-1
+ 360 120 l 1,1,-1
+ 480 120 l 1,2,-1
+ 480 360 l 1,3,-1
+ 600 360 l 1,4,-1
+ 600 840 l 1,5,-1
+ 480 840 l 1,6,-1
+ 480 360 l 1,7,-1
+ 360 360 l 1,8,-1
+ 360 120 l 1,9,-1
+ 240 120 l 1,10,-1
+ 240 360 l 1,11,-1
+ 120 360 l 1,12,-1
+ 120 840 l 1,13,-1
+ 0 840 l 1,14,-1
+ 0 360 l 1,15,-1
+ 120 360 l 1,16,-1
+ 120 120 l 1,17,-1
+ 240 120 l 1,18,-1
+ 240 0 l 1,19,-1
+ 360 0 l 1,0,-1
+EndSplineSet
+EndChar
+
+StartChar: latin_capital_letter_w
+Encoding: 87 87 54
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+120 0 m 1,0,-1
+ 120 120 l 1,1,-1
+ 240 120 l 1,2,-1
+ 240 240 l 1,3,-1
+ 360 240 l 1,4,-1
+ 360 120 l 1,5,-1
+ 480 120 l 1,6,-1
+ 480 0 l 1,7,-1
+ 600 0 l 1,8,-1
+ 600 840 l 1,9,-1
+ 480 840 l 1,10,-1
+ 480 240 l 1,11,-1
+ 360 240 l 1,12,-1
+ 360 360 l 1,13,-1
+ 240 360 l 1,14,-1
+ 240 240 l 1,15,-1
+ 120 240 l 1,16,-1
+ 120 840 l 1,17,-1
+ 0 840 l 1,18,-1
+ 0 0 l 1,19,-1
+ 120 0 l 1,0,-1
+EndSplineSet
+EndChar
+
+StartChar: latin_capital_letter_x
+Encoding: 88 88 55
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+120 0 m 1,0,-1
+ 120 360 l 1,1,-1
+ 240 360 l 1,2,-1
+ 240 480 l 1,3,-1
+ 360 480 l 1,4,-1
+ 360 360 l 1,5,-1
+ 480 360 l 1,6,-1
+ 480 0 l 1,7,-1
+ 600 0 l 1,8,-1
+ 600 360 l 1,9,-1
+ 480 360 l 1,10,-1
+ 480 480 l 1,11,-1
+ 360 480 l 1,12,-1
+ 360 600 l 1,13,-1
+ 480 600 l 1,14,-1
+ 480 720 l 1,15,-1
+ 600 720 l 1,16,-1
+ 600 840 l 1,17,-1
+ 480 840 l 1,18,-1
+ 480 720 l 1,19,-1
+ 360 720 l 1,20,-1
+ 360 600 l 1,21,-1
+ 240 600 l 1,22,-1
+ 240 720 l 1,23,-1
+ 120 720 l 1,24,-1
+ 120 840 l 1,25,-1
+ 0 840 l 1,26,-1
+ 0 720 l 1,27,-1
+ 120 720 l 1,28,-1
+ 120 600 l 1,29,-1
+ 240 600 l 1,30,-1
+ 240 480 l 1,31,-1
+ 120 480 l 1,32,-1
+ 120 360 l 1,33,-1
+ 0 360 l 1,34,-1
+ 0 0 l 1,35,-1
+ 120 0 l 1,0,-1
+EndSplineSet
+EndChar
+
+StartChar: latin_capital_letter_y
+Encoding: 89 89 56
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+360 0 m 1,0,-1
+ 360 600 l 1,1,-1
+ 480 600 l 1,2,-1
+ 480 720 l 1,3,-1
+ 600 720 l 1,4,-1
+ 600 840 l 1,5,-1
+ 480 840 l 1,6,-1
+ 480 720 l 1,7,-1
+ 360 720 l 1,8,-1
+ 360 600 l 1,9,-1
+ 240 600 l 1,10,-1
+ 240 720 l 1,11,-1
+ 120 720 l 1,12,-1
+ 120 840 l 1,13,-1
+ 0 840 l 1,14,-1
+ 0 720 l 1,15,-1
+ 120 720 l 1,16,-1
+ 120 600 l 1,17,-1
+ 240 600 l 1,18,-1
+ 240 0 l 1,19,-1
+ 360 0 l 1,0,-1
+EndSplineSet
+EndChar
+
+StartChar: latin_capital_letter_z
+Encoding: 90 90 57
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+600 0 m 1,0,-1
+ 600 120 l 1,1,-1
+ 120 120 l 1,2,-1
+ 120 240 l 1,3,-1
+ 240 240 l 1,4,-1
+ 240 360 l 1,5,-1
+ 360 360 l 1,6,-1
+ 360 480 l 1,7,-1
+ 480 480 l 1,8,-1
+ 480 600 l 1,9,-1
+ 600 600 l 1,10,-1
+ 600 840 l 1,11,-1
+ 0 840 l 1,12,-1
+ 0 720 l 1,13,-1
+ 480 720 l 1,14,-1
+ 480 600 l 1,15,-1
+ 360 600 l 1,16,-1
+ 360 480 l 1,17,-1
+ 240 480 l 1,18,-1
+ 240 360 l 1,19,-1
+ 120 360 l 1,20,-1
+ 120 240 l 1,21,-1
+ 0 240 l 1,22,-1
+ 0 0 l 1,23,-1
+ 600 0 l 1,0,-1
+EndSplineSet
+EndChar
+
+StartChar: left_square_bracket
+Encoding: 91 91 58
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+480 0 m 1,0,-1
+ 480 120 l 1,1,-1
+ 240 120 l 1,2,-1
+ 240 720 l 1,3,-1
+ 480 720 l 1,4,-1
+ 480 840 l 1,5,-1
+ 120 840 l 1,6,-1
+ 120 0 l 1,7,-1
+ 480 0 l 1,0,-1
+EndSplineSet
+EndChar
+
+StartChar: right_square_bracket
+Encoding: 93 93 59
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+480 0 m 1,0,-1
+ 480 840 l 1,1,-1
+ 120 840 l 1,2,-1
+ 120 720 l 1,3,-1
+ 360 720 l 1,4,-1
+ 360 120 l 1,5,-1
+ 120 120 l 1,6,-1
+ 120 0 l 1,7,-1
+ 480 0 l 1,0,-1
+EndSplineSet
+EndChar
+
+StartChar: latin_small_letter_a
+Encoding: 97 97 60
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+600 0 m 1,0,-1
+ 600 480 l 1,1,-1
+ 480 480 l 1,2,-1
+ 480 600 l 1,3,-1
+ 120 600 l 1,4,-1
+ 120 480 l 1,5,-1
+ 480 480 l 1,6,-1
+ 480 360 l 1,7,-1
+ 120 360 l 1,8,-1
+ 120 240 l 1,9,-1
+ 0 240 l 1,10,-1
+ 0 120 l 1,11,-1
+ 120 120 l 1,12,-1
+ 120 240 l 1,13,-1
+ 480 240 l 1,14,-1
+ 480 120 l 1,15,-1
+ 120 120 l 1,16,-1
+ 120 0 l 1,17,-1
+ 600 0 l 1,0,-1
+EndSplineSet
+EndChar
+
+StartChar: latin_small_letter_b
+Encoding: 98 98 61
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+480 0 m 1,0,-1
+ 480 120 l 1,1,-1
+ 600 120 l 1,2,-1
+ 600 480 l 1,3,-1
+ 480 480 l 1,4,-1
+ 480 600 l 1,5,-1
+ 240 600 l 1,6,-1
+ 240 480 l 1,7,-1
+ 480 480 l 1,8,-1
+ 480 120 l 1,9,-1
+ 120 120 l 1,10,-1
+ 120 360 l 1,11,-1
+ 240 360 l 1,12,-1
+ 240 480 l 1,13,-1
+ 120 480 l 1,14,-1
+ 120 840 l 1,15,-1
+ 0 840 l 1,16,-1
+ 0 0 l 1,17,-1
+ 480 0 l 1,0,-1
+EndSplineSet
+EndChar
+
+StartChar: latin_small_letter_c
+Encoding: 99 99 62
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+480 0 m 1,0,-1
+ 480 120 l 1,1,-1
+ 600 120 l 1,2,-1
+ 600 240 l 1,3,-1
+ 480 240 l 1,4,-1
+ 480 120 l 1,5,-1
+ 120 120 l 1,6,-1
+ 120 480 l 1,7,-1
+ 480 480 l 1,8,-1
+ 480 360 l 1,9,-1
+ 600 360 l 1,10,-1
+ 600 480 l 1,11,-1
+ 480 480 l 1,12,-1
+ 480 600 l 1,13,-1
+ 120 600 l 1,14,-1
+ 120 480 l 1,15,-1
+ 0 480 l 1,16,-1
+ 0 120 l 1,17,-1
+ 120 120 l 1,18,-1
+ 120 0 l 1,19,-1
+ 480 0 l 1,0,-1
+EndSplineSet
+EndChar
+
+StartChar: latin_small_letter_d
+Encoding: 100 100 63
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+600 0 m 1,0,-1
+ 600 840 l 1,1,-1
+ 480 840 l 1,2,-1
+ 480 480 l 1,3,-1
+ 360 480 l 1,4,-1
+ 360 600 l 1,5,-1
+ 120 600 l 1,6,-1
+ 120 480 l 1,7,-1
+ 0 480 l 1,8,-1
+ 0 120 l 1,9,-1
+ 120 120 l 1,10,-1
+ 120 480 l 1,11,-1
+ 360 480 l 1,12,-1
+ 360 360 l 1,13,-1
+ 480 360 l 1,14,-1
+ 480 120 l 1,15,-1
+ 120 120 l 1,16,-1
+ 120 0 l 1,17,-1
+ 600 0 l 1,0,-1
+EndSplineSet
+EndChar
+
+StartChar: latin_small_letter_e
+Encoding: 101 101 64
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+600 0 m 1,0,-1
+ 600 120 l 1,1,-1
+ 120 120 l 1,2,-1
+ 120 240 l 1,3,-1
+ 600 240 l 1,4,-1
+ 600 480 l 1,5,-1
+ 480 480 l 1,6,-1
+ 480 600 l 1,7,-1
+ 120 600 l 1,8,-1
+ 120 480 l 1,9,-1
+ 480 480 l 1,10,-1
+ 480 360 l 1,11,-1
+ 120 360 l 1,12,-1
+ 120 480 l 1,13,-1
+ 0 480 l 1,14,-1
+ 0 120 l 1,15,-1
+ 120 120 l 1,16,-1
+ 120 0 l 1,17,-1
+ 600 0 l 1,0,-1
+EndSplineSet
+EndChar
+
+StartChar: latin_small_letter_f
+Encoding: 102 102 65
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+300 0 m 1,0,-1
+ 300 480 l 1,1,-1
+ 540 480 l 1,2,-1
+ 540 600 l 1,3,-1
+ 300 600 l 1,4,-1
+ 300 720 l 1,5,-1
+ 540 720 l 1,6,-1
+ 540 840 l 1,7,-1
+ 300 840 l 1,8,-1
+ 300 720 l 1,9,-1
+ 180 720 l 1,10,-1
+ 180 600 l 1,11,-1
+ 60 600 l 1,12,-1
+ 60 480 l 1,13,-1
+ 180 480 l 1,14,-1
+ 180 0 l 1,15,-1
+ 300 0 l 1,0,-1
+EndSplineSet
+EndChar
+
+StartChar: latin_small_letter_g
+Encoding: 103 103 66
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+480 -120 m 1,0,-1
+ 480 0 l 1,1,-1
+ 600 0 l 1,2,-1
+ 600 600 l 1,3,-1
+ 120 600 l 1,4,-1
+ 120 480 l 1,5,-1
+ 0 480 l 1,6,-1
+ 0 240 l 1,7,-1
+ 120 240 l 1,8,-1
+ 120 480 l 1,9,-1
+ 480 480 l 1,10,-1
+ 480 240 l 1,11,-1
+ 120 240 l 1,12,-1
+ 120 120 l 1,13,-1
+ 480 120 l 1,14,-1
+ 480 0 l 1,15,-1
+ 0 0 l 1,16,-1
+ 0 -120 l 1,17,-1
+ 480 -120 l 1,0,-1
+EndSplineSet
+EndChar
+
+StartChar: latin_small_letter_h
+Encoding: 104 104 67
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+120 0 m 1,0,-1
+ 120 360 l 1,1,-1
+ 240 360 l 1,2,-1
+ 240 480 l 1,3,-1
+ 480 480 l 1,4,-1
+ 480 0 l 1,5,-1
+ 600 0 l 1,6,-1
+ 600 480 l 1,7,-1
+ 480 480 l 1,8,-1
+ 480 600 l 1,9,-1
+ 240 600 l 1,10,-1
+ 240 480 l 1,11,-1
+ 120 480 l 1,12,-1
+ 120 840 l 1,13,-1
+ 0 840 l 1,14,-1
+ 0 0 l 1,15,-1
+ 120 0 l 1,0,-1
+EndSplineSet
+EndChar
+
+StartChar: latin_small_letter_i
+Encoding: 105 105 68
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+300 720 m 1,0,-1
+ 300 840 l 1,1,-1
+ 180 840 l 1,2,-1
+ 180 720 l 1,3,-1
+ 300 720 l 1,0,-1
+540 0 m 1,4,-1
+ 540 120 l 1,5,-1
+ 300 120 l 1,6,-1
+ 300 600 l 1,7,-1
+ 60 600 l 1,8,-1
+ 60 480 l 1,9,-1
+ 180 480 l 1,10,-1
+ 180 120 l 1,11,-1
+ 300 120 l 1,12,-1
+ 300 0 l 1,13,-1
+ 540 0 l 1,4,-1
+EndSplineSet
+EndChar
+
+StartChar: latin_small_letter_j
+Encoding: 106 106 69
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+600 720 m 1,0,-1
+ 600 840 l 1,1,-1
+ 480 840 l 1,2,-1
+ 480 720 l 1,3,-1
+ 600 720 l 1,0,-1
+480 -120 m 1,4,-1
+ 480 0 l 1,5,-1
+ 600 0 l 1,6,-1
+ 600 600 l 1,7,-1
+ 480 600 l 1,8,-1
+ 480 0 l 1,9,-1
+ 120 0 l 1,10,-1
+ 120 240 l 1,11,-1
+ 0 240 l 1,12,-1
+ 0 0 l 1,13,-1
+ 120 0 l 1,14,-1
+ 120 -120 l 1,15,-1
+ 480 -120 l 1,4,-1
+EndSplineSet
+EndChar
+
+StartChar: latin_small_letter_k
+Encoding: 107 107 70
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+180 0 m 1,0,-1
+ 180 240 l 1,1,-1
+ 300 240 l 1,2,-1
+ 300 120 l 1,3,-1
+ 420 120 l 1,4,-1
+ 420 0 l 1,5,-1
+ 540 0 l 1,6,-1
+ 540 120 l 1,7,-1
+ 420 120 l 1,8,-1
+ 420 240 l 1,9,-1
+ 300 240 l 1,10,-1
+ 300 360 l 1,11,-1
+ 420 360 l 1,12,-1
+ 420 480 l 1,13,-1
+ 540 480 l 1,14,-1
+ 540 600 l 1,15,-1
+ 420 600 l 1,16,-1
+ 420 480 l 1,17,-1
+ 300 480 l 1,18,-1
+ 300 360 l 1,19,-1
+ 180 360 l 1,20,-1
+ 180 840 l 1,21,-1
+ 60 840 l 1,22,-1
+ 60 0 l 1,23,-1
+ 180 0 l 1,0,-1
+EndSplineSet
+EndChar
+
+StartChar: latin_small_letter_l
+Encoding: 108 108 71
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+540 0 m 1,0,-1
+ 540 120 l 1,1,-1
+ 300 120 l 1,2,-1
+ 300 840 l 1,3,-1
+ 60 840 l 1,4,-1
+ 60 720 l 1,5,-1
+ 180 720 l 1,6,-1
+ 180 120 l 1,7,-1
+ 300 120 l 1,8,-1
+ 300 0 l 1,9,-1
+ 540 0 l 1,0,-1
+EndSplineSet
+EndChar
+
+StartChar: latin_small_letter_m
+Encoding: 109 109 72
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+120 0 m 1,0,-1
+ 120 480 l 1,1,-1
+ 240 480 l 1,2,-1
+ 240 240 l 1,3,-1
+ 360 240 l 1,4,-1
+ 360 480 l 1,5,-1
+ 480 480 l 1,6,-1
+ 480 0 l 1,7,-1
+ 600 0 l 1,8,-1
+ 600 480 l 1,9,-1
+ 480 480 l 1,10,-1
+ 480 600 l 1,11,-1
+ 360 600 l 1,12,-1
+ 360 480 l 1,13,-1
+ 240 480 l 1,14,-1
+ 240 600 l 1,15,-1
+ 0 600 l 1,16,-1
+ 0 0 l 1,17,-1
+ 120 0 l 1,0,-1
+EndSplineSet
+EndChar
+
+StartChar: latin_small_letter_n
+Encoding: 110 110 73
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+120 0 m 1,0,-1
+ 120 480 l 1,1,-1
+ 480 480 l 1,2,-1
+ 480 0 l 1,3,-1
+ 600 0 l 1,4,-1
+ 600 480 l 1,5,-1
+ 480 480 l 1,6,-1
+ 480 600 l 1,7,-1
+ 0 600 l 1,8,-1
+ 0 0 l 1,9,-1
+ 120 0 l 1,0,-1
+EndSplineSet
+EndChar
+
+StartChar: latin_small_letter_o
+Encoding: 111 111 74
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+480 0 m 1,0,-1
+ 480 120 l 1,1,-1
+ 600 120 l 1,2,-1
+ 600 480 l 1,3,-1
+ 480 480 l 1,4,-1
+ 480 600 l 1,5,-1
+ 120 600 l 1,6,-1
+ 120 480 l 1,7,-1
+ 0 480 l 1,8,-1
+ 0 120 l 1,9,-1
+ 120 120 l 1,10,-1
+ 120 480 l 1,11,-1
+ 480 480 l 1,12,-1
+ 480 120 l 1,13,-1
+ 120 120 l 1,14,-1
+ 120 0 l 1,15,-1
+ 480 0 l 1,0,-1
+EndSplineSet
+EndChar
+
+StartChar: latin_small_letter_p
+Encoding: 112 112 75
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+120 -120 m 1,0,-1
+ 120 120 l 1,1,-1
+ 480 120 l 1,2,-1
+ 480 240 l 1,3,-1
+ 600 240 l 1,4,-1
+ 600 480 l 1,5,-1
+ 480 480 l 1,6,-1
+ 480 600 l 1,7,-1
+ 240 600 l 1,8,-1
+ 240 480 l 1,9,-1
+ 480 480 l 1,10,-1
+ 480 240 l 1,11,-1
+ 120 240 l 1,12,-1
+ 120 360 l 1,13,-1
+ 240 360 l 1,14,-1
+ 240 480 l 1,15,-1
+ 120 480 l 1,16,-1
+ 120 600 l 1,17,-1
+ 0 600 l 1,18,-1
+ 0 -120 l 1,19,-1
+ 120 -120 l 1,0,-1
+EndSplineSet
+EndChar
+
+StartChar: latin_small_letter_q
+Encoding: 113 113 76
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+600 -120 m 1,0,-1
+ 600 600 l 1,1,-1
+ 480 600 l 1,2,-1
+ 480 480 l 1,3,-1
+ 360 480 l 1,4,-1
+ 360 600 l 1,5,-1
+ 120 600 l 1,6,-1
+ 120 480 l 1,7,-1
+ 0 480 l 1,8,-1
+ 0 240 l 1,9,-1
+ 120 240 l 1,10,-1
+ 120 480 l 1,11,-1
+ 360 480 l 1,12,-1
+ 360 360 l 1,13,-1
+ 480 360 l 1,14,-1
+ 480 240 l 1,15,-1
+ 120 240 l 1,16,-1
+ 120 120 l 1,17,-1
+ 480 120 l 1,18,-1
+ 480 -120 l 1,19,-1
+ 600 -120 l 1,0,-1
+EndSplineSet
+EndChar
+
+StartChar: latin_small_letter_r
+Encoding: 114 114 77
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+120 0 m 1,0,-1
+ 120 360 l 1,1,-1
+ 240 360 l 1,2,-1
+ 240 480 l 1,3,-1
+ 480 480 l 1,4,-1
+ 480 360 l 1,5,-1
+ 600 360 l 1,6,-1
+ 600 480 l 1,7,-1
+ 480 480 l 1,8,-1
+ 480 600 l 1,9,-1
+ 240 600 l 1,10,-1
+ 240 480 l 1,11,-1
+ 120 480 l 1,12,-1
+ 120 600 l 1,13,-1
+ 0 600 l 1,14,-1
+ 0 0 l 1,15,-1
+ 120 0 l 1,0,-1
+EndSplineSet
+EndChar
+
+StartChar: latin_small_letter_s
+Encoding: 115 115 78
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+480 0 m 1,0,-1
+ 480 120 l 1,1,-1
+ 600 120 l 1,2,-1
+ 600 240 l 1,3,-1
+ 480 240 l 1,4,-1
+ 480 360 l 1,5,-1
+ 120 360 l 1,6,-1
+ 120 480 l 1,7,-1
+ 600 480 l 1,8,-1
+ 600 600 l 1,9,-1
+ 120 600 l 1,10,-1
+ 120 480 l 1,11,-1
+ 0 480 l 1,12,-1
+ 0 360 l 1,13,-1
+ 120 360 l 1,14,-1
+ 120 240 l 1,15,-1
+ 480 240 l 1,16,-1
+ 480 120 l 1,17,-1
+ 0 120 l 1,18,-1
+ 0 0 l 1,19,-1
+ 480 0 l 1,0,-1
+EndSplineSet
+EndChar
+
+StartChar: latin_small_letter_t
+Encoding: 116 116 79
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+540 0 m 1,0,-1
+ 540 120 l 1,1,-1
+ 300 120 l 1,2,-1
+ 300 480 l 1,3,-1
+ 420 480 l 1,4,-1
+ 420 600 l 1,5,-1
+ 300 600 l 1,6,-1
+ 300 840 l 1,7,-1
+ 180 840 l 1,8,-1
+ 180 600 l 1,9,-1
+ 60 600 l 1,10,-1
+ 60 480 l 1,11,-1
+ 180 480 l 1,12,-1
+ 180 120 l 1,13,-1
+ 300 120 l 1,14,-1
+ 300 0 l 1,15,-1
+ 540 0 l 1,0,-1
+EndSplineSet
+EndChar
+
+StartChar: latin_small_letter_u
+Encoding: 117 117 80
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+600 0 m 1,0,-1
+ 600 600 l 1,1,-1
+ 480 600 l 1,2,-1
+ 480 120 l 1,3,-1
+ 120 120 l 1,4,-1
+ 120 600 l 1,5,-1
+ 0 600 l 1,6,-1
+ 0 120 l 1,7,-1
+ 120 120 l 1,8,-1
+ 120 0 l 1,9,-1
+ 600 0 l 1,0,-1
+EndSplineSet
+EndChar
+
+StartChar: latin_small_letter_v
+Encoding: 118 118 81
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+360 0 m 1,0,-1
+ 360 120 l 1,1,-1
+ 480 120 l 1,2,-1
+ 480 240 l 1,3,-1
+ 600 240 l 1,4,-1
+ 600 600 l 1,5,-1
+ 480 600 l 1,6,-1
+ 480 240 l 1,7,-1
+ 360 240 l 1,8,-1
+ 360 120 l 1,9,-1
+ 240 120 l 1,10,-1
+ 240 240 l 1,11,-1
+ 120 240 l 1,12,-1
+ 120 600 l 1,13,-1
+ 0 600 l 1,14,-1
+ 0 240 l 1,15,-1
+ 120 240 l 1,16,-1
+ 120 120 l 1,17,-1
+ 240 120 l 1,18,-1
+ 240 0 l 1,19,-1
+ 360 0 l 1,0,-1
+EndSplineSet
+EndChar
+
+StartChar: latin_small_letter_w
+Encoding: 119 119 82
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+600 0 m 1,0,-1
+ 600 600 l 1,1,-1
+ 480 600 l 1,2,-1
+ 480 120 l 1,3,-1
+ 360 120 l 1,4,-1
+ 360 360 l 1,5,-1
+ 240 360 l 1,6,-1
+ 240 120 l 1,7,-1
+ 120 120 l 1,8,-1
+ 120 600 l 1,9,-1
+ 0 600 l 1,10,-1
+ 0 120 l 1,11,-1
+ 120 120 l 1,12,-1
+ 120 0 l 1,13,-1
+ 600 0 l 1,0,-1
+EndSplineSet
+EndChar
+
+StartChar: latin_small_letter_x
+Encoding: 120 120 83
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+120 0 m 1,0,-1
+ 120 120 l 1,1,-1
+ 240 120 l 1,2,-1
+ 240 240 l 1,3,-1
+ 360 240 l 1,4,-1
+ 360 120 l 1,5,-1
+ 480 120 l 1,6,-1
+ 480 0 l 1,7,-1
+ 600 0 l 1,8,-1
+ 600 120 l 1,9,-1
+ 480 120 l 1,10,-1
+ 480 240 l 1,11,-1
+ 360 240 l 1,12,-1
+ 360 360 l 1,13,-1
+ 480 360 l 1,14,-1
+ 480 480 l 1,15,-1
+ 600 480 l 1,16,-1
+ 600 600 l 1,17,-1
+ 480 600 l 1,18,-1
+ 480 480 l 1,19,-1
+ 360 480 l 1,20,-1
+ 360 360 l 1,21,-1
+ 240 360 l 1,22,-1
+ 240 480 l 1,23,-1
+ 120 480 l 1,24,-1
+ 120 600 l 1,25,-1
+ 0 600 l 1,26,-1
+ 0 480 l 1,27,-1
+ 120 480 l 1,28,-1
+ 120 360 l 1,29,-1
+ 240 360 l 1,30,-1
+ 240 240 l 1,31,-1
+ 120 240 l 1,32,-1
+ 120 120 l 1,33,-1
+ 0 120 l 1,34,-1
+ 0 0 l 1,35,-1
+ 120 0 l 1,0,-1
+EndSplineSet
+EndChar
+
+StartChar: latin_small_letter_y
+Encoding: 121 121 84
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+480 -120 m 1,0,-1
+ 480 0 l 1,1,-1
+ 600 0 l 1,2,-1
+ 600 600 l 1,3,-1
+ 480 600 l 1,4,-1
+ 480 240 l 1,5,-1
+ 120 240 l 1,6,-1
+ 120 600 l 1,7,-1
+ 0 600 l 1,8,-1
+ 0 240 l 1,9,-1
+ 120 240 l 1,10,-1
+ 120 120 l 1,11,-1
+ 480 120 l 1,12,-1
+ 480 0 l 1,13,-1
+ 0 0 l 1,14,-1
+ 0 -120 l 1,15,-1
+ 480 -120 l 1,0,-1
+EndSplineSet
+EndChar
+
+StartChar: latin_small_letter_z
+Encoding: 122 122 85
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+Fore
+SplineSet
+600 0 m 1,0,-1
+ 600 120 l 1,1,-1
+ 240 120 l 1,2,-1
+ 240 240 l 1,3,-1
+ 360 240 l 1,4,-1
+ 360 360 l 1,5,-1
+ 480 360 l 1,6,-1
+ 480 480 l 1,7,-1
+ 600 480 l 1,8,-1
+ 600 600 l 1,9,-1
+ 0 600 l 1,10,-1
+ 0 480 l 1,11,-1
+ 360 480 l 1,12,-1
+ 360 360 l 1,13,-1
+ 240 360 l 1,14,-1
+ 240 240 l 1,15,-1
+ 120 240 l 1,16,-1
+ 120 120 l 1,17,-1
+ 0 120 l 1,18,-1
+ 0 0 l 1,19,-1
+ 600 0 l 1,0,-1
+EndSplineSet
+EndChar
+
+StartChar: no-break_space
+Encoding: 160 160 86
+Width: 720
+GlyphClass: 2
+Flags: W
+LayerCount: 2
+EndChar
+EndChars
+EndSplineFont
