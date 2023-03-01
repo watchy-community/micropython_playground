@@ -13,8 +13,10 @@ Testing MicroPython with Watchy ESP32 hardware.
   - [ ] Add daylight savings check
   - [x] Add timezone offset
 - [ ] Work on new display layout
-  - [x] new font?
-  - [ ] add graphics?
+  - [x] new font - changed to monocraft
+  - [x] add graphics - used weather icons font
+  - [ ] adjust screen layout for weather
+- [ ] Add weather check code
 - [ ] Add docstrings to libraries, clean up errors/warnings
   - [x] pcf8563
   - [x] display
