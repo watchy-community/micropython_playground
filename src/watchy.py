@@ -20,9 +20,10 @@ from machine import (
     wake_reason,
     deepsleep
 )
+import errno
 import assets.fonts.monocraft_48 as monocraft_48
-import assets.fonts.monocraft_32 as monocraft_32
 import assets.fonts.monocraft_24 as monocraft_24
+import assets.fonts.weather_24 as weather_24
 from lib.display import Display
 from lib.pcf8563 import PCF8563
 from src.config import trustedWiFi, timeZone, DEBUG
@@ -147,16 +148,20 @@ class Watchy:
             10, 15, monocraft_48, WHITE, BLACK
         )
         self.display.display_text(
-            f'01234567',
-            10, 80, monocraft_24, WHITE, BLACK
+            '0123456789',
+            10, 74, monocraft_24, WHITE, BLACK
         )
         self.display.display_text(
-            f'0123456789',
-            10, 125, monocraft_24, WHITE, BLACK
+            ',/[]:;0123',
+            10, 106, weather_24, WHITE, BLACK
+        )
+        self.display.display_text(
+            'ABCDEFGHMP',
+            10, 138, weather_24, WHITE, BLACK
         )
         self.display.display_text(
             f'{weekDays[day]},{monthNames[month - 1]} {date}',
-            10, 160, monocraft_24, WHITE, BLACK
+            10, 170, monocraft_24, WHITE, BLACK
         )
         self.display.update()
 
@@ -199,9 +204,16 @@ class Watchy:
         print('Checking online time server')
         if self.station.isconnected():
             print('Network connected, getting ntp update')
-            wantime = ntptime() + (timeZone * 60 * 60)
-            localtime = gmtime(wantime)
-            self.rtc.set_datetime(localtime)
+            try:
+                wantime = ntptime() + (timeZone * 60 * 60)
+                localtime = gmtime(wantime)
+                self.rtc.set_datetime(localtime)
+            except OSError as exc:
+                if exc.errno == errno.ETIMEDOUT:
+                    print('Connection to NTP timed out')
+                else:
+                    print('Unknown NTP error')
+
             print('RTC sync\'d to NTP')
         else:
             print('Not online, ntp unreachable')
