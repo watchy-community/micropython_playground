@@ -15,8 +15,10 @@ Testing MicroPython with Watchy ESP32 hardware.
 - [ ] Work on new display layout
   - [x] new font - changed to monocraft
   - [x] add graphics - used weather icons font
-  - [ ] adjust screen layout for weather
+  - [x] adjust screen layout for weather
 - [ ] Add weather check code
+  - [x] Get weather from Open-Meteo.com
+  - [ ] Store weather to file, lost on deepsleep, read from file on display_watchface()
 - [ ] Add docstrings to libraries, clean up errors/warnings
   - [x] pcf8563
   - [x] display
