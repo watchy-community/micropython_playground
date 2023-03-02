@@ -27,7 +27,7 @@ import assets.fonts.weather_24 as weather_24
 from lib.display import Display
 from lib.pcf8563 import PCF8563
 from src.config import trustedWiFi, timeZone, DEBUG
-from src.utils import monthNames, weekDays
+from src.utils import monthNames, weekDays, check_weather
 from src.constants import (
     BTN_MENU,
     BTN_BACK,
@@ -77,6 +77,9 @@ class Watchy:
         i2c = SoftI2C(sda=self.pin_rtcsda, scl=self.pin_rtcscl)
         self.rtc = PCF8563(i2c)
 
+        # placeholder for weather
+        self.weather = {}
+
         self.init_interrupts()
         self.handle_wakeup()
 
@@ -112,6 +115,7 @@ class Watchy:
                 print('4th hour update')
                 self.check_network()
                 self.check_ntptime()
+                self.weather = check_weather()
             # run every minute
             self.display_watchface()
             self.set_rtc_interrupt(minutes + 1)
@@ -121,6 +125,7 @@ class Watchy:
             # the lines below are testing until rtc_int/timers are fixed
             self.check_network()
             self.check_ntptime()
+            self.weather = check_weather()
             self.display_watchface()
             self.set_rtc_interrupt(minutes + 1)
         else:
@@ -143,22 +148,46 @@ class Watchy:
         if len(str(minutes)) == 1:
             minutes = f'0{minutes}'
 
+        if self.weather != {}:
+            temp = str(round(self.weather['current_weather']['temperature']))
+        else:
+            temp = 'na'
+        
+        # Top Row
         self.display.display_text(
             f'{hours}:{minutes}',
             10, 15, monocraft_48, WHITE, BLACK
         )
+        # Second Row
+        #self.display.display_text(
+        #    '0123456789',
+        #    10, 74, monocraft_24, WHITE, BLACK
+        #)
+        # Third Row
+        #self.display.display_text(
+        #    ',/[]:;0123',
+        #    10, 106, weather_24, WHITE, BLACK
+        #)
+        # Fourth Row / Weather
         self.display.display_text(
-            '0123456789',
-            10, 74, monocraft_24, WHITE, BLACK
-        )
-        self.display.display_text(
-            ',/[]:;0123',
-            10, 106, weather_24, WHITE, BLACK
-        )
-        self.display.display_text(
-            'ABCDEFGHMP',
+            '/',
             10, 138, weather_24, WHITE, BLACK
         )
+        if temp == 'na':
+            self.display.display_text(
+                ',',
+                25, 138, weather_24, WHITE, BLACK
+            )
+        else:
+            self.display.display_text(
+                temp,
+                25, 138, monocraft_24, WHITE, BLACK
+            )
+        self.display.display_text(
+            '}',
+            63, 133, weather_24, WHITE, BLACK
+        )
+        # Bottom Row
         self.display.display_text(
             f'{weekDays[day]},{monthNames[month - 1]} {date}',
             10, 170, monocraft_24, WHITE, BLACK

@@ -13,3 +13,11 @@ timeZone = -6
 trustedWiFi = [
     # ('ssid', 'psk')
 ]
+
+# Weather API for Open-Meteo.com
+latitude = '38.95'
+longitude = '-92.33'
+tempUnit = 'fahrenheit'
+windUnit = 'mph'
+rainUnit = 'inch'
+weatherTZ = 'America%2FChicago'
