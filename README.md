@@ -4,6 +4,10 @@
 
 Testing MicroPython with Watchy ESP32 hardware.
 
+## Setup
+
+The files inside the `upload` directory should be copied to your Watchy device after MicroPython has been setup. Installation notes can be found on the [Community Wiki](https://watchy-community.github.io/wiki/#/micropython/setup).
+
 ## ToDo
 
 - [ ] Get NTP sync working ~~on timer~~
