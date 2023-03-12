@@ -24,7 +24,7 @@ import errno
 import json
 import assets.fonts.monocraft_48 as monocraft_48
 import assets.fonts.monocraft_24 as monocraft_24
-import assets.fonts.weather_24 as weather_24
+import assets.fonts.symbols_36 as symbols_36
 from lib.display import Display
 from lib.pcf8563 import PCF8563
 from src.config import trustedWiFi, timeZone, DEBUG
@@ -152,6 +152,17 @@ class Watchy:
         temp = str(round(weather['current_weather']['temperature']))
         weathercode = weather['current_weather']['weathercode']
 
+        vbat = self.get_battery_voltage()
+        print(f'Battery Level: {vbat}')
+        if vbat > 4.1:
+            batteryLevel = 'a'
+        elif vbat > 3.95 and vbat <= 4.1:
+            batteryLevel = 'b'
+        elif vbat > 3.80 and vbat <= 3.95:
+            batteryLevel = 'c'
+        else:
+            batteryLevel = 'd'
+
         # Top Row
         self.display.display_text(
             f'{hours}:{minutes}',
@@ -163,14 +174,14 @@ class Watchy:
 #            10, 74, monocraft_24, WHITE, BLACK
 #        )
         # Third Row
-#        self.display.display_text(
-#            ',/[]:;0123',
-#            10, 106, weather_24, WHITE, BLACK
-#        )
+        self.display.display_text(
+            batteryLevel,
+            10, 106, symbols_36, WHITE, BLACK
+        )
         # Fourth Row / Weather
         self.display.display_text(
             '/',
-            10, 138, weather_24, WHITE, BLACK
+            10, 138, symbols_36, WHITE, BLACK
         )
         self.display.display_text(
             temp,
@@ -178,7 +189,7 @@ class Watchy:
         )
         self.display.display_text(
             f'{weatherCondition[weathercode]}',
-            70, 138, weather_24, WHITE, BLACK
+            70, 138, symbols_36, WHITE, BLACK
         )
         # Bottom Row
         self.display.display_text(
@@ -189,13 +200,11 @@ class Watchy:
 
     def set_rtc_interrupt(self, rtc_minutes):
         """Change the RTC Interrupt alarm."""
-        print(f'RTC alarm interrupt: {rtc_minutes}')
-        alarmTime = rtc_minutes
-        if alarmTime == 60:
-            alarmTime = 00
-        print(f'Updating RTC alarm: {alarmTime}')
+        if rtc_minutes == 60:
+            rtc_minutes = 00
+        print(f'Updating RTC alarm: {rtc_minutes}')
         self.rtc.clear_alarm()
-        self.rtc.set_daily_alarm(minutes=alarmTime)
+        self.rtc.set_daily_alarm(minutes=rtc_minutes)
         self.rtc.enable_alarm_interrupt()
 
     def check_network(self):
@@ -219,7 +228,6 @@ class Watchy:
                         print(self.station.ifconfig())
                         return
             print('Network not connected')
-            return
 
     def check_ntptime(self):
         """Check NTP Server for time, if online."""
@@ -235,7 +243,10 @@ class Watchy:
                     print('Connection to NTP timed out')
                 else:
                     print('Unknown NTP error')
-
             print('RTC sync\'d to NTP')
         else:
             print('Not online, ntp unreachable')
+
+    def get_battery_voltage(self):
+        """Check the battery voltage level."""
+        return self.adc.read_uv() / 1000 * 2
