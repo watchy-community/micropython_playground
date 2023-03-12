@@ -44,27 +44,27 @@ weatherCondition = {
     1: 'A',   # Mainly clear
     2: 'B',   # Partly cloudy
     3: 'B',   # Overcast
-    45: 'F',  # Fog
-    48: 'F',  # Depositing rime fog
-    51: 'J',  # Drizzle light
-    53: 'J',  # Drizzle moderate
-    55: 'J',  # Drizzle dense
-    56: 'S',  # Freezing drizzle light
-    57: 'S',  # Freezing drizzle dense
-    61: 'T',  # Rain slight
-    63: 'T',  # Rain moderate
-    65: 'T',  # Rain heavy
-    66: 'S',  # Freezing rain light
-    67: 'S',  # Freezing rain heavy
-    71: 'S',  # Snow fall light
-    73: 'S',  # Snow fall moderate
-    75: 'S',  # Snow fall heavy
-    77: 'S',  # Snow grains
-    80: 'T',  # Rain showers light
-    81: 'T',  # Rain showers moderate
-    82: 'T',  # Rain showers violent
-    85: 'S',  # Snow showers slight
-    86: 'S'   # Snow showers heavy
+    45: 'D',  # Fog
+    48: 'D',  # Depositing rime fog
+    51: 'E',  # Drizzle light
+    53: 'E',  # Drizzle moderate
+    55: 'E',  # Drizzle dense
+    56: 'E',  # Freezing drizzle light
+    57: 'E',  # Freezing drizzle dense
+    61: 'E',  # Rain slight
+    63: 'E',  # Rain moderate
+    65: 'E',  # Rain heavy
+    66: 'E',  # Freezing rain light
+    67: 'E',  # Freezing rain heavy
+    71: 'F',  # Snow fall light
+    73: 'F',  # Snow fall moderate
+    75: 'F',  # Snow fall heavy
+    77: 'F',  # Snow grains
+    80: 'E',  # Rain showers light
+    81: 'E',  # Rain showers moderate
+    82: 'E',  # Rain showers violent
+    85: 'F',  # Snow showers slight
+    86: 'F'   # Snow showers heavy
 }
 
 
