@@ -24,7 +24,8 @@ import errno
 import json
 import assets.fonts.monocraft_48 as monocraft_48
 import assets.fonts.monocraft_24 as monocraft_24
-import assets.fonts.symbols_36 as symbols_36
+import assets.fonts.battery_36 as battery_36
+import assets.fonts.weather_36 as weather_36
 from lib.display import Display
 from lib.pcf8563 import PCF8563
 from src.config import trustedWiFi, timeZone, DEBUG
@@ -155,13 +156,13 @@ class Watchy:
         vbat = self.get_battery_voltage()
         print(f'Battery Level: {vbat}')
         if vbat > 4.1:
-            batteryLevel = 'a'
+            batteryLevel = 'A'
         elif vbat > 3.95 and vbat <= 4.1:
-            batteryLevel = 'b'
+            batteryLevel = 'R'
         elif vbat > 3.80 and vbat <= 3.95:
-            batteryLevel = 'c'
+            batteryLevel = 'S'
         else:
-            batteryLevel = 'd'
+            batteryLevel = 'T'
 
         # Top Row
         self.display.display_text(
@@ -176,12 +177,12 @@ class Watchy:
         # Third Row
         self.display.display_text(
             batteryLevel,
-            10, 106, symbols_36, WHITE, BLACK
+            10, 106, battery_36, WHITE, BLACK
         )
         # Fourth Row / Weather
         self.display.display_text(
             '/',
-            10, 138, symbols_36, WHITE, BLACK
+            10, 138, weather_36, WHITE, BLACK
         )
         self.display.display_text(
             temp,
@@ -189,7 +190,7 @@ class Watchy:
         )
         self.display.display_text(
             f'{weatherCondition[weathercode]}',
-            70, 138, symbols_36, WHITE, BLACK
+            70, 138, weather_36, WHITE, BLACK
         )
         # Bottom Row
         self.display.display_text(
