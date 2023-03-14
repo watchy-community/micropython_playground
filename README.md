@@ -10,23 +10,10 @@ The files inside the `upload` directory should be copied to your Watchy device a
 
 ## ToDo
 
-- [ ] Get NTP sync working ~~on timer~~
-  - [x] NTP `check_ntptime` method written
-  - [x] Tested method with button interrupt
-  - [x] NTP set time on RTC
-  - [ ] Add daylight savings check
-  - [x] Add timezone offset
-- [x] Work on new display layout
-  - [x] new font - changed to monocraft
-  - [x] add graphics - used weather icons font
-  - [x] adjust screen layout for weather
-- [x] Add weather check code
-  - [x] Get weather from Open-Meteo.com
-  - [x] Store weather to file, lost on deepsleep, read from file on display_watchface()
+- [ ] Add daylight savings check
+- [ ] Grab forecast weather instead of current, use on screen updates
+- [ ] Monitor watchy voltages, adjust battery icon ranges
 - [ ] Add docstrings to libraries, clean up errors/warnings
-  - [x] pcf8563
-  - [x] display
-  - [x] epaper1in54
   - [ ] writer
 - [ ] Reduce memory usage
   - [ ] Change [const() with prefix _](https://docs.micropython.org/en/latest/develop/optimizations.html#variables)
@@ -36,8 +23,6 @@ The files inside the `upload` directory should be copied to your Watchy device a
 ## Issues
 
 - It is not possible to get the wakeup bit in MicroPython yet, see [GH: micropython/issues/6981](https://github.com/micropython/micropython/issues/6981)
-- Adding `ulogging` module from [Github: iabdalkader/micropython-ulogging](https://github.com/iabdalkader/micropython-ulogging) put me over memory allocation limits
-  - Reducing memory usage may help make this possible
 - Changing NTP to update at 03:00 instead of every 4 hours, I need to come up with a better weather update schedule
   - Updating every 4 hours for NTP and weather, the battery lasted a little over 24 hours
 
@@ -48,6 +33,7 @@ The files inside the `upload` directory should be copied to your Watchy device a
 - [Github: peterhinch/micropython-font-to-py](https://github.com/peterhinch/micropython-font-to-py) - Writer interface and font-to-py script
 - [Github: lewisxhe/PCF8563_PythonLibrary](https://github.com/lewisxhe/PCF8563_PythonLibrary) - RTC driver for Watchy v2
 - [Sync time in MicroPython using NTP](https://bhave.sh/micropython-ntp/) - used section on Timezones
+- [ESP32/ESP8266 Analog Readings with MicroPython | Random Nerd Tutorials](https://randomnerdtutorials.com/esp32-esp8266-analog-readings-micropython/)
 - [MicroPython Documentation](https://docs.micropython.org/en/latest/)
 
 ## Hardware/Datasheets
