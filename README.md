@@ -30,7 +30,8 @@ The files inside the `upload` directory should be copied to your Watchy device a
   - [ ] writer
 - [ ] Reduce memory usage
   - [ ] Change [const() with prefix _](https://docs.micropython.org/en/latest/develop/optimizations.html#variables)
-  - [ ] [Cross-compile files as mpy](https://docs.micropython.org/en/latest/develop/optimizations.html#frozen-bytecode)
+  - [ ] [Cross-compile lib files as mpy](https://docs.micropython.org/en/latest/develop/optimizations.html#frozen-bytecode)
+  - [ ] Cross-compile font files as mpy
 
 ## Issues
 
