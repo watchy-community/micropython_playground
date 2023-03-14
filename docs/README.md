@@ -26,3 +26,4 @@ python font_to_py.py -x -f Battery-Icons.otf 36 battery_36.py -c ARST #/.-,
 
 - [Github: IdreesInc/Monocraft](https://github.com/IdreesInc/Monocraft)
 - [Github: erikflowers/weather-icons](https://github.com/erikflowers/weather-icons)
+- [dafont: battery-icons.font](https://www.dafont.com/battery-icons.font)
