@@ -109,9 +109,9 @@ class Watchy:
         (_, _, _, hours, minutes, _, day) = datetime
         if reason is EXT0_WAKE or reason == 0:
             print('RTC wake')
-            # connect to wifi, update ntp every 4 hours
-            if (hours % 4 == 0) and minutes == 0:
-                print('4th hour update')
+            # connect to wifi, update ntp at 03:00am
+            if hours == 3 and minutes == 0:
+                print('3am ntp update')
                 self.check_network()
                 self.check_ntptime()
                 check_weather()

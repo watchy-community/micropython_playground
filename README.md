@@ -38,6 +38,8 @@ The files inside the `upload` directory should be copied to your Watchy device a
 - It is not possible to get the wakeup bit in MicroPython yet, see [GH: micropython/issues/6981](https://github.com/micropython/micropython/issues/6981)
 - Adding `ulogging` module from [Github: iabdalkader/micropython-ulogging](https://github.com/iabdalkader/micropython-ulogging) put me over memory allocation limits
   - Reducing memory usage may help make this possible
+- Changing NTP to update at 03:00 instead of every 4 hours, I need to come up with a better weather update schedule
+  - Updating every 4 hours for NTP and weather, the battery lasted a little over 24 hours
 
 ## References
 
