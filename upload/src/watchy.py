@@ -22,7 +22,7 @@ from machine import (
 )
 import errno
 import json
-import assets.fonts.monocraft_48 as monocraft_48
+import assets.fonts.monocraft_44 as monocraft_44
 import assets.fonts.monocraft_24 as monocraft_24
 import assets.fonts.battery_36 as battery_36
 import assets.fonts.weather_36 as weather_36
@@ -38,6 +38,7 @@ from src.constants import (
     RTC_SDA,
     RTC_SCL,
     RTC_INT,
+    BATT_ADC,
     WHITE,
     BLACK
 )
@@ -56,6 +57,7 @@ class Watchy:
         self.pin_btnBack = Pin(BTN_BACK, Pin.IN)
         self.pin_btnDown = Pin(BTN_DOWN, Pin.IN)
         self.pin_btnUp = Pin(BTN_UP, Pin.IN)
+        self.pin_battadc = Pin(BATT_ADC, Pin.IN)
 
         # define timers - max 4
         # watch dog timer, not fed for 30 seconds, causes reboot
@@ -78,6 +80,9 @@ class Watchy:
         # i2c init, rtc init
         i2c = SoftI2C(sda=self.pin_rtcsda, scl=self.pin_rtcscl)
         self.rtc = PCF8563(i2c)
+
+        # Battery
+        self.adc = ADC(self.pin_battadc)
 
         self.init_interrupts()
         self.handle_wakeup()
@@ -154,7 +159,6 @@ class Watchy:
         weathercode = weather['current_weather']['weathercode']
 
         vbat = self.get_battery_voltage()
-        print(f'Battery Level: {vbat}')
         if vbat > 4.1:
             batteryLevel = 'A'
         elif vbat > 3.95 and vbat <= 4.1:
@@ -167,30 +171,25 @@ class Watchy:
         # Top Row
         self.display.display_text(
             f'{hours}:{minutes}',
-            10, 15, monocraft_48, WHITE, BLACK
+            10, 15, monocraft_44, WHITE, BLACK
         )
-        # Second Row
-#        self.display.display_text(
-#            '0123456789',
-#            10, 74, monocraft_24, WHITE, BLACK
-#        )
-        # Third Row
-        self.display.display_text(
-            batteryLevel,
-            10, 106, battery_36, WHITE, BLACK
-        )
+
         # Fourth Row / Weather
         self.display.display_text(
             '/',
-            10, 138, weather_36, WHITE, BLACK
+            10, 133, weather_36, WHITE, BLACK
         )
         self.display.display_text(
             temp,
-            25, 138, monocraft_24, WHITE, BLACK
+            28, 138, monocraft_24, WHITE, BLACK
         )
         self.display.display_text(
             f'{weatherCondition[weathercode]}',
-            70, 138, weather_36, WHITE, BLACK
+            86, 133, weather_36, WHITE, BLACK
+        )
+        self.display.display_text(
+            batteryLevel,
+            160, 123, battery_36, WHITE, BLACK
         )
         # Bottom Row
         self.display.display_text(
@@ -250,4 +249,6 @@ class Watchy:
 
     def get_battery_voltage(self):
         """Check the battery voltage level."""
+        print(f'ADC u16: {self.adc.read_u16()}')
+        print(f'ADC uv: {self.adc.read_uv()}')
         return self.adc.read_uv() / 1000 * 2
