@@ -6,7 +6,7 @@ Various configuration options.
 DEBUG = False
 
 # Numerical timezone offset
-timeZone = -6
+timeZone = -5
 
 # A list of tuples
 # tuple should be SSID then PSK as strings
