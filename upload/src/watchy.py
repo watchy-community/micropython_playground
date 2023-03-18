@@ -83,6 +83,8 @@ class Watchy:
 
         # Battery
         self.adc = ADC(self.pin_battadc)
+        self.adc.atten(ADC.ATTN_11DB)
+        #self.adc.width(ADC.WIDTH_12BIT)
 
         self.init_interrupts()
         self.handle_wakeup()
@@ -159,11 +161,11 @@ class Watchy:
         weathercode = weather['current_weather']['weathercode']
 
         vbat = self.get_battery_voltage()
-        if vbat > 4.1:
+        if vbat > 1.91:
             batteryLevel = 'A'
-        elif vbat > 3.95 and vbat <= 4.1:
+        elif vbat > 1.714 and vbat <= 1.909:
             batteryLevel = 'R'
-        elif vbat > 3.80 and vbat <= 3.95:
+        elif vbat > 1.519 and vbat <= 1.713:
             batteryLevel = 'S'
         else:
             batteryLevel = 'T'
@@ -172,6 +174,12 @@ class Watchy:
         self.display.display_text(
             f'{hours}:{minutes}',
             10, 15, monocraft_44, WHITE, BLACK
+        )
+
+        # Second Row / Testing
+        self.display.display_text(
+            str(vbat),
+            10, 70, monocraft_24, WHITE, BLACK
         )
 
         # Fourth Row / Weather
@@ -249,6 +257,8 @@ class Watchy:
 
     def get_battery_voltage(self):
         """Check the battery voltage level."""
-        print(f'ADC u16: {self.adc.read_u16()}')
-        print(f'ADC uv: {self.adc.read_uv()}')
-        return self.adc.read_uv() / 1000 * 2
+        #datetime = self.rtc.datetime()
+        #(_, month, date, hours, minutes, _, _) = datetime
+        #write_log(f'{monthNames[month - 1]} {date} {hours}:{minutes} :: {self.adc.read_uv()/1e6}')
+        print(f'ADC uv: {self.adc.read_uv()/1e6}')
+        return self.adc.read_uv() / 1e6
