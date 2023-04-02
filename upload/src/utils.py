@@ -4,6 +4,7 @@ Reference dictionaries, shared functions, and anything used by but not
 necessarily apart of the Watchy class.
 """
 import errno
+from ujson import load
 from urequests import get
 from src.config import (
     latitude,
@@ -84,3 +85,12 @@ def check_weather():
             print('Connection to weather API timed out')
         else:
             print('Unknown API error')
+
+
+def read_weather():
+    """Read weather.json and return values."""
+    with open('weather.json', 'r') as file:
+        weather = load(file)
+    temp = str(round(weather['current_weather']['temperature']))
+    weathercode = weather['current_weather']['weathercode']
+    return temp, weathercode
