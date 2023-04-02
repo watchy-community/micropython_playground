@@ -21,7 +21,6 @@ from machine import (
     deepsleep
 )
 import errno
-import json
 import assets.fonts.monocraft_44 as monocraft_44
 import assets.fonts.monocraft_24 as monocraft_24
 import assets.fonts.battery_36 as battery_36
@@ -29,7 +28,13 @@ import assets.fonts.weather_36 as weather_36
 from lib.display import Display
 from lib.pcf8563 import PCF8563
 from src.config import trustedWiFi, timeZone, DEBUG
-from src.utils import monthNames, weekDays, check_weather, weatherCondition
+from src.utils import (
+    monthNames,
+    weekDays,
+    weatherCondition,
+    check_weather,
+    read_weather
+)
 from src.constants import (
     BTN_MENU,
     BTN_BACK,
@@ -84,7 +89,7 @@ class Watchy:
         # Battery
         self.adc = ADC(self.pin_battadc)
         self.adc.atten(ADC.ATTN_11DB)
-        #self.adc.width(ADC.WIDTH_12BIT)
+        # self.adc.width(ADC.WIDTH_12BIT)
 
         self.init_interrupts()
         self.handle_wakeup()
@@ -113,7 +118,7 @@ class Watchy:
         reason = wake_reason()
         datetime = self.rtc.datetime()
         # (year, month, date, hours, minutes, seconds, weekday)
-        (_, _, _, hours, minutes, _, day) = datetime
+        (_, month, date, hours, minutes, _, day) = datetime
         if reason is EXT0_WAKE or reason == 0:
             print('RTC wake')
             # connect to wifi, update ntp at 03:00am
@@ -123,7 +128,7 @@ class Watchy:
                 self.check_ntptime()
                 check_weather()
             # run every minute
-            self.display_watchface()
+            self.display_watchface(month, date, hours, minutes, day)
             self.set_rtc_interrupt(minutes + 1)
 
         elif reason is EXT1_WAKE:
@@ -132,18 +137,15 @@ class Watchy:
             self.check_network()
             self.check_ntptime()
             check_weather()
-            self.display_watchface()
+            self.display_watchface(month, date, hours, minutes, day)
             self.set_rtc_interrupt(minutes + 1)
         else:
             print('Wake for other reason')
             print(reason)
 
-    def display_watchface(self):
+    def display_watchface(self, month, date, hours, minutes, day):
         """Write information out to the ePaper."""
         self.display.framebuf.fill(WHITE)
-        datetime = self.rtc.datetime()
-        # (year, month, date, hours, minutes, seconds, weekday)
-        (_, month, date, hours, minutes, _, day) = datetime
 
         if month == 0:
             month = 1  # fix boot as month 0
@@ -154,45 +156,31 @@ class Watchy:
         if len(str(minutes)) == 1:
             minutes = f'0{minutes}'
 
-        with open('weather.json', 'r') as file:
-            weather = json.load(file)
-
-        temp = str(round(weather['current_weather']['temperature']))
-        weathercode = weather['current_weather']['weathercode']
-
+        weather = read_weather()
         vbat = self.get_battery_voltage()
-        if vbat > 1.91:
-            batteryLevel = 'A'
-        elif vbat > 1.714 and vbat <= 1.909:
-            batteryLevel = 'R'
-        elif vbat > 1.519 and vbat <= 1.713:
-            batteryLevel = 'S'
-        else:
-            batteryLevel = 'T'
+        batteryLevel = self.check_battery_level()
 
         # Top Row
         self.display.display_text(
             f'{hours}:{minutes}',
             10, 15, monocraft_44, WHITE, BLACK
         )
-
         # Second Row / Testing
         self.display.display_text(
             str(vbat),
             10, 70, monocraft_24, WHITE, BLACK
         )
-
         # Fourth Row / Weather
         self.display.display_text(
             '/',
             10, 133, weather_36, WHITE, BLACK
         )
         self.display.display_text(
-            temp,
+            weather[0],
             28, 138, monocraft_24, WHITE, BLACK
         )
         self.display.display_text(
-            f'{weatherCondition[weathercode]}',
+            f'{weatherCondition[weather[1]]}',
             86, 133, weather_36, WHITE, BLACK
         )
         self.display.display_text(
@@ -257,8 +245,19 @@ class Watchy:
 
     def get_battery_voltage(self):
         """Check the battery voltage level."""
-        #datetime = self.rtc.datetime()
-        #(_, month, date, hours, minutes, _, _) = datetime
-        #write_log(f'{monthNames[month - 1]} {date} {hours}:{minutes} :: {self.adc.read_uv()/1e6}')
-        print(f'ADC uv: {self.adc.read_uv()/1e6}')
-        return self.adc.read_uv() / 1e6
+        volts = self.adc.read_uv() / 1e6
+        # print(f'ADC: {volts / 2.0}')
+        return volts / 2.0
+
+    def check_battery_level(self):
+        """Check the battery voltage and return battery level code."""
+        vbat = self.get_battery_voltage()
+        if vbat > 1.91:
+            batteryLevel = 'A'
+        elif vbat > 1.714 and vbat <= 1.909:
+            batteryLevel = 'R'
+        elif vbat > 1.519 and vbat <= 1.713:
+            batteryLevel = 'S'
+        else:
+            batteryLevel = 'T'
+        return batteryLevel
