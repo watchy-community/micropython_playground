@@ -9,6 +9,7 @@ from esp32 import wake_on_ext0, wake_on_ext1, WAKEUP_ALL_LOW, WAKEUP_ANY_HIGH
 from utime import gmtime, sleep_ms
 from ntptime import time as ntptime
 from network import WLAN, STA_IF
+from errno import ETIMEDOUT
 from machine import (
     EXT0_WAKE,
     EXT1_WAKE,
@@ -20,7 +21,6 @@ from machine import (
     wake_reason,
     deepsleep
 )
-import errno
 import assets.fonts.monocraft_44 as monocraft_44
 import assets.fonts.monocraft_24 as monocraft_24
 import assets.fonts.battery_36 as battery_36
@@ -54,16 +54,6 @@ class Watchy:
 
     def __init__(self):
         """Class Initializer."""
-        # define pins
-        self.pin_rtcint = Pin(RTC_INT, mode=Pin.IN)
-        self.pin_rtcsda = Pin(RTC_SDA)
-        self.pin_rtcscl = Pin(RTC_SCL)
-        self.pin_btnMenu = Pin(BTN_MENU, Pin.IN)
-        self.pin_btnBack = Pin(BTN_BACK, Pin.IN)
-        self.pin_btnDown = Pin(BTN_DOWN, Pin.IN)
-        self.pin_btnUp = Pin(BTN_UP, Pin.IN)
-        self.pin_battadc = Pin(BATT_ADC, Pin.IN)
-
         # define timers - max 4
         # watch dog timer, not fed for 30 seconds, causes reboot
         self.wdt = WDT(timeout=30000)
@@ -83,11 +73,11 @@ class Watchy:
         self.display = Display()
 
         # i2c init, rtc init
-        i2c = SoftI2C(sda=self.pin_rtcsda, scl=self.pin_rtcscl)
+        i2c = SoftI2C(sda=Pin(RTC_SDA), scl=Pin(RTC_SCL))
         self.rtc = PCF8563(i2c)
 
         # Battery
-        self.adc = ADC(self.pin_battadc)
+        self.adc = ADC(Pin(BATT_ADC, Pin.IN))
         self.adc.atten(ADC.ATTN_11DB)
         # self.adc.width(ADC.WIDTH_12BIT)
 
@@ -105,20 +95,19 @@ class Watchy:
     def init_interrupts(self):
         """Map the interrupts to inputs."""
         buttons = (
-            self.pin_btnBack,
-            self.pin_btnMenu,
-            self.pin_btnDown,
-            self.pin_btnUp
+            Pin(BTN_BACK, Pin.IN),
+            Pin(BTN_MENU, Pin.IN),
+            Pin(BTN_DOWN, Pin.IN),
+            Pin(BTN_UP, Pin.IN)
         )
-        wake_on_ext0(self.pin_rtcint, WAKEUP_ALL_LOW)
+        wake_on_ext0(Pin(RTC_INT, mode=Pin.IN), WAKEUP_ALL_LOW)
         wake_on_ext1(buttons, WAKEUP_ANY_HIGH)
 
     def handle_wakeup(self):
         """Do something with the wakeup call."""
         reason = wake_reason()
-        datetime = self.rtc.datetime()
         # (year, month, date, hours, minutes, seconds, weekday)
-        (_, month, date, hours, minutes, _, day) = datetime
+        (_, month, date, hours, minutes, _, day) = self.rtc.datetime()
         if reason is EXT0_WAKE or reason == 0:
             print('RTC wake')
             # connect to wifi, update ntp at 03:00am
@@ -127,9 +116,12 @@ class Watchy:
                 self.check_network()
                 self.check_ntptime()
                 check_weather()
-            # run every minute
-            self.display_watchface(month, date, hours, minutes, day)
-            self.set_rtc_interrupt(minutes + 1)
+            # run every minute during waking hours
+            if hours >= 6 and hours <= 23:
+                self.display_watchface(month, date, hours, minutes, day)
+                self.set_rtc_interrupt(minutes + 1)
+            else:
+                self.set_rtc_interrupt(minutes + 1)
 
         elif reason is EXT1_WAKE:
             print('PIN wake')
@@ -231,11 +223,13 @@ class Watchy:
         if self.station.isconnected():
             print('Network connected, getting ntp update')
             try:
-                wantime = ntptime() + (timeZone * 60 * 60)
-                localtime = gmtime(wantime)
-                self.rtc.set_datetime(localtime)
+                self.rtc.set_datetime(
+                    gmtime(
+                        ntptime() + (timeZone * 60 * 60)
+                    )
+                )
             except OSError as exc:
-                if exc.errno == errno.ETIMEDOUT:
+                if exc.errno == ETIMEDOUT:
                     print('Connection to NTP timed out')
                 else:
                     print('Unknown NTP error')
@@ -245,9 +239,9 @@ class Watchy:
 
     def get_battery_voltage(self):
         """Check the battery voltage level."""
-        volts = self.adc.read_uv() / 1e6
+        # volts = self.adc.read_uv() / 1e6
         # print(f'ADC: {volts / 2.0}')
-        return volts / 2.0
+        return (self.adc.read_uv() / 1e6) / 2.0
 
     def check_battery_level(self):
         """Check the battery voltage and return battery level code."""
