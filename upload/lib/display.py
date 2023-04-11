@@ -1,4 +1,4 @@
-"""src/display.py.
+"""lib/display.py.
 
 A display driver written for the Watchy ESP32 open-source hardware watch.
 
@@ -8,7 +8,7 @@ Created by Huey Lee
 See LICENSE.
 """
 
-import framebuf
+from framebuf import FrameBuffer, MONO_HLSB
 from machine import Pin, SPI
 from lib.epaper1in54 import EPD
 from lib.writer import Writer
@@ -53,11 +53,11 @@ class Display:
         self.current_x = 0
         self.current_y = 0
         self.buffer = bytearray(EPD_WIDTH * EPD_HEIGHT // 8)
-        self.framebuf = framebuf.FrameBuffer(
+        self.framebuf = FrameBuffer(
             self.buffer,
             EPD_WIDTH,
             EPD_HEIGHT,
-            framebuf.MONO_HLSB,
+            MONO_HLSB,
         )
         self.epd.init()
         self.epd.hw_init()
