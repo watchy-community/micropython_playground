@@ -3,7 +3,7 @@
 Reference dictionaries, shared functions, and anything used by but not
 necessarily apart of the Watchy class.
 """
-import errno
+from errno import ETIMEDOUT
 from ujson import load
 from urequests import get
 from src.config import (
@@ -81,7 +81,7 @@ def check_weather():
         with open('weather.json', 'w') as file:
             file.write(response.content)
     except OSError as exc:
-        if exc.errno == errno.ETIMEDOUT:
+        if exc.errno == ETIMEDOUT:
             print('Connection to weather API timed out')
         else:
             print('Unknown API error')
