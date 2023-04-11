@@ -19,20 +19,21 @@ __version__ = (0, 5, 0)
 fast_mode = True  # Does nothing. Kept to avoid breaking code.
 
 
-class DisplayState:
-    def __init__(self):
-        self.text_row = 0
-        self.text_col = 0
-
-
 def _get_id(device):
     if not isinstance(device, FrameBuffer):
         raise ValueError("Device must be derived from FrameBuffer.")
     return id(device)
 
 
-# Basic Writer class for monochrome displays
+class DisplayState:
+    def __init__(self):
+        """Class Initializer."""
+        self.text_row = 0
+        self.text_col = 0
+
+
 class Writer:
+    """Basic Writer class for monochrome displays."""
 
     # Holds a display state for each device
     state = {}  # type: ignore
@@ -62,6 +63,7 @@ class Writer:
         fg_color: int = 0,
         verbose=True,
     ):
+        """Class Initializer."""
         self.devid = _get_id(device)
         self.device = device
         if self.devid not in Writer.state:
