@@ -1,4 +1,4 @@
-"""src/writer.py.
+"""lib/writer.py.
 
 Writer supports rendering text to a Display instance in a given font.
 Multiple Writer instances may be created, each rendering a font to the
@@ -10,7 +10,7 @@ Created by Peter Hinch
 See LICENSE.
 """
 
-import framebuf
+from framebuf import FrameBuffer, MONO_HLSB, MONO_HMSB
 from uctypes import bytearray_at, addressof
 from sys import implementation
 
@@ -26,7 +26,7 @@ class DisplayState:
 
 
 def _get_id(device):
-    if not isinstance(device, framebuf.FrameBuffer):
+    if not isinstance(device, FrameBuffer):
         raise ValueError("Device must be derived from FrameBuffer.")
     return id(device)
 
@@ -71,7 +71,7 @@ class Writer:
             raise ValueError("Font too large for screen")
         # Allow to work with reverse or normal font mapping
         if font.hmap():
-            self.map = framebuf.MONO_HMSB if font.reverse() else framebuf.MONO_HLSB
+            self.map = MONO_HMSB if font.reverse() else MONO_HLSB
         else:
             raise ValueError("Font must be horizontally mapped.")
         if verbose:
@@ -110,7 +110,13 @@ class Writer:
         if margin < 0:
             if not self.row_clip:
                 self.device.scroll(0, margin)
-                self.device.fill_rect(0, y, self.screenwidth, abs(margin), self.bgcolor)
+                self.device.fill_rect(
+                    0,
+                    y,
+                    self.screenwidth,
+                    abs(margin),
+                    self.bgcolor
+                )
                 s.text_row += margin
 
     def set_clip(self, row_clip=None, col_clip=None, wrap=None):
@@ -145,7 +151,7 @@ class Writer:
                 pos = lstr.rfind(" ")
                 lstr = lstr[:pos].rstrip()
             if pos > 0:
-                rstr = string[pos + 1 :]
+                rstr = string[pos + 1:]
                 string = lstr
 
         for char in string:
@@ -159,19 +165,19 @@ class Writer:
             return 0
         sc = self._getstate().text_col  # Start column
         wd = self.screenwidth
-        l = 0
+        _len = 0
         for char in string[:-1]:
             _, _, char_width = self.font.get_ch(char)
-            l += char_width
-            if oh and l + sc > wd:
+            _len += char_width
+            if oh and _len + sc > wd:
                 return True  # All done. Save time.
         char = string[-1]
         _, _, char_width = self.font.get_ch(char)
-        if oh and l + sc + char_width > wd:
-            l += self._truelen(char)  # Last char might have blank cols on RHS
+        if oh and _len + sc + char_width > wd:
+            _len += self._truelen(char)  # Last char might have blank cols on RHS
         else:
-            l += char_width  # Public method. Return same value as old code.
-        return l + sc > wd if oh else l
+            _len += char_width  # Public method. Return same value as old code.
+        return _len + sc > wd if oh else _len
 
     # Return the printable width of a glyph less any blank columns on RHS
     def _truelen(self, char):
@@ -244,15 +250,17 @@ class Writer:
         if invert:
             for i, v in enumerate(buf):
                 buf[i] = 0xFF & ~v
-        fbc = framebuf.FrameBuffer(buf, self.clip_width, self.char_height, self.map)
+        fbc = FrameBuffer(buf, self.clip_width, self.char_height, self.map)
         self.device.blit(fbc, s.text_col, s.text_row)
         s.text_col += self.char_width
         self.cpos += 1
 
     def tabsize(self, value=None):
+        """Set tabsize."""
         if value is not None:
             self.tab = value
         return self.tab
 
     def setcolor(self, *_):
+        """Set foreground and background colors."""
         return self.fgcolor, self.bgcolor
