@@ -238,9 +238,14 @@ class Watchy:
             print('Not online, ntp unreachable')
 
     def get_battery_voltage(self):
-        """Check the battery voltage level."""
-        # volts = self.adc.read_uv() / 1e6
-        # print(f'ADC: {volts / 2.0}')
+        """Check the battery voltage level.
+
+        The `read_uv` is in microVolts. `read_uv` / 1000 is milliVolts, which
+        is the unit Arduino uses. milliVolts / 1000 is Volts.
+        1000 * 1000 = 1,000,000 or 1e6.
+        According to Arduino code, there is a voltage divider on the board so
+        the voltage is divided by 2.0 to compensate.
+        """
         return (self.adc.read_uv() / 1e6) / 2.0
 
     def check_battery_level(self):
