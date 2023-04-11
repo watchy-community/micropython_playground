@@ -1,4 +1,4 @@
-"""src/epaper1in54.py.
+"""lib/epaper1in54.py.
 
 Adapted from MicroPython Waveshare 1.54" Black/White GDEH0154D27 e-paper
 display driver.
@@ -188,5 +188,5 @@ class EPD:
     def display_buffer(self, buffer: bytearray, mirror_y=True, partial=False):
         """Send buffer to Serial interface."""
         self.send_command(WRITE_RAM)
-        self.write_buffer_to_ram(buffer, mirror_y=True)
+        self.write_buffer_to_ram(buffer, mirror_y)
         self.update(partial)
