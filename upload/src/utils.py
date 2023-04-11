@@ -74,7 +74,10 @@ def check_weather():
     headers = {
         'User-Agent': '(Watchy ESP32, lee.rowland@gmail.com)'
     }
-    apiUrl = f'https://api.open-meteo.com/v1/forecast?latitude={latitude}&longitude={longitude}&current_weather=true&temperature_unit={tempUnit}&windspeed_unit={windUnit}&precipitation_unit={rainUnit}&timezone={weatherTZ}'
+    apiUrl = f'https://api.open-meteo.com/v1/forecast?latitude={latitude}'\
+             f'&longitude={longitude}&current_weather=true'\
+             f'&temperature_unit={tempUnit}&windspeed_unit={windUnit}'\
+             f'&precipitation_unit={rainUnit}&timezone={weatherTZ}'
     print('Checking weather updates')
     try:
         response = get(apiUrl, headers=headers)
