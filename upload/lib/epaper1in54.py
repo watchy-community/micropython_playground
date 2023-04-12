@@ -190,5 +190,5 @@ class EPD:
     def display_buffer(self, buffer: bytearray, mirror_y=True, partial=False):
         """Send buffer to Serial interface."""
         self.send_command(WRITE_RAM)
-        self.write_buffer_to_ram(buffer, mirror_y)
+        self.write_buffer_to_ram(buffer, mirror_y=True)
         self.update(partial)
