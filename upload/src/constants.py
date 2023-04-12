@@ -7,6 +7,9 @@ so that the compiler can optimise it.
 from micropython import const
 
 # Used in src/watchy.py
+## Epoch 1970
+EPOCH70 = const(946684800)
+
 ## Buttons
 BTN_MENU = const(26)
 BTN_BACK = const(25)
