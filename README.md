@@ -10,7 +10,6 @@ The files inside the `upload` directory should be copied to your Watchy device a
 
 ## ToDo
 
-- [ ] Add daylight savings check
 - [ ] Grab forecast weather instead of current, use on screen updates
 - [ ] Monitor watchy voltages, adjust battery icon ranges
 - [ ] Add docstrings to libraries, clean up errors/warnings
@@ -35,6 +34,7 @@ The files inside the `upload` directory should be copied to your Watchy device a
 - [Sync time in MicroPython using NTP](https://bhave.sh/micropython-ntp/) - used section on Timezones
 - [ESP32/ESP8266 Analog Readings with MicroPython | Random Nerd Tutorials](https://randomnerdtutorials.com/esp32-esp8266-analog-readings-micropython/)
 - [MicroPython Documentation](https://docs.micropython.org/en/latest/)
+- [WorldTimeAPI](http://worldtimeapi.org/) - Gives us time JSON response for specific time zones, including DST true/false
 
 ## Hardware/Datasheets
 
