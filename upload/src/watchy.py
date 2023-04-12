@@ -257,9 +257,9 @@ class Watchy:
         is the unit Arduino uses. milliVolts / 1000 is Volts.
         1000 * 1000 = 1,000,000 or 1e6.
         According to Arduino code, there is a voltage divider on the board so
-        the voltage is divided by 2.0 to compensate.
+        the voltage is multiplied by 2.0 to compensate.
         """
-        return (self.adc.read_uv() / 1e6) / 2.0
+        return (self.adc.read_uv() / 1e6) * 2.0
 
     def check_battery_level(self):
         """Check the battery voltage and return battery level code."""
