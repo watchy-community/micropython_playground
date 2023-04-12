@@ -7,7 +7,7 @@ Based on code from https://github.com/hueyy/watchy_py.
 
 from esp32 import wake_on_ext0, wake_on_ext1, WAKEUP_ALL_LOW, WAKEUP_ANY_HIGH
 from utime import gmtime, sleep_ms
-from ntptime import time as ntptime
+from urequests import get as reqget
 from network import WLAN, STA_IF
 from errno import ETIMEDOUT
 from machine import (
@@ -27,7 +27,7 @@ import assets.fonts.battery_36 as battery_36
 import assets.fonts.weather_36 as weather_36
 from lib.display import Display
 from lib.pcf8563 import PCF8563
-from src.config import trustedWiFi, timeZone, DEBUG
+from src.config import trustedWiFi, weatherTZ, DEBUG
 from src.utils import (
     monthNames,
     weekDays,
@@ -45,7 +45,8 @@ from src.constants import (
     RTC_INT,
     BATT_ADC,
     WHITE,
-    BLACK
+    BLACK,
+    EPOCH70
 )
 
 
@@ -223,9 +224,21 @@ class Watchy:
         if self.station.isconnected():
             print('Network connected, getting ntp update')
             try:
+                # Grab timezone from api
+                apiTime = reqget(f'http://worldtimeapi.org/api/timezone/{weatherTZ}')
+            except OSError as exc:
+                if exc.errno == ETIMEDOUT:
+                    print('Connection to DST check timed out.')
+                else:
+                    print('Unknown DST error')
+            
+            try:
                 self.rtc.set_datetime(
                     gmtime(
-                        ntptime() + (timeZone * 60 * 60)
+                        # api unixtime - 1970 epoch
+                        (apiTime.json()['unixtime'] - EPOCH70) + \
+                        # + api utc offset
+                        (int(apiTime.json()['utc_offset'][0:3]) * 60 * 60)
                     )
                 )
             except OSError as exc:
