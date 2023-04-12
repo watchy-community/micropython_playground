@@ -231,14 +231,14 @@ class Watchy:
                     print('Connection to DST check timed out.')
                 else:
                     print('Unknown DST error')
-            
+
             try:
                 self.rtc.set_datetime(
                     gmtime(
                         # api unixtime - 1970 epoch
                         (apiTime.json()['unixtime'] - EPOCH70) + \
-                        # + api utc offset
-                        (int(apiTime.json()['utc_offset'][0:3]) * 60 * 60)
+                        # + api utc offset * 3600 to get seconds
+                        (int(apiTime.json()['utc_offset'][0:3]) * 3600)
                     )
                 )
             except OSError as exc:
