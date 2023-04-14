@@ -48,10 +48,10 @@ from src.constants import (
 )
 
 if WATCHY_VERSION == 1.0:
-    from lib.ds3231 import DS3231
+    from lib.ds3231 import DS3231 as HWRTC
 
 if WATCHY_VERSION == 2.0:
-    from lib.pcf8563 import PCF8563
+    from lib.pcf8563 import PCF8563 as HWRTC
 
 
 class Watchy:
@@ -79,7 +79,7 @@ class Watchy:
 
         # i2c init, rtc init
         i2c = SoftI2C(sda=Pin(RTC_SDA), scl=Pin(RTC_SCL))
-        self.rtc = PCF8563(i2c)
+        self.rtc = HWRTC(i2c)
 
         # Battery
         self.adc = ADC(Pin(BATT_ADC, Pin.IN))
