@@ -103,7 +103,13 @@ def read_weather():
 
 
 def get_ntptime():
-    """Grab NTP time from WorldTimeAPI."""
+    """Grab NTP time from WorldTimeAPI.
+
+    MicroPython uses the 2000 EPOCH when calculating time, therefore we must
+    subtract the seconds since the 1970 EPOCH from the WorldTimeAPI `unixtime`
+    to get the 2000 EPOCH. From there we use the first 3 characters of the
+    `utc_offset` (ie: -05 at time of writing), multiplied by 3600
+    """
     try:
         response = get(f'http://worldtimeapi.org/api/timezone/{weatherTZ}')
     except OSError as exc:
@@ -113,6 +119,18 @@ def get_ntptime():
         else:
             print('Unknown DST error')
             return False
-    # unixtime - EPOCH70 = EPOCH2000 + (utc_offset * 3600) = current time
     return (response.json()['unixtime'] - EPOCH70) + \
            (int(response.json()['utc_offset'][0:3]) * 3600)
+
+
+def get_vbatLevel(vbat):
+    """Return the font character for each batter level."""
+    if vbat > 1.91:
+        batteryLevel = 'A'
+    elif vbat > 1.714 and vbat <= 1.909:
+        batteryLevel = 'R'
+    elif vbat > 1.519 and vbat <= 1.713:
+        batteryLevel = 'S'
+    else:
+        batteryLevel = 'T'
+    return batteryLevel

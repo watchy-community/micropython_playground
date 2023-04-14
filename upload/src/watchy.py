@@ -32,7 +32,8 @@ from src.utils import (
     weatherCondition,
     check_weather,
     read_weather,
-    get_ntptime
+    get_ntptime,
+    get_vbatLevel
 )
 from src.constants import (
     BTN_MENU,
@@ -149,7 +150,6 @@ class Watchy:
 
         weather = read_weather()
         vbat = self.get_battery_voltage()
-        batteryLevel = self.check_battery_level()
 
         # Top Row
         self.display.display_text(
@@ -175,7 +175,7 @@ class Watchy:
             86, 133, weather_36, WHITE, BLACK
         )
         self.display.display_text(
-            batteryLevel,
+            get_vbatLevel(vbat),
             160, 123, battery_36, WHITE, BLACK
         )
         # Bottom Row
@@ -239,16 +239,3 @@ class Watchy:
         the voltage is multiplied by 2.0 to compensate.
         """
         return (self.adc.read_uv() / 1e6) * 2.0
-
-    def check_battery_level(self):
-        """Check the battery voltage and return battery level code."""
-        vbat = self.get_battery_voltage()
-        if vbat > 1.91:
-            batteryLevel = 'A'
-        elif vbat > 1.714 and vbat <= 1.909:
-            batteryLevel = 'R'
-        elif vbat > 1.519 and vbat <= 1.713:
-            batteryLevel = 'S'
-        else:
-            batteryLevel = 'T'
-        return batteryLevel
