@@ -24,8 +24,7 @@ import assets.fonts.monocraft_24 as monocraft_24
 import assets.fonts.battery_36 as battery_36
 import assets.fonts.weather_36 as weather_36
 from lib.display import Display
-from lib.pcf8563 import PCF8563
-from src.config import trustedWiFi, DEBUG
+from src.config import trustedWiFi, DEBUG, WATCHY_VERSION
 from src.utils import (
     monthNames,
     weekDays,
@@ -47,6 +46,12 @@ from src.constants import (
     WHITE,
     BLACK
 )
+
+if WATCHY_VERSION == 1.0:
+    from lib.ds3231 import DS3231
+
+if WATCHY_VERSION == 2.0:
+    from lib.pcf8563 import PCF8563
 
 
 class Watchy:

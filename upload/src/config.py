@@ -2,6 +2,9 @@
 
 Various configuration options.
 """
+# Watchy Version
+WATCHY_VERSION = 2.0
+
 # False allows Deepsleep to run, True prevents Deepsleep
 DEBUG = False
 
