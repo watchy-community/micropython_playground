@@ -77,9 +77,11 @@ def check_weather():
     }
     apiUrl = ''.join((
         f'https://api.open-meteo.com/v1/forecast?latitude={latitude}',
-        f'&longitude={longitude}&current_weather=true',
+        f'&longitude={longitude}}&daily=weathercode,temperature_2m_max,',
+        f'temperature_2m_min,windspeed_10m_max,winddirection_10m_dominant',
         f'&temperature_unit={tempUnit}&windspeed_unit={windUnit}',
-        f'&precipitation_unit={rainUnit}&timezone={weatherTZ}'
+        f'&precipitation_unit={rainUnit}&timeformat=unixtime&forecast_days=1',
+        f'&timezone={weatherTZ}'
     ))
     print('Checking weather updates')
     try:
@@ -97,9 +99,13 @@ def read_weather():
     """Read weather.json and return values."""
     with open('weather.json', 'r') as file:
         weather = load(file)
-    temp = str(round(weather['current_weather']['temperature']))
-    weathercode = weather['current_weather']['weathercode']
-    return temp, weathercode
+    return {
+        'tempmax': str(round(weather['daily']['temperature_2m_max'][0])),
+        'tempmin': str(round(weather['daily']['temperature_2m_min'][0])),
+        'weathercode': weather['daily']['weathercode'][0],
+        'windspeed': weather['daily']['windspeed_10m_max'][0],
+        'winddir': weather['daily']['winddirection_10m_dominant'][0]
+    }
 
 
 def get_ntptime():
