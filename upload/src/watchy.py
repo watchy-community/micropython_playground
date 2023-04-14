@@ -78,8 +78,8 @@ class Watchy:
 
         # Battery
         self.adc = ADC(Pin(BATT_ADC, Pin.IN))
-        self.adc.atten(ADC.ATTN_11DB)
-        # self.adc.width(ADC.WIDTH_12BIT)
+        self.adc.atten(ADC.ATTN_11DB)    # Max voltage 3.3V
+        self.adc.width(ADC.WIDTH_12BIT)  # Range 0 to 4095
 
         self.init_interrupts()
         self.handle_wakeup()
@@ -167,12 +167,12 @@ class Watchy:
             10, 133, weather_36, WHITE, BLACK
         )
         self.display.display_text(
-            weather[0],
+            f'{weather["tempmin"]}/{weather["tempmax"]}',
             28, 138, monocraft_24, WHITE, BLACK
         )
         self.display.display_text(
-            f'{weatherCondition[weather[1]]}',
-            86, 133, weather_36, WHITE, BLACK
+            f'{weatherCondition[weather["weathercode"]]}',
+            106, 103, weather_36, WHITE, BLACK
         )
         self.display.display_text(
             get_vbatLevel(vbat),
