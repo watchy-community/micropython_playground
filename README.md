@@ -14,15 +14,18 @@ The file `/upload/src/config.py` is used as a configuration/settings file. You s
 
 ## ToDo
 
-- [ ] Grab forecast weather instead of current, use on screen updates
-  - [ ] Grab 24 hour forecast, write to file
-  - [ ] Modify read function to look up current hour forecast
+- [x] Grab forecast weather instead of current, use on screen updates
+  - ~~[ ] Grab 24 hour forecast, write to file~~
+  - ~~[ ] Modify read function to look up current hour forecast~~
+  - [x] Grab daily forecast, use min/max values
 - [ ] Clean-up ePaper partial updates
   - Current partial is real grainy and hard to read
   - Peter Hinch has been working on partial epaper updates for the [Waveshare Pico](https://github.com/peterhinch/micropython-nano-gui/blob/master/drivers/epaper/pico_epaper_42.py), is his code adaptable?
 - [ ] Monitor watchy voltages, adjust battery icon ranges
   - Max is 4V (I'm seeing 4.01x or 4.02x)
   - Min is 2.66? - Still monitoring and testing
+  - [x] Added ADC width, Mouser docs confirmed 12BIT width
+  - [x] Reconfirmed ADC atten, LiPO is 3.3V so 11DB is used
 - [ ] Add docstrings to libraries, clean up errors/warnings
   - [ ] writer needs docstrings added
   - [ ] can display/epaper/writer be refactored/combined/slimmed down?
