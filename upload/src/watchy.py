@@ -229,8 +229,10 @@ class Watchy:
             except OSError as exc:
                 if exc.errno == ETIMEDOUT:
                     print('Connection to DST check timed out.')
+                    return
                 else:
                     print('Unknown DST error')
+                    return
 
             try:
                 self.rtc.set_datetime(
