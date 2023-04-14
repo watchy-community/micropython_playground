@@ -125,11 +125,12 @@ def get_ntptime():
 
 def get_vbatLevel(vbat):
     """Return the font character for each batter level."""
-    if vbat > 1.91:
+    # Max 4.0, Min 2.66
+    if vbat > 3.66:
         batteryLevel = 'A'
-    elif vbat > 1.714 and vbat <= 1.909:
+    elif vbat > 3.33 and vbat <= 3.66:
         batteryLevel = 'R'
-    elif vbat > 1.519 and vbat <= 1.713:
+    elif vbat > 2.995 and vbat <= 3.33:
         batteryLevel = 'S'
     else:
         batteryLevel = 'T'
