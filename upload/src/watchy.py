@@ -7,9 +7,7 @@ Based on code from https://github.com/hueyy/watchy_py.
 
 from esp32 import wake_on_ext0, wake_on_ext1, WAKEUP_ALL_LOW, WAKEUP_ANY_HIGH
 from utime import gmtime, sleep_ms
-from urequests import get as reqget
 from network import WLAN, STA_IF
-from errno import ETIMEDOUT
 from machine import (
     EXT0_WAKE,
     EXT1_WAKE,
@@ -27,13 +25,14 @@ import assets.fonts.battery_36 as battery_36
 import assets.fonts.weather_36 as weather_36
 from lib.display import Display
 from lib.pcf8563 import PCF8563
-from src.config import trustedWiFi, weatherTZ, DEBUG
+from src.config import trustedWiFi, DEBUG
 from src.utils import (
     monthNames,
     weekDays,
     weatherCondition,
     check_weather,
-    read_weather
+    read_weather,
+    get_ntptime
 )
 from src.constants import (
     BTN_MENU,
@@ -45,8 +44,7 @@ from src.constants import (
     RTC_INT,
     BATT_ADC,
     WHITE,
-    BLACK,
-    EPOCH70
+    BLACK
 )
 
 
@@ -223,31 +221,10 @@ class Watchy:
         print('Checking online time server')
         if self.station.isconnected():
             print('Network connected, getting ntp update')
-            try:
-                # Grab timezone from api
-                apiTime = reqget(f'http://worldtimeapi.org/api/timezone/{weatherTZ}')
-            except OSError as exc:
-                if exc.errno == ETIMEDOUT:
-                    print('Connection to DST check timed out.')
-                    return
-                else:
-                    print('Unknown DST error')
-                    return
+            ntptime = get_ntptime()
 
-            try:
-                self.rtc.set_datetime(
-                    gmtime(
-                        # api unixtime - 1970 epoch
-                        (apiTime.json()['unixtime'] - EPOCH70) + \
-                        # + api utc offset * 3600 to get seconds
-                        (int(apiTime.json()['utc_offset'][0:3]) * 3600)
-                    )
-                )
-            except OSError as exc:
-                if exc.errno == ETIMEDOUT:
-                    print('Connection to NTP timed out')
-                else:
-                    print('Unknown NTP error')
+            if ntptime:
+                self.rtc.set_datetime(gmtime(ntptime))
             print('RTC sync\'d to NTP')
         else:
             print('Not online, ntp unreachable')

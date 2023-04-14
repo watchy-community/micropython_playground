@@ -14,6 +14,7 @@ from src.config import (
     rainUnit,
     weatherTZ
 )
+from src.constants import EPOCH70
 
 weekDays = {
     0: 'Mon',
@@ -99,3 +100,19 @@ def read_weather():
     temp = str(round(weather['current_weather']['temperature']))
     weathercode = weather['current_weather']['weathercode']
     return temp, weathercode
+
+
+def get_ntptime():
+    """Grab NTP time from WorldTimeAPI."""
+    try:
+        response = get(f'http://worldtimeapi.org/api/timezone/{weatherTZ}')
+    except OSError as exc:
+        if exc.errno == ETIMEDOUT:
+            print('Connection to DST check timed out.')
+            return False
+        else:
+            print('Unknown DST error')
+            return False
+    # unixtime - EPOCH70 = EPOCH2000 + (utc_offset * 3600) = current time
+    return (response.json()['unixtime'] - EPOCH70) + \
+           (int(response.json()['utc_offset'][0:3]) * 3600)
