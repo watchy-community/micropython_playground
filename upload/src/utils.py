@@ -77,7 +77,7 @@ def check_weather():
     }
     apiUrl = ''.join((
         f'https://api.open-meteo.com/v1/forecast?latitude={latitude}',
-        f'&longitude={longitude}}&daily=weathercode,temperature_2m_max,',
+        f'&longitude={longitude}&daily=weathercode,temperature_2m_max,',
         f'temperature_2m_min,windspeed_10m_max,winddirection_10m_dominant',
         f'&temperature_unit={tempUnit}&windspeed_unit={windUnit}',
         f'&precipitation_unit={rainUnit}&timeformat=unixtime&forecast_days=1',
