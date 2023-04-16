@@ -13,7 +13,7 @@
 
 python font_to_py.py -x -f Monocraft-no-ligatures.ttf 44 monocraft_44.py -c 0123456789:
 
-python font_to_py.py -x -f Monocraft-no-ligatures.ttf 24 monocraft_24.py -c " 0123456789,ADFJMNOSTWabcdeghilnoprtuvy"
+python font_to_py.py -x -f Monocraft-no-ligatures.ttf 24 monocraft_24.py -c "0123456789 ,./ADFJMNOSTWabcdeghilnoprtuvy"
 
 # I had to move a couple icons up from the unicode section for this
 python font_to_py.py -x -f weathericons-mod.ttf 36 weather_36.py -c ABDEF/

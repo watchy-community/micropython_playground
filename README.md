@@ -8,22 +8,40 @@ Testing MicroPython with Watchy ESP32 hardware.
 
 The files inside the `upload` directory should be copied to your Watchy device after MicroPython has been setup. Installation notes can be found on the [Community Wiki](https://watchy-community.github.io/wiki/#/micropython/setup).
 
+### Config File
+
+The file `/upload/src/config.py` is used as a configuration/settings file. You should only need to add your trusted wireless networks as tuples, and modify the Open-Meteo arguments. The WorldTimeAPI, which is used for NTP sync, will use the `weatherTZ` for its own timezone look up as well.
+
 ## ToDo
 
-- [ ] Grab forecast weather instead of current, use on screen updates
+- [x] Grab forecast weather instead of current, use on screen updates
+  - ~~[ ] Grab 24 hour forecast, write to file~~
+  - ~~[ ] Modify read function to look up current hour forecast~~
+  - [x] Grab daily forecast, use min/max values
+- [ ] Clean-up ePaper partial updates
+  - Current partial is real grainy and hard to read
+  - Peter Hinch has been working on partial epaper updates for the [Waveshare Pico](https://github.com/peterhinch/micropython-nano-gui/blob/master/drivers/epaper/pico_epaper_42.py), is his code adaptable?
 - [ ] Monitor watchy voltages, adjust battery icon ranges
+  - Max is 4V (I'm seeing 4.01x or 4.02x)
+  - Min is 2.66? - Still monitoring and testing
+  - [x] Added ADC width, Mouser docs confirmed 12BIT width
+  - [x] Reconfirmed ADC atten, LiPO is 3.3V so 11DB is used
 - [ ] Add docstrings to libraries, clean up errors/warnings
-  - [ ] writer
+  - [ ] writer needs docstrings added
+  - [ ] can display/epaper/writer be refactored/combined/slimmed down?
 - [ ] Reduce memory usage
   - [ ] Change [const() with prefix _](https://docs.micropython.org/en/latest/develop/optimizations.html#variables)
   - [ ] [Cross-compile lib files as mpy](https://docs.micropython.org/en/latest/develop/optimizations.html#frozen-bytecode)
   - [ ] Cross-compile font files as mpy
+- [ ] Work with others to integrate the v1 and v1.5 hardware code
+  - Have both PCF8563 and DS3231 libraries on the watch, load the appropriate driver
+  - How to identify v1/v1.5/v2 so we can re-map ADC and BTN3 pins, might need to be a `config.py`/manual user process
+    - Maybe add WATCHY_VERSION to boot.py?
 
 ## Issues
 
 - It is not possible to get the wakeup bit in MicroPython yet, see [GH: micropython/issues/6981](https://github.com/micropython/micropython/issues/6981)
-- Changing NTP to update at 03:00 instead of every 4 hours, I need to come up with a better weather update schedule
-  - Updating every 4 hours for NTP and weather, the battery lasted a little over 24 hours
+  - tl;dr: There is a delay in the wakeup process, by the time the ESP32 wakes up the MicroPython bit used to track the individual buttons is lost.
 
 ## References
 

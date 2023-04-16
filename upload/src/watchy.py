@@ -7,9 +7,7 @@ Based on code from https://github.com/hueyy/watchy_py.
 
 from esp32 import wake_on_ext0, wake_on_ext1, WAKEUP_ALL_LOW, WAKEUP_ANY_HIGH
 from utime import gmtime, sleep_ms
-from urequests import get as reqget
 from network import WLAN, STA_IF
-from errno import ETIMEDOUT
 from machine import (
     EXT0_WAKE,
     EXT1_WAKE,
@@ -27,13 +25,15 @@ import assets.fonts.battery_36 as battery_36
 import assets.fonts.weather_36 as weather_36
 from lib.display import Display
 from lib.pcf8563 import PCF8563
-from src.config import trustedWiFi, weatherTZ, DEBUG
+from src.config import trustedWiFi, DEBUG
 from src.utils import (
     monthNames,
     weekDays,
     weatherCondition,
     check_weather,
-    read_weather
+    read_weather,
+    get_ntptime,
+    get_vbatLevel
 )
 from src.constants import (
     BTN_MENU,
@@ -45,8 +45,7 @@ from src.constants import (
     RTC_INT,
     BATT_ADC,
     WHITE,
-    BLACK,
-    EPOCH70
+    BLACK
 )
 
 
@@ -79,8 +78,8 @@ class Watchy:
 
         # Battery
         self.adc = ADC(Pin(BATT_ADC, Pin.IN))
-        self.adc.atten(ADC.ATTN_11DB)
-        # self.adc.width(ADC.WIDTH_12BIT)
+        self.adc.atten(ADC.ATTN_11DB)    # Max voltage 3.3V
+        self.adc.width(ADC.WIDTH_12BIT)  # Range 0 to 4095
 
         self.init_interrupts()
         self.handle_wakeup()
@@ -151,7 +150,6 @@ class Watchy:
 
         weather = read_weather()
         vbat = self.get_battery_voltage()
-        batteryLevel = self.check_battery_level()
 
         # Top Row
         self.display.display_text(
@@ -169,15 +167,15 @@ class Watchy:
             10, 133, weather_36, WHITE, BLACK
         )
         self.display.display_text(
-            weather[0],
+            f'{weather["tempmin"]}/{weather["tempmax"]}',
             28, 138, monocraft_24, WHITE, BLACK
         )
         self.display.display_text(
-            f'{weatherCondition[weather[1]]}',
-            86, 133, weather_36, WHITE, BLACK
+            f'{weatherCondition[weather["weathercode"]]}',
+            106, 103, weather_36, WHITE, BLACK
         )
         self.display.display_text(
-            batteryLevel,
+            get_vbatLevel(vbat),
             160, 123, battery_36, WHITE, BLACK
         )
         # Bottom Row
@@ -223,31 +221,10 @@ class Watchy:
         print('Checking online time server')
         if self.station.isconnected():
             print('Network connected, getting ntp update')
-            try:
-                # Grab timezone from api
-                apiTime = reqget(f'http://worldtimeapi.org/api/timezone/{weatherTZ}')
-            except OSError as exc:
-                if exc.errno == ETIMEDOUT:
-                    print('Connection to DST check timed out.')
-                    return
-                else:
-                    print('Unknown DST error')
-                    return
+            ntptime = get_ntptime()
 
-            try:
-                self.rtc.set_datetime(
-                    gmtime(
-                        # api unixtime - 1970 epoch
-                        (apiTime.json()['unixtime'] - EPOCH70) + \
-                        # + api utc offset * 3600 to get seconds
-                        (int(apiTime.json()['utc_offset'][0:3]) * 3600)
-                    )
-                )
-            except OSError as exc:
-                if exc.errno == ETIMEDOUT:
-                    print('Connection to NTP timed out')
-                else:
-                    print('Unknown NTP error')
+            if ntptime:
+                self.rtc.set_datetime(gmtime(ntptime))
             print('RTC sync\'d to NTP')
         else:
             print('Not online, ntp unreachable')
@@ -262,16 +239,3 @@ class Watchy:
         the voltage is multiplied by 2.0 to compensate.
         """
         return (self.adc.read_uv() / 1e6) * 2.0
-
-    def check_battery_level(self):
-        """Check the battery voltage and return battery level code."""
-        vbat = self.get_battery_voltage()
-        if vbat > 1.91:
-            batteryLevel = 'A'
-        elif vbat > 1.714 and vbat <= 1.909:
-            batteryLevel = 'R'
-        elif vbat > 1.519 and vbat <= 1.713:
-            batteryLevel = 'S'
-        else:
-            batteryLevel = 'T'
-        return batteryLevel
