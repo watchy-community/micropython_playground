@@ -66,7 +66,10 @@ weatherCondition = {
     81: 'E',  # Rain showers moderate
     82: 'E',  # Rain showers violent
     85: 'F',  # Snow showers slight
-    86: 'F'   # Snow showers heavy
+    86: 'F',  # Snow showers heavy
+    95: 'E',  # Thunderstorms
+    96: 'E',  # Thunderstorms with slight hail
+    99: 'E'   # Thunderstorms with heavy hail
 }
 
 
