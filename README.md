@@ -12,12 +12,14 @@ The files inside the `upload` directory should be copied to your Watchy device a
 
 The file `/upload/src/config.py` is used as a configuration/settings file. You should only need to add your trusted wireless networks as tuples, and modify the Open-Meteo arguments. The WorldTimeAPI, which is used for NTP sync, will use the `weatherTZ` for its own timezone look up as well.
 
+### Cross-Compile mpy files
+
+On my Debian 12 system, I ran `pip install mpy-cross-v6.1` because I am working with MicroPython 1.21.0. Check the [MPY-CROSS github](https://github.com/pybricks/python-mpy-cross) docs for which version to install. Once it was installed, I ran `/home/<username>/.local/bin/mpy-cross <filename>.py` and it made the *MPY* file. I first did the font files and replaced the *PY* files with the *MPY* files on the Watchy, and it loaded without issues, then I did the lib files as well.
+
 ## ToDo
 
-- [x] Grab forecast weather instead of current, use on screen updates
-  - ~~[ ] Grab 24 hour forecast, write to file~~
-  - ~~[ ] Modify read function to look up current hour forecast~~
-  - [x] Grab daily forecast, use min/max values
+- [ ] Fix `check_weather` function
+  - After the Micropython 1.21.0 update, the `requests` will not reach out to HTTPS sites 
 - [ ] Clean-up ePaper partial updates
   - Current partial is real grainy and hard to read
   - Peter Hinch has been working on partial epaper updates for the [Waveshare Pico](https://github.com/peterhinch/micropython-nano-gui/blob/master/drivers/epaper/pico_epaper_42.py), is his code adaptable?
@@ -31,8 +33,8 @@ The file `/upload/src/config.py` is used as a configuration/settings file. You s
   - [ ] can display/epaper/writer be refactored/combined/slimmed down?
 - [ ] Reduce memory usage
   - [ ] Change [const() with prefix _](https://docs.micropython.org/en/latest/develop/optimizations.html#variables)
-  - [ ] [Cross-compile lib files as mpy](https://docs.micropython.org/en/latest/develop/optimizations.html#frozen-bytecode)
-  - [ ] Cross-compile font files as mpy
+  - [x] [Cross-compile lib files as mpy](https://docs.micropython.org/en/latest/develop/optimizations.html#frozen-bytecode)
+  - [x] Cross-compile font files as mpy
 - [ ] Work with others to integrate the v1 and v1.5 hardware code
   - Have both PCF8563 and DS3231 libraries on the watch, load the appropriate driver
   - How to identify v1/v1.5/v2 so we can re-map ADC and BTN3 pins, might need to be a `config.py`/manual user process
