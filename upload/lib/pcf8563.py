@@ -8,7 +8,7 @@ Created by Lewis He
 See LICENSE.
 """
 
-import utime
+from time import localtime
 from machine import I2C
 from src.constants import (
     PCF8563_SLAVE_ADDRESS,
@@ -161,7 +161,7 @@ class PCF8563:
 
     def write_now(self):
         """Write the current system time to PCF8563."""
-        self.set_datetime(utime.localtime())
+        self.set_datetime(localtime())
 
     def set_clk_out_frequency(self, frequency=CLOCK_CLK_OUT_FREQ_1_HZ):
         """Set the clock output pin frequency."""

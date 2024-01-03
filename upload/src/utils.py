@@ -4,8 +4,8 @@ Reference dictionaries, shared functions, and anything used by but not
 necessarily apart of the Watchy class.
 """
 from errno import ETIMEDOUT
-from ujson import load
-from urequests import get
+from json import load
+from requests import get
 from src.config import (
     latitude,
     longitude,
@@ -81,8 +81,8 @@ def check_weather():
     apiUrl = ''.join((
         f'https://api.open-meteo.com/v1/forecast?latitude={latitude}',
         f'&longitude={longitude}&daily=weathercode,temperature_2m_max,',
-        f'temperature_2m_min,windspeed_10m_max,winddirection_10m_dominant',
-        f'&temperature_unit={tempUnit}&windspeed_unit={windUnit}',
+        f'temperature_2m_min,wind_speed_10m_max,wind_direction_10m_dominant',
+        f'&temperature_unit={tempUnit}&wind_speed_unit={windUnit}',
         f'&precipitation_unit={rainUnit}&timeformat=unixtime&forecast_days=1',
         f'&timezone={weatherTZ}'
     ))
@@ -95,7 +95,7 @@ def check_weather():
         if exc.errno == ETIMEDOUT:
             print('Connection to weather API timed out')
         else:
-            print('Unknown API error')
+            print(exc)
 
 
 def read_weather():
@@ -106,8 +106,8 @@ def read_weather():
         'tempmax': str(round(weather['daily']['temperature_2m_max'][0])),
         'tempmin': str(round(weather['daily']['temperature_2m_min'][0])),
         'weathercode': weather['daily']['weathercode'][0],
-        'windspeed': weather['daily']['windspeed_10m_max'][0],
-        'winddir': weather['daily']['winddirection_10m_dominant'][0]
+        'windspeed': weather['daily']['wind_speed_10m_max'][0],
+        'winddir': weather['daily']['wind_direction_10m_dominant'][0]
     }
 
 

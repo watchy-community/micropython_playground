@@ -6,7 +6,7 @@ Based on code from https://github.com/hueyy/watchy_py.
 """
 
 from esp32 import wake_on_ext0, wake_on_ext1, WAKEUP_ALL_LOW, WAKEUP_ANY_HIGH
-from utime import gmtime, sleep_ms
+from time import gmtime, sleep_ms
 from network import WLAN, STA_IF
 from machine import (
     EXT0_WAKE,
@@ -110,14 +110,14 @@ class Watchy:
         (_, month, date, hours, minutes, _, day) = self.rtc.datetime()
         if reason is EXT0_WAKE or reason == 0:
             print('RTC wake')
-            # connect to wifi, update ntp at 03:00am
+            # connect to wifi, update ntp at 03:00
             if hours == 3 and minutes == 0:
                 print('3am ntp update')
                 self.check_network()
                 self.check_ntptime()
-                check_weather()
-            # run every minute during waking hours
-            if hours >= 6 and hours <= 23:
+                #check_weather()
+            # run every minute, but only update every 5 minutes from 06:00-23:00
+            if (hours >= 6 and hours <= 23) and (minutes % 5 == 0):
                 self.display_watchface(month, date, hours, minutes, day)
                 self.set_rtc_interrupt(minutes + 1)
             else:
@@ -128,7 +128,7 @@ class Watchy:
             # the lines below are testing until rtc_int/timers are fixed
             self.check_network()
             self.check_ntptime()
-            check_weather()
+            #check_weather()
             self.display_watchface(month, date, hours, minutes, day)
             self.set_rtc_interrupt(minutes + 1)
         else:
@@ -148,7 +148,7 @@ class Watchy:
         if len(str(minutes)) == 1:
             minutes = f'0{minutes}'
 
-        weather = read_weather()
+        #weather = read_weather()
         vbat = self.get_battery_voltage()
 
         # Top Row
@@ -162,18 +162,18 @@ class Watchy:
             10, 70, monocraft_24, WHITE, BLACK
         )
         # Fourth Row / Weather
-        self.display.display_text(
-            '/',
-            10, 133, weather_36, WHITE, BLACK
-        )
-        self.display.display_text(
-            f'{weather["tempmin"]}/{weather["tempmax"]}',
-            28, 138, monocraft_24, WHITE, BLACK
-        )
-        self.display.display_text(
-            f'{weatherCondition[weather["weathercode"]]}',
-            106, 103, weather_36, WHITE, BLACK
-        )
+        #self.display.display_text(
+        #    '/',
+        #    10, 133, weather_36, WHITE, BLACK
+        #)
+        #self.display.display_text(
+        #    f'{weather["tempmin"]}/{weather["tempmax"]}',
+        #    28, 138, monocraft_24, WHITE, BLACK
+        #)
+        #self.display.display_text(
+        #    f'{weatherCondition[weather["weathercode"]]}',
+        #    106, 103, weather_36, WHITE, BLACK
+        #)
         self.display.display_text(
             get_vbatLevel(vbat),
             160, 123, battery_36, WHITE, BLACK
