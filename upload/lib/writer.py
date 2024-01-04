@@ -11,8 +11,6 @@ See LICENSE.
 """
 
 from framebuf import FrameBuffer, MONO_HLSB, MONO_HMSB
-from uctypes import bytearray_at, addressof
-from sys import implementation
 
 __version__ = (0, 5, 0)
 
@@ -77,12 +75,10 @@ class Writer:
         else:
             raise ValueError("Font must be horizontally mapped.")
         if verbose:
-            fstr = "Orientation: Horizontal. Reversal: {}. Width: {}. Height: {}."
-            print(fstr.format(font.reverse(), device_width, device_height))
-            print(
-                "Start row = {} col = {}".format(
-                    self._getstate().text_row, self._getstate().text_col
-                )
+            print(f"Orientation: Horizontal. Reversal: {font.reverse()}. ",\
+                  f"Width: {device_width}. Height: {device_height}.")
+            print(f"Start row = {self._getstate().text_row} ",\
+                  f"col = {self._getstate().text_col}"
             )
         self.screenwidth = device_width  # In pixels
         self.screenheight = device_height
