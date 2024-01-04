@@ -12,9 +12,9 @@ trustedWiFi = [
 ]
 
 # Weather API for Open-Meteo.com
-latitude = '38.95'
-longitude = '-92.33'
-tempUnit = 'fahrenheit'
-windUnit = 'mph'
-rainUnit = 'inch'
-weatherTZ = 'America%2FChicago'
+LATITUDE = '38.95'
+LONGITUDE = '-92.33'
+UNIT_TEMP = 'fahrenheit'
+UNIT_WIND = 'mph'
+UNIT_RAIN = 'inch'
+TIME_ZONE = 'America%2FChicago'

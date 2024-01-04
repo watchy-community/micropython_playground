@@ -27,13 +27,13 @@ from lib.display import Display
 from lib.pcf8563 import PCF8563
 from src.config import trustedWiFi, DEBUG
 from src.utils import (
-    monthNames,
-    weekDays,
-    weatherCondition,
-    check_weather,
-    read_weather,
+    month_names,
+    week_days,
+#    weather_condition,
+#    get_weather,
+#    read_weather,
     get_ntptime,
-    get_vbatLevel
+    get_vbat_level
 )
 from src.constants import (
     BTN_MENU,
@@ -115,7 +115,7 @@ class Watchy:
                 print('3am ntp update')
                 self.check_network()
                 self.check_ntptime()
-                #check_weather()
+                #get_weather()
             # run every minute, but only update every 5 minutes from 06:00-23:00
             if (hours >= 6 and hours <= 23) and (minutes % 5 == 0):
                 self.display_watchface(month, date, hours, minutes, day)
@@ -128,7 +128,7 @@ class Watchy:
             # the lines below are testing until rtc_int/timers are fixed
             self.check_network()
             self.check_ntptime()
-            #check_weather()
+            #get_weather()
             self.display_watchface(month, date, hours, minutes, day)
             self.set_rtc_interrupt(minutes + 1)
         else:
@@ -175,12 +175,12 @@ class Watchy:
         #    106, 103, weather_36, WHITE, BLACK
         #)
         self.display.display_text(
-            get_vbatLevel(vbat),
+            get_vbat_level(vbat),
             160, 123, battery_36, WHITE, BLACK
         )
         # Bottom Row
         self.display.display_text(
-            f'{weekDays[day]},{monthNames[month - 1]} {date}',
+            f'{week_days[day]},{month_names[month - 1]} {date}',
             10, 170, monocraft_24, WHITE, BLACK
         )
         self.display.update()
@@ -202,12 +202,12 @@ class Watchy:
             return
         else:
             print('Scanning for local networks')
-            wifiResults = self.station.scan()
-            for knownNet in trustedWiFi:
-                for scanNet in wifiResults:
-                    if scanNet[0].decode() == knownNet[0]:
-                        print(f'Connecting to {knownNet[0]}')
-                        self.station.connect(knownNet[0], knownNet[1])
+            wifi_result = self.station.scan()
+            for known_net in trustedWiFi:
+                for scan_net in wifi_result:
+                    if scan_net[0].decode() == known_net[0]:
+                        print(f'Connecting to {known_net[0]}')
+                        self.station.connect(known_net[0], known_net[1])
                         while not self.station.isconnected():
                             print('Waiting on connection...')
                             sleep_ms(1000)

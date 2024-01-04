@@ -7,16 +7,16 @@ from errno import ETIMEDOUT
 from json import load
 from requests import get
 from src.config import (
-    latitude,
-    longitude,
-    tempUnit,
-    windUnit,
-    rainUnit,
-    weatherTZ
+    LATITUDE,
+    LONGITUDE,
+    UNIT_TEMP,
+    UNIT_RAIN,
+    UNIT_WIND,
+    TIME_ZONE
 )
 from src.constants import EPOCH70
 
-weekDays = {
+week_days = {
     0: 'Mon',
     1: 'Tue',
     2: 'Wed',
@@ -26,7 +26,7 @@ weekDays = {
     6: 'Sun'
 }
 
-monthNames = {
+month_names = {
     0: 'Jan',
     1: 'Feb',
     2: 'Mar',
@@ -41,7 +41,7 @@ monthNames = {
     11: 'Dec'
 }
 
-weatherCondition = {
+weather_condition = {
     0: 'A',   # Clear Sky
     1: 'A',   # Mainly clear
     2: 'B',   # Partly cloudy
@@ -73,23 +73,21 @@ weatherCondition = {
 }
 
 
-def check_weather():
+def get_weather():
     """Get weather from Open-Meteo.com."""
     headers = {
         'User-Agent': '(Watchy ESP32, lee.rowland@gmail.com)'
     }
-    apiUrl = ''.join((
-        f'https://api.open-meteo.com/v1/forecast?latitude={latitude}',
-        f'&longitude={longitude}&daily=weathercode,temperature_2m_max,',
-        f'temperature_2m_min,wind_speed_10m_max,wind_direction_10m_dominant',
-        f'&temperature_unit={tempUnit}&wind_speed_unit={windUnit}',
-        f'&precipitation_unit={rainUnit}&timeformat=unixtime&forecast_days=1',
-        f'&timezone={weatherTZ}'
-    ))
+    api_url = f'https://api.open-meteo.com/v1/forecast?latitude={LATITUDE}', \
+             f'&longitude={LONGITUDE}&daily=weathercode,temperature_2m_max,', \
+             'temperature_2m_min,wind_speed_10m_max,wind_direction_10m_dominant', \
+             f'&temperature_unit={UNIT_TEMP}&wind_speed_unit={UNIT_WIND}', \
+             f'&precipitation_unit={UNIT_RAIN}&timeformat=unixtime&forecast_days=1', \
+             f'&timezone={TIME_ZONE}'
     print('Checking weather updates')
     try:
-        response = get(apiUrl, headers=headers)
-        with open('weather.json', 'w') as file:
+        response = get(api_url, headers=headers)
+        with open('weather.json', 'w', encoding='UTF-8') as file:
             file.write(response.content)
     except OSError as exc:
         if exc.errno == ETIMEDOUT:
@@ -100,7 +98,7 @@ def check_weather():
 
 def read_weather():
     """Read weather.json and return values."""
-    with open('weather.json', 'r') as file:
+    with open('weather.json', 'r', encoding='UTF-8') as file:
         weather = load(file)
     return {
         'tempmax': str(round(weather['daily']['temperature_2m_max'][0])),
@@ -120,7 +118,7 @@ def get_ntptime():
     `utc_offset` (ie: -05 at time of writing), multiplied by 3600
     """
     try:
-        response = get(f'http://worldtimeapi.org/api/timezone/{weatherTZ}')
+        response = get(f'http://worldtimeapi.org/api/timezone/{TIME_ZONE}')
     except OSError as exc:
         if exc.errno == ETIMEDOUT:
             print('Connection to DST check timed out.')
@@ -132,15 +130,15 @@ def get_ntptime():
            (int(response.json()['utc_offset'][0:3]) * 3600)
 
 
-def get_vbatLevel(vbat):
+def get_vbat_level(vbat):
     """Return the font character for each batter level."""
     # Max 4.2, Min 2.7
     if vbat > 3.825:
-        batteryLevel = 'A'
+        battery_level = 'A'
     elif vbat > 3.45 and vbat <= 3.825:
-        batteryLevel = 'R'
+        battery_level = 'R'
     elif vbat > 3.075 and vbat <= 3.45:
-        batteryLevel = 'S'
+        battery_level = 'S'
     else:
-        batteryLevel = 'T'
-    return batteryLevel
+        battery_level = 'T'
+    return battery_level
