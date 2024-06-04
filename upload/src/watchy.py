@@ -119,7 +119,7 @@ class Watchy:
             # run every minute, but only update every 5 minutes from 06:00-23:00
             if (hours >= 6 and hours <= 23) and (minutes % 5 == 0):
                 self.display_watchface(month, date, hours, minutes, day)
-                self.set_rtc_interrupt(minutes + 1)
+                self.set_rtc_interrupt(minutes + 5)
             else:
                 self.set_rtc_interrupt(minutes + 1)
 
